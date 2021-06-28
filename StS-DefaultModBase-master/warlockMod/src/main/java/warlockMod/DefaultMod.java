@@ -1,5 +1,6 @@
 package warlockMod;
 
+import GifTheSpire.util.GifAnimation;
 import basemod.*;
 import basemod.eventUtil.AddEventParams;
 import basemod.helpers.RelicType;
@@ -92,7 +93,9 @@ public class DefaultMod implements
     public static final String THE_DEFAULT_SHOULDER_1 = "warlockModResources/images/char/defaultCharacter/shoulder.png";
     public static final String THE_DEFAULT_SHOULDER_2 = "warlockModResources/images/char/defaultCharacter/shoulder2.png";
     public static final String THE_DEFAULT_CORPSE = "warlockModResources/images/char/defaultCharacter/corpse.png";
-    
+    public static GifAnimation warlockgif=
+            new GifAnimation("warlockModResources/images/char/defaultCharacter/Spriter/character.png", 3, 1, 0, 0, 1, 1, false);
+
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
     
@@ -298,10 +301,12 @@ public class DefaultMod implements
 
         // =============== /EVENTS/ =================
         logger.info("Done loading badge Image and mod options");
+
+        // =============== /GIFS/ =================
+        warlockgif.create();
+        warlockgif.addAsCharacterAnimation(TheDefault.class.getName());
     }
-    
-    // =============== / POST-INITIALIZE/ =================
-    
+
     // ================ ADD POTIONS ===================
     
     public void receiveEditPotions() {
