@@ -167,7 +167,8 @@ public class TheWarlock extends CustomPlayer {
 
         logger.info("Begin loading starter Deck Strings");
 
-        retVal.add(DefaultCommonAttack.ID);
+        retVal.add(ShadowBolt.ID);
+
         retVal.add(DefaultUncommonAttack.ID);
         retVal.add(DefaultRareAttack.ID);
 

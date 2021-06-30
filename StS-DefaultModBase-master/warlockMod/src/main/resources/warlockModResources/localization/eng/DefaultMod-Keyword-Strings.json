@@ -16,5 +16,35 @@
       "multikeyword"
     ],
     "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+  },
+  {
+    "NAMES": [
+      "spellpower"
+    ],
+    "DESCRIPTION": "Adds damage to your spells, at varying amounts per spell."
+  },
+  {
+    "NAMES": [
+      "curse"
+    ],
+    "DESCRIPTION": "Warlock curses debilitate the enemy. Curse durations do not stack."
+  },
+  {
+    "NAMES": [
+      "destruction"
+    ],
+    "DESCRIPTION": "Benefits from Destruction effects."
+  },
+  {
+    "NAMES": [
+      "affliction"
+    ],
+    "DESCRIPTION": "Benefits from Affliction effects."
+  },
+  {
+    "NAMES": [
+      "demonology"
+    ],
+    "DESCRIPTION": "Benefits from Demonology effects."
   }
 ]

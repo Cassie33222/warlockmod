@@ -1,6 +1,5 @@
 package warlockMod.cards;
 
-import basemod.AutoAdd;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -10,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 // "How come this card extends CustomCard and not DynamicCard like all the rest?"
@@ -22,21 +22,14 @@ import warlockMod.characters.TheWarlock;
 // Abstract Dynamic Card builds up on Abstract Default Card even more and makes it so that you don't need to add
 // the NAME and the DESCRIPTION into your card - it'll get it automatically. Of course, this functionality could have easily
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
-@AutoAdd.Ignore
-public class DefaultCommonAttack extends CustomCard {
-
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * Strike Deal 7(9) damage.
-     */
+public class ShadowBolt extends CustomCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = WarlockMod.makeID(DefaultCommonAttack.class.getSimpleName());
+    public static final String ID = WarlockMod.makeID(ShadowBolt.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = WarlockMod.makeCardPath("Attack.png");
+    public static final String IMG = WarlockMod.makeCardPath("shadowbolt.png");
     // Setting the image as as easy as can possibly be now. You just need to provide the image name
     // and make sure it's in the correct folder. That's all.
     // There's makeCardPath, makeRelicPath, power, orb, event, etc..
@@ -79,33 +72,51 @@ public class DefaultCommonAttack extends CustomCard {
     // UnlockTracker.unlockCard(DefaultCommonAttack.ID);
     // in your main class, in the receiveEditCards() method
 
-    public DefaultCommonAttack() {
+    public ShadowBolt() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         // Aside from baseDamage/MagicNumber/Block there's also a few more.
         // Just type this.base and let intelliJ auto complete for you, or, go read up AbstractCard
 
         baseDamage = DAMAGE;
+        magicNumber = baseMagicNumber= DAMAGE;
 
-        this.tags.add(CardTags.STARTER_STRIKE); //Tag your strike, defend and form (Wraith form, Demon form, Echo form, etc.) cards so that they function correctly.
-        this.tags.add(CardTags.STRIKE);
     }
+    int getDamage(AbstractPlayer p){
+        //will use spellpower and other such things
+        AbstractPower power=p.getPower("Spellpower");
+        int spellpowerbonus=0;
+        if(power!=null){
+            spellpowerbonus=power.amount;
+        }
 
+        spellpowerbonus=1;
+        return magicNumber+spellpowerbonus;
+        //return magicNumber+0;
+    }
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        /*int remainingdamage=damage;
+        if(p.hasPower("Weakened")){
+            double r=remainingdamage/0.75f;
+            remainingdamage=(int)Math.round(r);
+        }*/
         AbstractDungeon.actionManager.addToBottom( // The action managed queues all the actions a card should do.
                 // addToTop - first
                 // addToBottom - last
                 // 99.99% of the time you just want to addToBottom all of them.
                 // Please do that unless you need to add to top for some specific reason.
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn),
+                //new com.megacrit.cardcrawl.actions.common.LoseHPAction(m, p, getDamage(), AbstractGameAction.AttackEffect.POISON)
+
+                new DamageAction(m, new DamageInfo(p, getDamage(p), damageTypeForTurn),
                         // a list of existing actions can be found at com.megacrit.cardcrawl.actions but
                         // Chances are you'd instead look at "hey my card is similar to this basegame card"
                         // Let's find out what action *it* uses.
                         // I.e. i want energy gain or card draw, lemme check out Adrenaline
                         // P.s. if you want to damage ALL enemies OUTSIDE of a card, check out the custom orb.
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)); // The animation the damage action uses to hit.
+                        AbstractGameAction.AttackEffect.POISON)
+    ); // The animation the damage action uses to hit.
     }
 
     // Upgraded stats.
@@ -114,6 +125,7 @@ public class DefaultCommonAttack extends CustomCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeMagicNumber(UPGRADE_PLUS_DMG);
             initializeDescription();
         }
     }
