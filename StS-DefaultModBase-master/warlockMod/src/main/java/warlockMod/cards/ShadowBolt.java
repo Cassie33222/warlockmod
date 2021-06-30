@@ -47,7 +47,7 @@ public class ShadowBolt extends CustomCard{
 
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
