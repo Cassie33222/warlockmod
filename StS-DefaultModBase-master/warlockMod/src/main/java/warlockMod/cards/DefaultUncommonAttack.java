@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import warlockMod.DefaultMod;
-import warlockMod.characters.TheDefault;
+import warlockMod.WarlockMod;
+import warlockMod.characters.TheWarlock;
 
 public class DefaultUncommonAttack extends AbstractDynamicCard {
 
@@ -19,8 +19,8 @@ public class DefaultUncommonAttack extends AbstractDynamicCard {
 
     // TEXT DECLARATION 
 
-    public static final String ID = DefaultMod.makeID(DefaultUncommonAttack.class.getSimpleName());
-    public static final String IMG = DefaultMod.makeCardPath("Attack.png");
+    public static final String ID = WarlockMod.makeID(DefaultUncommonAttack.class.getSimpleName());
+    public static final String IMG = WarlockMod.makeCardPath("Attack.png");
 
     // /TEXT DECLARATION/
 
@@ -30,7 +30,7 @@ public class DefaultUncommonAttack extends AbstractDynamicCard {
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
+    public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
     private static final int DAMAGE = 10;

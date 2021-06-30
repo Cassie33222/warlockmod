@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import warlockMod.DefaultMod;
+import warlockMod.WarlockMod;
 import warlockMod.util.TextureLoader;
 
 public class PlaceholderRelic2 extends CustomRelic {
@@ -17,10 +17,10 @@ public class PlaceholderRelic2 extends CustomRelic {
      */
 
     // ID, images, text.
-    public static final String ID = DefaultMod.makeID("PlaceholderRelic2");
+    public static final String ID = WarlockMod.makeID("PlaceholderRelic2");
 
-    private static final Texture IMG = TextureLoader.getTexture(DefaultMod.makeRelicPath("placeholder_relic2.png"));
-    private static final Texture OUTLINE = TextureLoader.getTexture(DefaultMod.makeRelicOutlinePath("placeholder_relic2.png"));
+    private static final Texture IMG = TextureLoader.getTexture(WarlockMod.makeRelicPath("placeholder_relic2.png"));
+    private static final Texture OUTLINE = TextureLoader.getTexture(WarlockMod.makeRelicOutlinePath("placeholder_relic2.png"));
 
     public PlaceholderRelic2() {
         super(ID, IMG, OUTLINE, RelicTier.COMMON, LandingSound.FLAT);

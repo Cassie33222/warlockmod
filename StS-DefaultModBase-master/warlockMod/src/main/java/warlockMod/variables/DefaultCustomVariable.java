@@ -3,7 +3,7 @@ package warlockMod.variables;
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import warlockMod.DefaultMod;
+import warlockMod.WarlockMod;
 
 public class DefaultCustomVariable extends DynamicVariable
 {   // Custom Dynamic Variables are what you do if you need your card text to display a cool, changing number that the base game doesn't provide.
@@ -14,7 +14,7 @@ public class DefaultCustomVariable extends DynamicVariable
     @Override
     public String key()
     {
-        return DefaultMod.makeID("ENERGY_DAMAGE");
+        return WarlockMod.makeID("ENERGY_DAMAGE");
     }
 
     // Checks whether the current value is different than the base one. 

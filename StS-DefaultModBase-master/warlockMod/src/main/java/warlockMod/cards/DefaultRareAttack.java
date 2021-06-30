@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
-import warlockMod.DefaultMod;
-import warlockMod.characters.TheDefault;
+import warlockMod.WarlockMod;
+import warlockMod.characters.TheWarlock;
 
 public class DefaultRareAttack extends AbstractDynamicCard {
 
@@ -22,8 +22,8 @@ public class DefaultRareAttack extends AbstractDynamicCard {
 
     // TEXT DECLARATION 
 
-    public static final String ID = DefaultMod.makeID(DefaultRareAttack.class.getSimpleName());
-    public static final String IMG = DefaultMod.makeCardPath("Attack.png");
+    public static final String ID = WarlockMod.makeID(DefaultRareAttack.class.getSimpleName());
+    public static final String IMG = WarlockMod.makeCardPath("Attack.png");
 
     // /TEXT DECLARATION/
 
@@ -33,7 +33,7 @@ public class DefaultRareAttack extends AbstractDynamicCard {
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
+    public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 2;
 

@@ -3,7 +3,7 @@ package warlockMod.variables;
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import warlockMod.cards.AbstractDefaultCard;
-import warlockMod.DefaultMod;
+import warlockMod.WarlockMod;
 
 public class DefaultSecondMagicNumber extends DynamicVariable {
 
@@ -11,7 +11,7 @@ public class DefaultSecondMagicNumber extends DynamicVariable {
 
     @Override
     public String key() {
-        return DefaultMod.makeID("SecondMagic");
+        return WarlockMod.makeID("SecondMagic");
         // This is what you put between "!!" in your card strings to actually display the number.
         // You can name this anything (no spaces), but please pre-phase it with your mod name as otherwise mod conflicts can occur.
         // Remember, we're using makeID so it automatically puts "theDefault:" (or, your id) before the name.

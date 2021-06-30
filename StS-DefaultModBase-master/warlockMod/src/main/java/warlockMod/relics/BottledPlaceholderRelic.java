@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import warlockMod.DefaultMod;
+import warlockMod.WarlockMod;
 import warlockMod.patches.relics.BottledPlaceholderField;
 import warlockMod.util.TextureLoader;
 
@@ -40,9 +40,9 @@ public class BottledPlaceholderRelic extends CustomRelic implements CustomBottle
 
 
     // ID, images, text.
-    public static final String ID = DefaultMod.makeID("BottledPlaceholderRelic");
-    private static final Texture IMG = TextureLoader.getTexture(DefaultMod.makeRelicPath("BottledPlaceholder.png"));
-    private static final Texture OUTLINE = TextureLoader.getTexture(DefaultMod.makeRelicOutlinePath("BottledPlaceholder.png"));
+    public static final String ID = WarlockMod.makeID("BottledPlaceholderRelic");
+    private static final Texture IMG = TextureLoader.getTexture(WarlockMod.makeRelicPath("BottledPlaceholder.png"));
+    private static final Texture OUTLINE = TextureLoader.getTexture(WarlockMod.makeRelicOutlinePath("BottledPlaceholder.png"));
 
     public BottledPlaceholderRelic() {
         super(ID, IMG, OUTLINE, RelicTier.COMMON, LandingSound.CLINK);

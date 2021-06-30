@@ -1,9 +1,7 @@
 package warlockMod.characters;
 
-import GifTheSpire.util.GifAnimation;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpineAnimation;
-import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -12,7 +10,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.characters.CharacterManager;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
@@ -24,7 +21,7 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import warlockMod.DefaultMod;
+import warlockMod.WarlockMod;
 import warlockMod.relics.DefaultClickableRelic;
 import warlockMod.relics.PlaceholderRelic;
 import warlockMod.relics.PlaceholderRelic2;
@@ -32,14 +29,14 @@ import warlockMod.cards.*;
 
 import java.util.ArrayList;
 
-import static warlockMod.characters.TheDefault.Enums.COLOR_GRAY;
+import static warlockMod.characters.TheWarlock.Enums.COLOR_GRAY;
 
 //Wiki-page https://github.com/daviscook477/BaseMod/wiki/Custom-Characters
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class TheDefault extends CustomPlayer {
-    public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
+public class TheWarlock extends CustomPlayer {
+    public static final Logger logger = LogManager.getLogger(WarlockMod.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================
     // These are enums for your Characters color (both general color and for the card library) as well as
@@ -74,7 +71,7 @@ public class TheDefault extends CustomPlayer {
 
     // =============== STRINGS =================
 
-    private static final String ID = DefaultMod.makeID("DefaultCharacter");
+    private static final String ID = WarlockMod.makeID("DefaultCharacter");
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     private static final String[] NAMES = characterStrings.NAMES;
     private static final String[] TEXT = characterStrings.TEXT;
@@ -101,7 +98,7 @@ public class TheDefault extends CustomPlayer {
 
     // =============== CHARACTER CLASS START =================
 
-    public TheDefault(String name, PlayerClass setClass) {
+    public TheWarlock(String name, PlayerClass setClass) {
         /*super(name, setClass, orbTextures,
                 "theDefaultResources/images/char/defaultCharacter/orb/vfx.png", null,
                 new SpriterAnimation(
@@ -121,9 +118,9 @@ public class TheDefault extends CustomPlayer {
 
         initializeClass(null, // required call to load textures and setup energy/loadout.
                 // I left these in DefaultMod.java (Ctrl+click them to see where they are, Ctrl+hover to see what they read.)
-                DefaultMod.THE_DEFAULT_SHOULDER_2, // campfire pose
-                DefaultMod.THE_DEFAULT_SHOULDER_1, // another campfire pose
-                DefaultMod.THE_DEFAULT_CORPSE, // dead corpse
+                WarlockMod.THE_DEFAULT_SHOULDER_2, // campfire pose
+                WarlockMod.THE_DEFAULT_SHOULDER_1, // another campfire pose
+                WarlockMod.THE_DEFAULT_CORPSE, // dead corpse
                 getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
 
         // =============== /TEXTURES, ENERGY, LOADOUT/ =================
@@ -132,14 +129,14 @@ public class TheDefault extends CustomPlayer {
         // =============== ANIMATIONS =================  
 
         loadAnimation(
-                DefaultMod.THE_DEFAULT_SKELETON_ATLAS,
-                DefaultMod.THE_DEFAULT_SKELETON_JSON,
+                WarlockMod.THE_DEFAULT_SKELETON_ATLAS,
+                WarlockMod.THE_DEFAULT_SKELETON_JSON,
                 1.0f);
         AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
         e.setTime(e.getEndTime() * MathUtils.random());
 
         // ADD GIF ANIMATION
-        DefaultMod.warlockgif.addAsCharacterAnimation(TheDefault.class.getName());
+        WarlockMod.warlockgif.addAsCharacterAnimation(TheWarlock.class.getName());
 
         // =============== /ANIMATIONS/ =================
 
@@ -209,7 +206,8 @@ public class TheDefault extends CustomPlayer {
     @Override
     public void doCharSelectScreenSelectEffect() {
         //CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); // Sound Effect
-        CardCrawlGame.sound.playA(DefaultMod.warlockselectsound, 1.25f); // Sound Effect
+        //BaseMod.addAudio(DefaultMod.warlockselectsound, DefaultMod.warlockselectsoundurl);
+        CardCrawlGame.sound.playA(WarlockMod.warlockselectsound, 0.4f); // Sound Effect
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
                 false); // Screen Effect
     }
@@ -217,7 +215,7 @@ public class TheDefault extends CustomPlayer {
     // character Select on-button-press sound effect
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return DefaultMod.warlockselectsound;
+        return WarlockMod.warlockselectsound;
     }
 
     // Should return how much HP your maximum HP reduces by when starting a run at
@@ -236,7 +234,7 @@ public class TheDefault extends CustomPlayer {
     // Should return a color object to be used to color the trail of moving cards
     @Override
     public Color getCardTrailColor() {
-        return DefaultMod.DEFAULT_GRAY;
+        return WarlockMod.DEFAULT_GRAY;
     }
 
     // Should return a BitmapFont object that you can use to customize how your
@@ -267,20 +265,20 @@ public class TheDefault extends CustomPlayer {
     // Should return a new instance of your character, sending name as its name parameter.
     @Override
     public AbstractPlayer newInstance() {
-        return new TheDefault(name, chosenClass);
+        return new TheWarlock(name, chosenClass);
     }
 
     // Should return a Color object to be used to color the miniature card images in run history.
     @Override
     public Color getCardRenderColor() {
-        return DefaultMod.DEFAULT_GRAY;
+        return WarlockMod.DEFAULT_GRAY;
     }
 
     // Should return a Color object to be used as screen tint effect when your
     // character attacks the heart.
     @Override
     public Color getSlashAttackColor() {
-        return DefaultMod.DEFAULT_GRAY;
+        return WarlockMod.DEFAULT_GRAY;
     }
 
     // Should return an AttackEffect array of any size greater than 0. These effects

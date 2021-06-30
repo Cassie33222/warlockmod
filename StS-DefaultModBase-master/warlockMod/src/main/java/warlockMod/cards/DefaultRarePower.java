@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import warlockMod.DefaultMod;
-import warlockMod.characters.TheDefault;
+import warlockMod.WarlockMod;
+import warlockMod.characters.TheWarlock;
 import warlockMod.powers.RarePower;
 
 public class DefaultRarePower extends AbstractDynamicCard {
@@ -19,8 +19,8 @@ public class DefaultRarePower extends AbstractDynamicCard {
 
     // TEXT DECLARATION 
 
-    public static final String ID = DefaultMod.makeID(DefaultRarePower.class.getSimpleName());
-    public static final String IMG = DefaultMod.makeCardPath("Power.png");
+    public static final String ID = WarlockMod.makeID(DefaultRarePower.class.getSimpleName());
+    public static final String IMG = WarlockMod.makeCardPath("Power.png");
 
     // /TEXT DECLARATION/
 
@@ -30,7 +30,7 @@ public class DefaultRarePower extends AbstractDynamicCard {
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
+    public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 3;
     private static final int UPGRADE_COST = 2;
