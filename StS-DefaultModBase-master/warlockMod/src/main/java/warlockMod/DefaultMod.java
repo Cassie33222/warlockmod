@@ -13,6 +13,9 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.audio.Sfx;
+import com.megacrit.cardcrawl.audio.SoundMaster;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
@@ -94,7 +97,10 @@ public class DefaultMod implements
     public static final String THE_DEFAULT_SHOULDER_2 = "warlockModResources/images/char/defaultCharacter/shoulder2.png";
     public static final String THE_DEFAULT_CORPSE = "warlockModResources/images/char/defaultCharacter/corpse.png";
     public static GifAnimation warlockgif=
-            new GifAnimation("warlockModResources/images/char/defaultCharacter/Spriter/character.png", 3, 1, 0, 0, 1, 1, false);
+            new GifAnimation("warlockModResources/images/char/defaultCharacter/character.png",
+                    5, 4, 0, 0, 0.5f, 0.5f, false);
+    public static final String warlockselectsound="WARLOCK_SELECT";
+    public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
@@ -304,7 +310,10 @@ public class DefaultMod implements
 
         // =============== /GIFS/ =================
         warlockgif.create();
-        warlockgif.addAsCharacterAnimation(TheDefault.class.getName());
+        DefaultMod.warlockgif.setAnimationspeed(0.05f);
+
+        // =============== /SOUND EFFECTS/ =================
+        BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
     }
 
     // ================ ADD POTIONS ===================

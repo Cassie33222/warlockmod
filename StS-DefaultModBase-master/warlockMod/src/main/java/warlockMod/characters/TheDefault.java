@@ -1,6 +1,8 @@
 package warlockMod.characters;
 
+import GifTheSpire.util.GifAnimation;
 import basemod.abstracts.CustomPlayer;
+import basemod.animations.SpineAnimation;
 import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -10,6 +12,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.characters.CharacterManager;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
@@ -60,8 +63,8 @@ public class TheDefault extends CustomPlayer {
     // =============== BASE STATS =================
 
     public static final int ENERGY_PER_TURN = 3;
-    public static final int STARTING_HP = 75;
-    public static final int MAX_HP = 75;
+    public static final int STARTING_HP = 80;
+    public static final int MAX_HP = 80;
     public static final int STARTING_GOLD = 99;
     public static final int CARD_DRAW = 9;
     public static final int ORB_SLOTS = 3;
@@ -99,11 +102,20 @@ public class TheDefault extends CustomPlayer {
     // =============== CHARACTER CLASS START =================
 
     public TheDefault(String name, PlayerClass setClass) {
-        super(name, setClass, orbTextures,
+        /*super(name, setClass, orbTextures,
                 "theDefaultResources/images/char/defaultCharacter/orb/vfx.png", null,
                 new SpriterAnimation(
-                        "theDefaultResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
+                        "theDefaultResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml")
+        );*/
+        super(name, setClass, orbTextures,
+                "theDefaultResources/images/char/defaultCharacter/orb/vfx.png", null,
+                new SpineAnimation(
+                        "theDefaultResources/images/char/defaultCharacter/skeleton.atlas",
+                        "theDefaultResources/images/char/defaultCharacter/skeleton.json",
+                        1
 
+                )
+        );
 
         // =============== TEXTURES, ENERGY, LOADOUT =================  
 
@@ -125,6 +137,9 @@ public class TheDefault extends CustomPlayer {
                 1.0f);
         AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
         e.setTime(e.getEndTime() * MathUtils.random());
+
+        // ADD GIF ANIMATION
+        DefaultMod.warlockgif.addAsCharacterAnimation(TheDefault.class.getName());
 
         // =============== /ANIMATIONS/ =================
 
@@ -193,7 +208,8 @@ public class TheDefault extends CustomPlayer {
     // character Select screen effect
     @Override
     public void doCharSelectScreenSelectEffect() {
-        CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); // Sound Effect
+        //CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); // Sound Effect
+        CardCrawlGame.sound.playA(DefaultMod.warlockselectsound, 1.25f); // Sound Effect
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
                 false); // Screen Effect
     }
@@ -201,7 +217,7 @@ public class TheDefault extends CustomPlayer {
     // character Select on-button-press sound effect
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return "ATTACK_DAGGER_1";
+        return DefaultMod.warlockselectsound;
     }
 
     // Should return how much HP your maximum HP reduces by when starting a run at
