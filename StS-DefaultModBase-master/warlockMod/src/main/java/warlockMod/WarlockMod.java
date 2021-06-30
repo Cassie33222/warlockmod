@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
@@ -303,14 +304,13 @@ public class WarlockMod implements
         // Add the event
         BaseMod.addEvent(eventParams);
 
-        // =============== /EVENTS/ =================
         logger.info("Done loading badge Image and mod options");
 
-        // =============== /GIFS/ =================
+        // =============== GIFS =================
         warlockgif.create();
         WarlockMod.warlockgif.setAnimationspeed(0.05f);
 
-        // =============== /SOUND EFFECTS?/ =================
+        // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
         BaseMod.publishAddAudio(CardCrawlGame.sound);
     }
