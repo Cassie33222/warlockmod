@@ -22,7 +22,7 @@ import warlockMod.characters.TheWarlock;
 // Abstract Dynamic Card builds up on Abstract Default Card even more and makes it so that you don't need to add
 // the NAME and the DESCRIPTION into your card - it'll get it automatically. Of course, this functionality could have easily
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
-public class ShadowBolt extends CustomCard {
+public class ShadowBolt extends CustomCard{
 
     // TEXT DECLARATION
 
@@ -77,22 +77,27 @@ public class ShadowBolt extends CustomCard {
 
         // Aside from baseDamage/MagicNumber/Block there's also a few more.
         // Just type this.base and let intelliJ auto complete for you, or, go read up AbstractCard
-
         baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber= DAMAGE;
+        baseMagicNumber=magicNumber=DAMAGE;
 
     }
-    int getDamage(AbstractPlayer p){
-        //will use spellpower and other such things
-        AbstractPower power=p.getPower("Spellpower");
-        int spellpowerbonus=0;
-        if(power!=null){
-            spellpowerbonus=power.amount;
+    @Override
+    public void applyPowers() {
+        //Assuming you're using magic number to store your damage
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        AbstractPower yourModifierPower = AbstractDungeon.player.getPower("Spellpower"); //usually defined as a constant in power classes
+        if (yourModifierPower != null) {
+            this.magicNumber += yourModifierPower.amount;
+            this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
         }
-
-        spellpowerbonus=1;
-        return magicNumber+spellpowerbonus;
-        //return magicNumber+0;
+        this.magicNumber+=1;
+        this.isMagicNumberModified = true;
+    }
+    @Override
+    public void calculateCardDamage(AbstractMonster mo){
+        int value=magicNumber;
+        damage=value;
     }
     // Actions the card should do.
     @Override
@@ -109,7 +114,7 @@ public class ShadowBolt extends CustomCard {
                 // Please do that unless you need to add to top for some specific reason.
                 //new com.megacrit.cardcrawl.actions.common.LoseHPAction(m, p, getDamage(), AbstractGameAction.AttackEffect.POISON)
 
-                new DamageAction(m, new DamageInfo(p, getDamage(p), damageTypeForTurn),
+                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn),
                         // a list of existing actions can be found at com.megacrit.cardcrawl.actions but
                         // Chances are you'd instead look at "hey my card is similar to this basegame card"
                         // Let's find out what action *it* uses.
