@@ -1,6 +1,5 @@
 package warlockMod.cards;
 
-import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,8 +9,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 import warlockMod.powers.CommonPower;
+import warlockMod.powers.Spellpower;
 
-public class DefaultCommonPower extends AbstractDynamicCard {
+public class SpellpowerAdd extends AbstractDynamicCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -20,10 +20,10 @@ public class DefaultCommonPower extends AbstractDynamicCard {
      */
 
 
-    // TEXT DECLARATION 
+    // TEXT DECLARATION
 
-    public static final String ID = WarlockMod.makeID(DefaultCommonPower.class.getSimpleName());
-    public static final String IMG = WarlockMod.makeCardPath("Power.png");
+    public static final String ID = WarlockMod.makeID(SpellpowerAdd.class.getSimpleName());
+    public static final String IMG = WarlockMod.makeCardPath("Spellpower.png");
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -31,7 +31,7 @@ public class DefaultCommonPower extends AbstractDynamicCard {
     // /TEXT DECLARATION/
 
 
-    // STAT DECLARATION 	
+    // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
@@ -50,7 +50,7 @@ public class DefaultCommonPower extends AbstractDynamicCard {
     // /STAT DECLARATION/
 
 
-    public DefaultCommonPower() {
+    public SpellpowerAdd() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         magicNumber = baseMagicNumber = MAGIC;
     }
@@ -60,7 +60,7 @@ public class DefaultCommonPower extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p,
-                new CommonPower(p, p, magicNumber), magicNumber));
+                new Spellpower(p, p, magicNumber), magicNumber));
         /*
         Hey do you see this "amount" and "stackAmount" up here^ (press ctrl+p inside the parentheses to see parameters)
         THIS DOES NOT MEAN APPLY 1 POWER 1 TIMES. If you put 2 in both numbers it would apply 2. NOT "2 STACKS, 2 TIMES".

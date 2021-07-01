@@ -176,7 +176,8 @@ public class TheWarlock extends CustomPlayer {
         retVal.add(DefaultUncommonSkill.ID);
         retVal.add(DefaultRareSkill.ID);
 
-        retVal.add(DefaultCommonPower.ID);
+        retVal.add(SpellpowerAdd.ID);
+
         retVal.add(DefaultUncommonPower.ID);
         retVal.add(DefaultRarePower.ID);
 

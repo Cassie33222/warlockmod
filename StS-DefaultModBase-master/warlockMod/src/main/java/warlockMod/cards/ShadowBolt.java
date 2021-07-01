@@ -1,5 +1,6 @@
 package warlockMod.cards;
 
+import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
+import warlockMod.powers.Spellpower;
 // "How come this card extends CustomCard and not DynamicCard like all the rest?"
 // Skip this question until you start figuring out the AbstractDefaultCard/AbstractDynamicCard and just extend DynamicCard
 // for your own ones like all the other cards.
@@ -23,6 +25,8 @@ import warlockMod.characters.TheWarlock;
 // the NAME and the DESCRIPTION into your card - it'll get it automatically. Of course, this functionality could have easily
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
 public class ShadowBolt extends CustomCard{
+
+    //Deal 6+3u+1sp damage. Destruction.
 
     // TEXT DECLARATION
 
@@ -53,6 +57,7 @@ public class ShadowBolt extends CustomCard{
     private static final int COST = 1;
     private static final int DAMAGE = 6;
     private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int SPELLPOWER_RATIO = 1;
 
     // Hey want a second damage/magic/block/unique number??? Great!
     // Go check out DefaultAttackWithVariable and theDefault.variable.DefaultCustomVariable
@@ -86,13 +91,11 @@ public class ShadowBolt extends CustomCard{
         //Assuming you're using magic number to store your damage
         this.magicNumber = this.baseMagicNumber;
         this.isMagicNumberModified = false;
-        AbstractPower yourModifierPower = AbstractDungeon.player.getPower("Spellpower"); //usually defined as a constant in power classes
+        AbstractPower yourModifierPower = AbstractDungeon.player.getPower(Spellpower.POWER_ID); //usually defined as a constant in power classes
         if (yourModifierPower != null) {
-            this.magicNumber += yourModifierPower.amount;
+            this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
             this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
         }
-        this.magicNumber+=1;
-        this.isMagicNumberModified = true;
     }
     @Override
     public void calculateCardDamage(AbstractMonster mo){

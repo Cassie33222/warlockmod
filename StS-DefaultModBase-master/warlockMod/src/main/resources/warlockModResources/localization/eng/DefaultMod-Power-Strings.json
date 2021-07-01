@@ -6,5 +6,9 @@
 "warlockMod:RarePower": {
         "NAME": "Placeholder Power",
         "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
-}
+},
+        "warlockMod:Spellpower": {
+                "NAME": "Spellpower",
+                "DESCRIPTIONS": ["Spellpower adds damage to your [#EFC851]Affliction[] and [#EFC851]Destruction[] cards, at varying amounts."]
+        }
 }
