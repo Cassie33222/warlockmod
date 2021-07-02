@@ -82,17 +82,17 @@ public class TheWarlock extends CustomPlayer {
     // =============== TEXTURES OF BIG ENERGY ORB ===============
 
     public static final String[] orbTextures = {
-            "theDefaultResources/images/char/defaultCharacter/orb/layer1.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer2.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer3.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer4.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer5.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer6.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer1d.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer2d.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer3d.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer4d.png",
-            "theDefaultResources/images/char/defaultCharacter/orb/layer5d.png",};
+            "warlockModResources/images/char/defaultCharacter/orb/layer1.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer2.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer3.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer4.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer5.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer6.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer1d.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer2d.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer3d.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer4d.png",
+            "warlockModResources/images/char/defaultCharacter/orb/layer5d.png",};
 
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
@@ -100,15 +100,15 @@ public class TheWarlock extends CustomPlayer {
 
     public TheWarlock(String name, PlayerClass setClass) {
         /*super(name, setClass, orbTextures,
-                "theDefaultResources/images/char/defaultCharacter/orb/vfx.png", null,
+                "warlockModResources/images/char/defaultCharacter/orb/vfx.png", null,
                 new SpriterAnimation(
-                        "theDefaultResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml")
+                        "warlockModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml")
         );*/
         super(name, setClass, orbTextures,
-                "theDefaultResources/images/char/defaultCharacter/orb/vfx.png", null,
+                "warlockModResources/images/char/defaultCharacter/orb/vfx.png", null,
                 new SpineAnimation(
-                        "theDefaultResources/images/char/defaultCharacter/skeleton.atlas",
-                        "theDefaultResources/images/char/defaultCharacter/skeleton.json",
+                        "warlockModResources/images/char/defaultCharacter/skeleton.atlas",
+                        "warlockModResources/images/char/defaultCharacter/skeleton.json",
                         1
 
                 )
