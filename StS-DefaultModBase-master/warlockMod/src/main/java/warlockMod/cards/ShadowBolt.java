@@ -2,6 +2,7 @@ package warlockMod.cards;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -123,9 +124,11 @@ public class ShadowBolt extends CustomCard{
                         // Let's find out what action *it* uses.
                         // I.e. i want energy gain or card draw, lemme check out Adrenaline
                         // P.s. if you want to damage ALL enemies OUTSIDE of a card, check out the custom orb.
-                        AbstractGameAction.AttackEffect.POISON
+                        //AbstractGameAction.AttackEffect.POISON
+                        AbstractGameAction.AttackEffect.NONE
                 )
     ); // The animation the damage action uses to hit.
+        WarlockMod.shadowboltimpactgif.renderOverCreature(new SpriteBatch(), m);
     }
 
     // Upgraded stats.

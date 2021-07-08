@@ -101,6 +101,11 @@ public class WarlockMod implements
     public static final String warlockselectsound="WARLOCK_SELECT";
     public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";
 
+    // Spell assets
+    public static GifAnimation shadowboltimpactgif=
+            new GifAnimation("warlockModResources/images/cards/sbi.png",
+                    6, 6, 0, 0, 0.5f, 0.5f, false);
+
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
     
@@ -306,9 +311,14 @@ public class WarlockMod implements
 
         logger.info("Done loading badge Image and mod options");
 
-        // =============== GIFS =================
-        warlockgif.create();
+        // TODO: =============== GIFS =================
+        WarlockMod.warlockgif.create();
         WarlockMod.warlockgif.setAnimationspeed(0.05f);
+
+        // ADD GIF ANIMATION
+        WarlockMod.shadowboltimpactgif.create();
+        //WarlockMod.shadowboltimpactgif.addAsForeGroundAnimation();
+        //WarlockMod.shadowboltimpactgif.setAnimationspeed(0.05f);
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
