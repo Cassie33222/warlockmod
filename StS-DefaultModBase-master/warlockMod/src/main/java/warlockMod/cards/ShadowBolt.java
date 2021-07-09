@@ -104,6 +104,13 @@ public class ShadowBolt extends CustomCard{
         damage=value;
     }
     // Actions the card should do.
+    /*@Override
+    public void update(){
+        SpriteBatch sb=new SpriteBatch();
+        sb.begin();
+        WarlockMod.shadowboltimpactgif.renderOverCreature(sb, m);
+        WarlockMod.shadowboltimpactgif.playOnce();
+    }*/
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         /*int remainingdamage=damage;
@@ -128,10 +135,9 @@ public class ShadowBolt extends CustomCard{
                 )
     ); // The animation the damage action uses to hit.
         // AbstractDungeon.actionManager.
-       SpriteBatch sb=new SpriteBatch();
-       sb.begin();
-       WarlockMod.shadowboltimpactgif.renderOverCreature(sb, m);
+        WarlockMod.shadowboltimpactgif.addAsForeGroundAnimation();
         WarlockMod.shadowboltimpactgif.playOnce();
+
     }
 
     // Upgraded stats.

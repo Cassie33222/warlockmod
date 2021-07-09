@@ -9,6 +9,6 @@
 },
         "warlockMod:Spellpower": {
                 "NAME": "Spellpower",
-                "DESCRIPTIONS": ["Spellpower increases your [#EFC851]Affliction[] and [#EFC851]Destruction[] damage, at varying amounts. Spellpower: [#87ceeb]"]
+                "DESCRIPTIONS": ["Spellpower increases your [#EFC851]Affliction[] and [#EFC851]Destruction[] damage, at varying amounts. Spellpower: [#87ceeb]%o.[]"]
         }
 }
