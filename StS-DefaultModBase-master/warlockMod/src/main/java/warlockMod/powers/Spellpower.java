@@ -45,7 +45,9 @@ public class Spellpower extends AbstractPower implements CloneablePowerInterface
         // We load those txtures here.
         this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
-        description = DESCRIPTIONS[0];
+        //description = DESCRIPTIONS[0];
+        this.description = DESCRIPTIONS[0]+this.amount+".[]";
+        //this.description = String.format(DESCRIPTIONS[0], this.amount));
     }
 
     @Override

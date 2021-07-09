@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import warlockMod.cards.AbstractDefaultCard;
+import warlockMod.cards.ShadowBolt;
 import warlockMod.characters.TheWarlock;
 import warlockMod.events.IdentityCrisisEvent;
 import warlockMod.potions.PlaceholderPotion;
@@ -103,7 +104,7 @@ public class WarlockMod implements
 
     // Spell assets
     public static GifAnimation shadowboltimpactgif=
-            new GifAnimation("warlockModResources/images/cards/sbi.png",
+            new GifAnimation("warlockModResources/images/cards/shadowboltimpact.png",
                     6, 6, 0, 0, 0.5f, 0.5f, false);
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
@@ -317,8 +318,9 @@ public class WarlockMod implements
 
         // ADD GIF ANIMATION
         WarlockMod.shadowboltimpactgif.create();
-        //WarlockMod.shadowboltimpactgif.addAsForeGroundAnimation();
-        //WarlockMod.shadowboltimpactgif.setAnimationspeed(0.05f);
+        WarlockMod.shadowboltimpactgif.setAnimationspeed(0.05f);
+        WarlockMod.shadowboltimpactgif.addAsForeGroundAnimation();
+        //WarlockMod.shadowboltimpactgif.addAsCardAnimation(ShadowBolt.ID);
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
