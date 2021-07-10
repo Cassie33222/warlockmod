@@ -103,12 +103,16 @@ public class WarlockMod implements
     public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";
 
     // Spell assets
-    /*public static GifAnimation shadowboltimpactgif=
-            new GifAnimation("warlockModResources/images/cards/shadowboltimpact.png",
-                    6, 6, 0, 0, 0.5f, 0.5f, false);*/
+    //fake shadow bolt, debug copypasta
+    /*
     public static GifAnimation shadowboltimpactgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/character.png",
-                    5, 4, 0, 0, 0.3f, 0.3f, false);
+                    5, 4, 0, 0, 0.3f, 0.3f, false);*/
+    //real shadow bolt
+    public static GifAnimation shadowboltimpactgif=
+            new GifAnimation("warlockModResources/images/cards/sbi.png",
+                    //-480
+                    6, 6, 0, 0, 1f, 1f, 0, 120, true);
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
@@ -320,15 +324,15 @@ public class WarlockMod implements
         WarlockMod.warlockgif.setAnimationspeed(0.05f);
 
         // ADD GIF ANIMATION
-        initializeSpellGif(shadowboltimpactgif);
+        initializeSpellGif(shadowboltimpactgif, 0.05f);
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
         BaseMod.publishAddAudio(CardCrawlGame.sound);
     }
-    public void initializeSpellGif(GifAnimation gif){
+    public void initializeSpellGif(GifAnimation gif, float speed){
         gif.create();
-        gif.setAnimationspeed(0.05f);
+        gif.setAnimationspeed(speed);
         gif.setLoop(false);
         gif.addAsForeGroundAnimation();
         gif.ishidden=true;

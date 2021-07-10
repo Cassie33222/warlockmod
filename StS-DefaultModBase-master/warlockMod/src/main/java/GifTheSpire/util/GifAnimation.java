@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import warlockMod.WarlockMod;
 
 import java.util.ArrayList;
 
@@ -35,12 +36,14 @@ public class GifAnimation implements ApplicationListener {
     private boolean loop = true;
     private String txt;
     private float framedur = 0.025F;
+    private float flatadjustx=0;
+    private float flatadjusty=0;
     public boolean ishidden;
     public static SpriteBatch getSpritebatch = null;
     public static final Logger logger = LogManager.getLogger(GifTheSpireLib.class.getName());
     private int emptyFrames;
     public boolean isTemp=false;
-    public GifAnimation(String imgurl, int columns, int rows, float x, float y, float stretchx, float stretchy, boolean ishiddeninitially, int emptyFrames)
+    public GifAnimation(String imgurl, int columns, int rows, float x, float y, float stretchx, float stretchy, float flatx, float flaty, boolean ishiddeninitially, int emptyFrames)
     {
         currentx = x;
         currenty = y;
@@ -51,11 +54,17 @@ public class GifAnimation implements ApplicationListener {
         heightmodifier = stretchy;
         widthmodfier = stretchx;
         this.emptyFrames = emptyFrames;
+        flatadjustx=flatx;
+        flatadjusty=flaty;
     }
 
     public GifAnimation(String imgurl, int columns, int rows, float x, float y, float stretchx, float stretchy, boolean ishiddeninitially)
     {
-       this(imgurl, columns, rows,  x,  y,  stretchx,  stretchy,  ishiddeninitially, 0);
+       this(imgurl, columns, rows,  x,  y,  stretchx,  stretchy, 0, 0, ishiddeninitially, 0);
+    }
+    public GifAnimation(String imgurl, int columns, int rows, float x, float y, float stretchx, float stretchy, float flatx, float flaty, boolean ishiddeninitially)
+    {
+        this(imgurl, columns, rows,  x,  y,  stretchx,  stretchy, flatx, flaty, ishiddeninitially, 0);
     }
 
     @Override
@@ -84,6 +93,7 @@ public class GifAnimation implements ApplicationListener {
     public void tick()
     {
         stateTime += Gdx.graphics.getDeltaTime();
+        completeTempAnimation();
     }
 
     public void setAnimationspeed(float frameDuration)
@@ -122,14 +132,23 @@ public class GifAnimation implements ApplicationListener {
         sb.setColor(Color.WHITE);
         sb.draw(currentFrame,m.drawX - ((float) (currentFrame.getTexture().getWidth()/clms)*widthmodfier*Settings.scale*0.5F) + m.animX,(float) m.drawY + m.animY, (float)(currentFrame.getTexture().getWidth()/clms)*widthmodfier* Settings.scale, (float)(currentFrame.getTexture().getHeight()/rows)*heightmodifier*Settings.scale);
     }
-    public void moveOverCreature(AbstractMonster m)
+    public void playOnceOverCreature(AbstractCreature m){
+        playOnceOverCreature(m, 0, 0);
+    }
+    public void playOnceOverCreature(AbstractCreature m, float adjustx, float adjusty){
+        moveOverCreature(m, adjustx, adjusty);
+        ishidden=false;
+        playOnce();
+    }
+    public void moveOverCreature(AbstractCreature m)
     {
         moveOverCreature(m, 0, 0);
     }
-    public void moveOverCreature(AbstractMonster m, float xadjust, float yadjust)
+    public void moveOverCreature(AbstractCreature m, float xadjust, float yadjust)
     {
+        //get the frame so we can move it
         TextureRegion currentFrame = GifAnimation.getKeyFrame(stateTime, loop);
-        //this is the function previously used by the mod maker to draw over a creature
+        //this is the function previously used by the mod maker to draw over a creature, we reference it here for new features
        /*sb.draw(
                 currentFrame,
                 m.drawX - ((float) (currentFrame.getTexture().getWidth()/clms)*widthmodfier*Settings.scale*0.5F) + m.animX,
@@ -137,9 +156,26 @@ public class GifAnimation implements ApplicationListener {
                 (float)(currentFrame.getTexture().getWidth()/clms)*widthmodfier* Settings.scale,
                 (float)(currentFrame.getTexture().getHeight()/rows)*heightmodifier*Settings.scale
                 );*/
-
-        currentx=m.drawX-((float) (currentFrame.getTexture().getWidth()/clms)*widthmodfier*Settings.scale*0.5F) + m.animX;
-        currenty=(float)(m.drawY + m.animY);
+        //adjust the texture by user-defined amounts (for uncentered effects on the sprite),
+        //move them into position on the screen, accounting for scale by using real screen position of the character instead of scaled position,
+        //also move the vertical center up half the monster's height (may add user option later),
+        //lastly, center the gif frame on itself, again may user-define later
+        currentx=(float)(
+                xadjust+flatadjustx
+                +(m.drawX+m.animX)/Settings.scale
+                -((float) (currentFrame.getTexture().getWidth()/clms)*widthmodfier*0.5F)
+        );
+        currenty=(float)(
+                yadjust+flatadjusty
+                +((m.hb_h*0.5f+m.drawY+m.animY))/Settings.scale
+                -(float)(currentFrame.getTexture().getHeight()/rows)*heightmodifier*0.5f
+        );
+        //debug lines for testing scaling issues
+        //WarlockMod.logger.info("Scale Setting: "+Settings.scale+", Texture Width: "+currentFrame.getTexture().getWidth());
+        //WarlockMod.logger.info("Draw x: "+m.drawX+", Anim x: "+m.animX);
+        //WarlockMod.logger.info("Draw y: "+m.drawY+", Anim y: "+m.animY);
+        //WarlockMod.logger.info("Current x: "+currentx+", Current y: "+currenty);
+        //WarlockMod.logger.info("Monster width: "+m.hb_w+", Monster height: "+m.hb_h);
     }
     public void setLoop(boolean loop)
     {
@@ -150,6 +186,16 @@ public class GifAnimation implements ApplicationListener {
     {
         this.stateTime = 0;
         this.isTemp=true;
+    }
+
+    public boolean setTemp(boolean b){
+        this.isTemp=b;
+        return this.isTemp;
+    }
+    private void completeTempAnimation(){
+        if(this.isTemp&&GifAnimation.isAnimationFinished(stateTime)){
+            this.ishidden=true;
+        }
     }
 
     public void playOnceOnSpecificCard(AbstractCard card)

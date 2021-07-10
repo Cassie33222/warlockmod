@@ -104,20 +104,12 @@ public class ShadowBolt extends CustomCard{
         damage=value;
     }
     // Actions the card should do.
-    /*@Override
-    public void update(){
-        SpriteBatch sb=new SpriteBatch();
-        sb.begin();
-        WarlockMod.shadowboltimpactgif.renderOverCreature(sb, m);
-        WarlockMod.shadowboltimpactgif.playOnce();
-    }*/
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        /*int remainingdamage=damage;
-        if(p.hasPower("Weakened")){
-            double r=remainingdamage/0.75f;
-            remainingdamage=(int)Math.round(r);
-        }*/
+
+        //Create gif animation to replace STS animation
+        WarlockMod.shadowboltimpactgif.playOnceOverCreature(m);
+
         AbstractDungeon.actionManager.addToBottom( // The action managed queues all the actions a card should do.
                 // addToTop - first
                 // addToBottom - last
@@ -133,12 +125,7 @@ public class ShadowBolt extends CustomCard{
                         // P.s. if you want to damage ALL enemies OUTSIDE of a card, check out the custom orb.
                         AbstractGameAction.AttackEffect.POISON
                 )
-    ); // The animation the damage action uses to hit.
-        // AbstractDungeon.actionManager.
-        WarlockMod.shadowboltimpactgif.moveOverCreature(m);
-        WarlockMod.shadowboltimpactgif.ishidden=false;
-        WarlockMod.shadowboltimpactgif.playOnce();
-
+    );
     }
 
     // Upgraded stats.
