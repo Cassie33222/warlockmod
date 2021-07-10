@@ -135,7 +135,8 @@ public class ShadowBolt extends CustomCard{
                 )
     ); // The animation the damage action uses to hit.
         // AbstractDungeon.actionManager.
-        WarlockMod.shadowboltimpactgif.addAsForeGroundAnimation();
+        WarlockMod.shadowboltimpactgif.moveOverCreature(m);
+        WarlockMod.shadowboltimpactgif.ishidden=false;
         WarlockMod.shadowboltimpactgif.playOnce();
 
     }

@@ -320,18 +320,19 @@ public class WarlockMod implements
         WarlockMod.warlockgif.setAnimationspeed(0.05f);
 
         // ADD GIF ANIMATION
-        WarlockMod.shadowboltimpactgif.create();
-        //WarlockMod.shadowboltimpactgif.renderOverCharacter(shadowboltimpactgif, null);
-        WarlockMod.shadowboltimpactgif.setAnimationspeed(0.05f);
-        WarlockMod.shadowboltimpactgif.setLoop(false);
-        //WarlockMod.shadowboltimpactgif.addAsForeGroundAnimation();
-        //WarlockMod.shadowboltimpactgif.addAsCardAnimation(ShadowBolt.ID);
+        initializeSpellGif(shadowboltimpactgif);
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
         BaseMod.publishAddAudio(CardCrawlGame.sound);
     }
-
+    public void initializeSpellGif(GifAnimation gif){
+        gif.create();
+        gif.setAnimationspeed(0.05f);
+        gif.setLoop(false);
+        gif.addAsForeGroundAnimation();
+        gif.ishidden=true;
+    }
     // ================ ADD POTIONS ===================
     
     public void receiveEditPotions() {
