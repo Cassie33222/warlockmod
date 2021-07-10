@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../gifthespire/gifthespire.iml" filepath="$PROJECT_DIR$/../gifthespire/gifthespire.iml" />
       <module fileurl="file://$PROJECT_DIR$/StS-DefaultModBase-master/warlockMod/warlockMod.iml" filepath="$PROJECT_DIR$/StS-DefaultModBase-master/warlockMod/warlockMod.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/warlockmod.iml" filepath="$PROJECT_DIR$/.idea/warlockmod.iml" />
     </modules>
