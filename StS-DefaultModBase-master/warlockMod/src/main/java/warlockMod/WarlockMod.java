@@ -99,6 +99,9 @@ public class WarlockMod implements
     public static GifAnimation warlockgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/character.png",
                     5, 4, 0, 0, 0.5f, 0.5f, false);
+    public static GifAnimation warlockcastingleftgif=
+            new GifAnimation("warlockModResources/images/char/defaultCharacter/caststrongleft.png",
+                    13, 1, 0, 0, 0.5f, 0.5f, false);
     public static final String warlockselectsound="WARLOCK_SELECT";
     public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";
 
@@ -322,6 +325,9 @@ public class WarlockMod implements
         // TODO: =============== GIFS =================
         WarlockMod.warlockgif.create();
         WarlockMod.warlockgif.setAnimationspeed(0.05f);
+
+        WarlockMod.warlockcastingleftgif.create();
+        WarlockMod.warlockcastingleftgif.setAnimationspeed(0.05f);
 
         // ADD GIF ANIMATION
         initializeSpellGif(shadowboltimpactgif, 0.05f);
