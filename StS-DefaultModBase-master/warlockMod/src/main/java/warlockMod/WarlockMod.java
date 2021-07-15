@@ -96,12 +96,21 @@ public class WarlockMod implements
     public static final String THE_DEFAULT_SHOULDER_1 = "warlockModResources/images/char/defaultCharacter/shoulder.png";
     public static final String THE_DEFAULT_SHOULDER_2 = "warlockModResources/images/char/defaultCharacter/shoulder2.png";
     public static final String THE_DEFAULT_CORPSE = "warlockModResources/images/char/defaultCharacter/corpse.png";
+
+    //TODO:
     public static GifAnimation warlockgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/character.png",
                     5, 4, 0, 0, 0.5f, 0.5f, false);
     public static GifAnimation warlockcastingleftgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/caststrongleft.png",
-                    13, 1, 0, 0, 0.5f, 0.5f, false);
+                    13, 1, 0, 0, 0.6f, 0.6f, 0, 0, false);
+    public static GifAnimation warlockcastingrightgif=
+            new GifAnimation("warlockModResources/images/char/defaultCharacter/castweakright.png",
+                    13, 1, 0, 0, 0.6f, 0.6f, 0, 0, false);
+    public static GifAnimation warlockdeathgif=
+            new GifAnimation("warlockModResources/images/char/defaultCharacter/death.png",
+                    11, 4, 0, 0, 0.6f, 0.6f, 0, 0, false);
+
     public static final String warlockselectsound="WARLOCK_SELECT";
     public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";
 
@@ -328,6 +337,12 @@ public class WarlockMod implements
 
         WarlockMod.warlockcastingleftgif.create();
         WarlockMod.warlockcastingleftgif.setAnimationspeed(0.05f);
+
+        WarlockMod.warlockcastingrightgif.create();
+        WarlockMod.warlockcastingrightgif.setAnimationspeed(0.05f);
+
+        WarlockMod.warlockdeathgif.create();
+        WarlockMod.warlockdeathgif.setAnimationspeed(0.05f);
 
         // ADD GIF ANIMATION
         initializeSpellGif(shadowboltimpactgif, 0.05f);

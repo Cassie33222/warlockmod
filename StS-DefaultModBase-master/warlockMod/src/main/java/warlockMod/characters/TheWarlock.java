@@ -137,8 +137,9 @@ public class TheWarlock extends CustomPlayer {
 
         // ADD GIF ANIMATION
         WarlockMod.warlockgif.addAsCharacterAnimation(TheWarlock.class.getName());
-        WarlockMod.warlockcastingleftgif.addAsCharacterAnimation(TheWarlock.class.getName());
-        //WarlockMod.shadowboltimpactgif.addAsCharacterAnimation(TheWarlock.class.getName());
+        //WarlockMod.warlockcastingleftgif.addAsCharacterAnimation(TheWarlock.class.getName());
+        //WarlockMod.warlockcastingrightgif.addAsCharacterAnimation(TheWarlock.class.getName());
+        //WarlockMod.warlockdeathgif.addAsCharacterAnimation(TheWarlock.class.getName());
 
         // =============== /ANIMATIONS/ =================
 
