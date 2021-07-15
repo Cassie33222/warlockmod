@@ -16,7 +16,6 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheCity;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
@@ -24,7 +23,6 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import warlockMod.cards.AbstractDefaultCard;
-import warlockMod.cards.ShadowBolt;
 import warlockMod.characters.TheWarlock;
 import warlockMod.events.IdentityCrisisEvent;
 import warlockMod.potions.PlaceholderPotion;
@@ -345,7 +343,9 @@ public class WarlockMod implements
         WarlockMod.warlockdeathgif.setAnimationspeed(0.05f);
 
         // ADD GIF ANIMATION
-        initializeSpellGif(shadowboltimpactgif, 0.05f);
+        initializeGif(warlockcastingleftgif, 0.05f);
+        initializeGif(warlockcastingrightgif, 0.05f);
+        initializeGif(warlockdeathgif, 0.05f);
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
@@ -353,7 +353,7 @@ public class WarlockMod implements
 
 
     }
-    public void initializeSpellGif(GifAnimation gif, float speed){
+    public void initializeGif(GifAnimation gif, float speed){
         gif.create();
         gif.setAnimationspeed(speed);
         gif.setLoop(false);
