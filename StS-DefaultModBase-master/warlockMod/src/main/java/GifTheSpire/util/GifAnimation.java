@@ -186,6 +186,7 @@ public class GifAnimation implements ApplicationListener {
     {
         this.stateTime = 0;
         this.isTemp=true;
+        this.ishidden=false;
     }
 
     public boolean setTemp(boolean b){

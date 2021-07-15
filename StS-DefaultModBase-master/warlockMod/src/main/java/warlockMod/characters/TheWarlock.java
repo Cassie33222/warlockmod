@@ -10,6 +10,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
@@ -98,6 +99,8 @@ public class TheWarlock extends CustomPlayer {
 
     // =============== CHARACTER CLASS START =================
 
+    public static CharacterAnimations animations;
+
     public TheWarlock(String name, PlayerClass setClass) {
         /*super(name, setClass, orbTextures,
                 "warlockModResources/images/char/defaultCharacter/orb/vfx.png", null,
@@ -140,6 +143,10 @@ public class TheWarlock extends CustomPlayer {
         //WarlockMod.warlockcastingleftgif.addAsCharacterAnimation(TheWarlock.class.getName());
         //WarlockMod.warlockcastingrightgif.addAsCharacterAnimation(TheWarlock.class.getName());
         //WarlockMod.warlockdeathgif.addAsCharacterAnimation(TheWarlock.class.getName());
+        animations=new CharacterAnimations(WarlockMod.warlockgif,  WarlockMod.warlockdeathgif,
+                WarlockMod.warlockcastingleftgif,
+                WarlockMod.warlockcastingrightgif
+        );
 
         // =============== /ANIMATIONS/ =================
 
@@ -151,6 +158,14 @@ public class TheWarlock extends CustomPlayer {
 
         // =============== /TEXT BUBBLE LOCATION/ =================
 
+    }
+
+    public static void attack(AbstractCreature p){
+        animations.attack(p);
+    }
+
+    public static void tick(){
+        animations.restoreIdleAnimation();
     }
 
     // =============== /CHARACTER CLASS END/ =================

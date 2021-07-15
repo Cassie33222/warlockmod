@@ -109,6 +109,7 @@ public class ShadowBolt extends CustomCard{
 
         //Create gif animation to replace STS animation
         WarlockMod.shadowboltimpactgif.playOnceOverCreature(m);
+        TheWarlock.attack(p);
 
         AbstractDungeon.actionManager.addToBottom( // The action managed queues all the actions a card should do.
                 // addToTop - first

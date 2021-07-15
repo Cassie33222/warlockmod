@@ -103,10 +103,10 @@ public class WarlockMod implements
                     5, 4, 0, 0, 0.5f, 0.5f, false);
     public static GifAnimation warlockcastingleftgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/caststrongleft.png",
-                    13, 1, 0, 0, 0.6f, 0.6f, 0, 0, false);
+                    13, 1, 500, 500, 0.6f, 0.6f, 0, 0, false);
     public static GifAnimation warlockcastingrightgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/castweakright.png",
-                    13, 1, 0, 0, 0.6f, 0.6f, 0, 0, false);
+                    13, 1, 500, 500, 0.6f, 0.6f, 0, 0, false);
     public static GifAnimation warlockdeathgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/death.png",
                     11, 4, 0, 0, 0.6f, 0.6f, 0, 0, false);
@@ -350,6 +350,8 @@ public class WarlockMod implements
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
         BaseMod.publishAddAudio(CardCrawlGame.sound);
+
+
     }
     public void initializeSpellGif(GifAnimation gif, float speed){
         gif.create();
@@ -509,5 +511,9 @@ public class WarlockMod implements
     // in order to avoid conflicts if any other mod uses the same ID.
     public static String makeID(String idText) {
         return getModID() + ":" + idText;
+    }
+
+    public static void tick(){
+        TheWarlock.tick();
     }
 }
