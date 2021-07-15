@@ -101,10 +101,10 @@ public class WarlockMod implements
                     5, 4, 0, 0, 0.5f, 0.5f, false);
     public static GifAnimation warlockcastingleftgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/caststrongleft.png",
-                    13, 1, 500, 500, 0.6f, 0.6f, 0, 0, false);
+                    13, 1, 386, 346, 0.6f, 0.6f, 0, 0, false);
     public static GifAnimation warlockcastingrightgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/castweakright.png",
-                    13, 1, 500, 500, 0.6f, 0.6f, 0, 0, false);
+                    13, 1, 365, 339, 0.6f, 0.6f, 0, 0, false);
     public static GifAnimation warlockdeathgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/death.png",
                     11, 4, 0, 0, 0.6f, 0.6f, 0, 0, false);
@@ -343,9 +343,11 @@ public class WarlockMod implements
         WarlockMod.warlockdeathgif.setAnimationspeed(0.05f);
 
         // ADD GIF ANIMATION
-        initializeGif(warlockcastingleftgif, 0.05f);
-        initializeGif(warlockcastingrightgif, 0.05f);
-        initializeGif(warlockdeathgif, 0.05f);
+        initializeGif(warlockcastingleftgif, 0.075f);
+        initializeGif(warlockcastingrightgif, 0.075f);
+        initializeGif(warlockdeathgif, 0.075f);
+
+        initializeGif(shadowboltimpactgif, 0.05f);
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
@@ -358,6 +360,13 @@ public class WarlockMod implements
         gif.setAnimationspeed(speed);
         gif.setLoop(false);
         gif.addAsForeGroundAnimation();
+        gif.ishidden=true;
+    }
+    public void initializeGifBG(GifAnimation gif, float speed){
+        gif.create();
+        gif.setAnimationspeed(speed);
+        gif.setLoop(false);
+        gif.addAsBackgroundAnimation();
         gif.ishidden=true;
     }
     // ================ ADD POTIONS ===================

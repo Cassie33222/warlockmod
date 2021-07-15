@@ -143,9 +143,9 @@ public class TheWarlock extends CustomPlayer {
         //WarlockMod.warlockcastingleftgif.addAsCharacterAnimation(TheWarlock.class.getName());
         //WarlockMod.warlockcastingrightgif.addAsCharacterAnimation(TheWarlock.class.getName());
         //WarlockMod.warlockdeathgif.addAsCharacterAnimation(TheWarlock.class.getName());
-        animations=new CharacterAnimations(WarlockMod.warlockgif,  WarlockMod.warlockdeathgif,
-                WarlockMod.warlockcastingleftgif,
-                WarlockMod.warlockcastingrightgif
+        animations=new CharacterAnimations(WarlockMod.warlockgif,  WarlockMod.warlockdeathgif
+                , WarlockMod.warlockcastingleftgif
+                //, WarlockMod.warlockcastingrightgif
         );
 
         // =============== /ANIMATIONS/ =================
@@ -185,6 +185,10 @@ public class TheWarlock extends CustomPlayer {
 
         logger.info("Begin loading starter Deck Strings");
 
+        retVal.add(ShadowBolt.ID);
+        retVal.add(ShadowBolt.ID);
+        retVal.add(ShadowBolt.ID);
+        retVal.add(ShadowBolt.ID);
         retVal.add(ShadowBolt.ID);
 
         retVal.add(DefaultUncommonAttack.ID);

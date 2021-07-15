@@ -15,16 +15,17 @@ public class CharacterAnimations{
         attacks=a;
     }
     public void restoreIdleAnimation(){
-        if(currentattack>=0&&currentattack<attacks.length&&attacks[currentattack].ishidden&&idle.ishidden){
+        if(currentattack>=0&&currentattack<attacks.length&&(attacks[currentattack].ishidden||attacks[currentattack].animationFinished())&&idle.ishidden){
             idle.ishidden=false;
-            WarlockMod.logger.info("Reached the good bit 2 time:"+System.currentTimeMillis());
+            //attacks[currentattack].ishidden=true;
+            //WarlockMod.logger.info("Reached the good bit 2 time:"+System.currentTimeMillis());
         }
     }
     public void attack(AbstractCreature animated){
-        WarlockMod.logger.info("Reached the good bit time:"+System.currentTimeMillis());
+        //WarlockMod.logger.info("Reached the good bit time:"+System.currentTimeMillis());
         idle.ishidden=true;
         //attacks[attackcycle].playOnceOverCreature(animated);
-        attacks[attackcycle].playOnce();
+        attacks[attackcycle].playOnce(false);
         currentattack=attackcycle;
         attackcycle++;
         if(attackcycle>attacks.length-1){attackcycle=0;}

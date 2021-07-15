@@ -188,6 +188,12 @@ public class GifAnimation implements ApplicationListener {
         this.isTemp=true;
         this.ishidden=false;
     }
+    public void playOnce(boolean t)
+    {
+        this.stateTime = 0;
+        this.isTemp=t;
+        this.ishidden=false;
+    }
 
     public boolean setTemp(boolean b){
         this.isTemp=b;
@@ -197,6 +203,9 @@ public class GifAnimation implements ApplicationListener {
         if(this.isTemp&&GifAnimation.isAnimationFinished(stateTime)){
             this.ishidden=true;
         }
+    }
+    public boolean animationFinished(){
+        return GifAnimation.isAnimationFinished(stateTime);
     }
 
     public void playOnceOnSpecificCard(AbstractCard card)
