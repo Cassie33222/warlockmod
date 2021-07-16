@@ -107,7 +107,7 @@ public class WarlockMod implements
                     13, 1, 365, 339, 0.6f, 0.6f, 0, 0, false);
     public static GifAnimation warlockdeathgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/death.png",
-                    11, 4, 0, 0, 0.6f, 0.6f, 0, 0, false);
+                    11, 4, 330, 300, 0.6f, 0.6f, 0, 0, false);
 
     public static final String warlockselectsound="WARLOCK_SELECT";
     public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";

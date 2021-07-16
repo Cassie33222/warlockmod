@@ -42,7 +42,7 @@ public class GifAnimation implements ApplicationListener {
     public static SpriteBatch getSpritebatch = null;
     public static final Logger logger = LogManager.getLogger(GifTheSpireLib.class.getName());
     private int emptyFrames;
-    public boolean isTemp=false;
+    public boolean isTemp=false, disableAnimating=false;
     public GifAnimation(String imgurl, int columns, int rows, float x, float y, float stretchx, float stretchy, float flatx, float flaty, boolean ishiddeninitially, int emptyFrames)
     {
         currentx = x;
@@ -102,7 +102,7 @@ public class GifAnimation implements ApplicationListener {
     }
 
     public void renderanimation(SpriteBatch sb) {
-        TextureRegion currentFrame = GifAnimation.getKeyFrame(stateTime, loop);
+        TextureRegion currentFrame = GifAnimation.getKeyFrame(disableAnimating?0:stateTime, loop);
         sb.setColor(Color.WHITE);
         sb.draw(currentFrame, currentx*Settings.scale, currenty*Settings.scale, (currentFrame.getTexture().getWidth()/clms)*widthmodfier*Settings.scale, (currentFrame.getTexture().getHeight()/rows)*heightmodifier*Settings.scale /*Settings.WIDTH, Settings.HEIGHT*/);
     }
