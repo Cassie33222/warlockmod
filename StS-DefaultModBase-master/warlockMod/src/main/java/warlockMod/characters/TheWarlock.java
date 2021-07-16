@@ -146,7 +146,6 @@ public class TheWarlock extends CustomPlayer {
         animations=new CharacterAnimations(WarlockMod.warlockgif,  WarlockMod.warlockdeathgif
                 , WarlockMod.warlockcastingleftgif
                 , WarlockMod.warlockcastingrightgif
-                //, WarlockMod.warlockdeathgif
         );
 
         // =============== /ANIMATIONS/ =================
@@ -161,8 +160,8 @@ public class TheWarlock extends CustomPlayer {
 
     }
 
-    public static void attack(AbstractCreature p){
-        animations.attack(p);
+    public static void attack(){
+        animations.attack();
     }
 
     public static void tick(){
