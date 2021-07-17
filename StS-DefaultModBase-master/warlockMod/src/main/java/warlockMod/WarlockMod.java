@@ -93,7 +93,7 @@ public class WarlockMod implements
     private static final String THE_DEFAULT_PORTRAIT = "warlockModResources/images/charSelect/DefaultCharacterPortraitBG.png";
     public static final String THE_DEFAULT_SHOULDER_1 = "warlockModResources/images/char/defaultCharacter/shoulder.png";
     public static final String THE_DEFAULT_SHOULDER_2 = "warlockModResources/images/char/defaultCharacter/shoulder2.png";
-    public static final String THE_DEFAULT_CORPSE = "warlockModResources/images/char/defaultCharacter/corpse.png";
+    public static final String THE_DEFAULT_CORPSE = "warlockModResources/images/char/defaultCharacter/corpsenew.png";
 
     //TODO:
     public static GifAnimation warlockgif=
@@ -105,9 +105,9 @@ public class WarlockMod implements
     public static GifAnimation warlockcastingrightgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/castweakright.png",
                     13, 1, 365, 339, 0.6f, 0.6f, 0, 0, false);
-    public static GifAnimation warlockdeathgif=
+    /*public static GifAnimation warlockdeathgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/death.png",
-                    11, 4, 330, 300, 0.6f, 0.6f, 0, 0, false);
+                    11, 4, 330, 300, 0.6f, 0.6f, 0, 0, false);*/
 
     public static final String warlockselectsound="WARLOCK_SELECT";
     public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";
@@ -339,13 +339,13 @@ public class WarlockMod implements
         WarlockMod.warlockcastingrightgif.create();
         WarlockMod.warlockcastingrightgif.setAnimationspeed(0.05f);
 
-        WarlockMod.warlockdeathgif.create();
-        WarlockMod.warlockdeathgif.setAnimationspeed(0.05f);
+        //WarlockMod.warlockdeathgif.create();
+        //WarlockMod.warlockdeathgif.setAnimationspeed(0.05f);
 
         // ADD GIF ANIMATION
         initializeGif(warlockcastingleftgif, 0.075f);
         initializeGif(warlockcastingrightgif, 0.075f);
-        initializeGif(warlockdeathgif, 0.075f);
+        //initializeGif(warlockdeathgif, 0.075f);
 
         initializeGif(shadowboltimpactgif, 0.05f);
 
