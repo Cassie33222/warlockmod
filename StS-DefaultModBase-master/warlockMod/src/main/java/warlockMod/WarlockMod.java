@@ -331,24 +331,20 @@ public class WarlockMod implements
         logger.info("Done loading badge Image and mod options");
 
         // TODO: =============== GIFS =================
-        WarlockMod.warlockgif.create();
-        WarlockMod.warlockgif.setAnimationspeed(0.05f);
-
-        WarlockMod.warlockcastingleftgif.create();
-        WarlockMod.warlockcastingleftgif.setAnimationspeed(0.05f);
-
-        WarlockMod.warlockcastingrightgif.create();
-        WarlockMod.warlockcastingrightgif.setAnimationspeed(0.05f);
-
-        //WarlockMod.warlockdeathgif.create();
-        //WarlockMod.warlockdeathgif.setAnimationspeed(0.05f);
 
         // ADD GIF ANIMATION
-        initializeGif(warlockcastingleftgif, 0.075f);
-        initializeGif(warlockcastingrightgif, 0.075f);
-        //initializeGif(warlockdeathgif, 0.075f);
+        WarlockMod.warlockgif.create();
+        warlockgif.setAnimationspeed(0.05f);
 
+        WarlockMod.warlockcastingleftgif.create();
+        initializeGif(warlockcastingleftgif, 0.08f);
+
+        WarlockMod.warlockcastingrightgif.create();
+        initializeGif(warlockcastingrightgif, 0.08f);
+
+        WarlockMod.shadowboltimpactgif.create();
         initializeGif(shadowboltimpactgif, 0.05f);
+
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
