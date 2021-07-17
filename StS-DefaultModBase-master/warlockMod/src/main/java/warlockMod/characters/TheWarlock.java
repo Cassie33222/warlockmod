@@ -168,6 +168,10 @@ public class TheWarlock extends CustomPlayer {
         animations.restoreIdleAnimation();
     }
 
+    public static void shadowcastsound(){
+        CardCrawlGame.sound.play(WarlockMod.castingsound);
+    }
+
     // =============== /CHARACTER CLASS END/ =================
 
     // Starting description and loadout

@@ -112,13 +112,14 @@ public class WarlockMod implements
     public static final String warlockselectsound="WARLOCK_SELECT";
     public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";
 
+    public static final String castingsound="WARLOCK_CASTING";
+    public static final String castingsoundurl="warlockModResources/sounds/characters/warlock/casting.ogg";
+
+    public static final String shadowimpactsound="SHADOW_IMPACT";
+    public static final String shadowimpactsoundurl="warlockModResources/sounds/cards/shadowimpact.ogg";
+
     // Spell assets
-    //fake shadow bolt, debug copypasta
-    /*
-    public static GifAnimation shadowboltimpactgif=
-            new GifAnimation("warlockModResources/images/char/defaultCharacter/character.png",
-                    5, 4, 0, 0, 0.3f, 0.3f, false);*/
-    //real shadow bolt
+    //shadow bolt
     public static GifAnimation shadowboltimpactgif=
             new GifAnimation("warlockModResources/images/cards/sbi.png",
                     //-480
@@ -351,6 +352,8 @@ public class WarlockMod implements
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
+        BaseMod.addAudio(castingsound, castingsoundurl);
+        BaseMod.addAudio(shadowimpactsound, shadowimpactsoundurl);
         BaseMod.publishAddAudio(CardCrawlGame.sound);
 
 
