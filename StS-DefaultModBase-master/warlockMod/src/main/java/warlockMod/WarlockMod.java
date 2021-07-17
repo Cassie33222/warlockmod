@@ -91,8 +91,8 @@ public class WarlockMod implements
     // Character assets
     private static final String THE_DEFAULT_BUTTON = "warlockModResources/images/charSelect/DefaultCharacterButton.png";
     private static final String THE_DEFAULT_PORTRAIT = "warlockModResources/images/charSelect/DefaultCharacterPortraitBG.png";
-    public static final String THE_DEFAULT_SHOULDER_1 = "warlockModResources/images/char/defaultCharacter/shoulder.png";
-    public static final String THE_DEFAULT_SHOULDER_2 = "warlockModResources/images/char/defaultCharacter/shoulder2.png";
+    public static final String THE_DEFAULT_SHOULDER_1 = "warlockModResources/images/char/defaultCharacter/shoulder3.png";
+    public static final String THE_DEFAULT_SHOULDER_2 = "warlockModResources/images/char/defaultCharacter/shoulder3.png";
     public static final String THE_DEFAULT_CORPSE = "warlockModResources/images/char/defaultCharacter/corpsenew.png";
 
     //TODO:
