@@ -30,6 +30,14 @@
     "DESCRIPTION": "Warlock curses debilitate the enemy. Curse durations do not stack."
   },
   {
+    "PROPER_NAME": "Soul Shard",
+    "NAMES": [
+      "soul shard",
+      "soul_shard"
+    ],
+    "DESCRIPTION": "Consumed to cast certain warlock spells."
+  },
+  {
     "NAMES": [
       "destruction"
     ],

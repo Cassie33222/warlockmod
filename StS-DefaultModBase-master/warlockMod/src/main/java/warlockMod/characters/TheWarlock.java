@@ -24,6 +24,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import warlockMod.WarlockMod;
 import warlockMod.relics.DefaultClickableRelic;
+import warlockMod.relics.OrbOfTheSoulEater;
 import warlockMod.relics.PlaceholderRelic;
 import warlockMod.relics.PlaceholderRelic2;
 import warlockMod.cards.*;
@@ -217,15 +218,15 @@ public class TheWarlock extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
 
-        retVal.add(PlaceholderRelic.ID);
-        retVal.add(PlaceholderRelic2.ID);
-        retVal.add(DefaultClickableRelic.ID);
+        retVal.add(OrbOfTheSoulEater.ID);
+        //retVal.add(PlaceholderRelic2.ID);
+        //retVal.add(DefaultClickableRelic.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
-        UnlockTracker.markRelicAsSeen(PlaceholderRelic.ID);
-        UnlockTracker.markRelicAsSeen(PlaceholderRelic2.ID);
-        UnlockTracker.markRelicAsSeen(DefaultClickableRelic.ID);
+        UnlockTracker.markRelicAsSeen(OrbOfTheSoulEater.ID);
+        //UnlockTracker.markRelicAsSeen(PlaceholderRelic2.ID);
+        //UnlockTracker.markRelicAsSeen(DefaultClickableRelic.ID);
 
         return retVal;
     }
