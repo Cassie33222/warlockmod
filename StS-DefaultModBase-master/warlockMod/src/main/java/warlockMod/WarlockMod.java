@@ -100,8 +100,8 @@ public class WarlockMod implements
             new GifAnimation("warlockModResources/images/char/defaultCharacter/caststrongleft.png",
                     13, 1, 386, 346, 0.6f, 0.6f, 0, 0, false);
     public static GifAnimation warlockcastingrightgif=
-            new GifAnimation("warlockModResources/images/char/defaultCharacter/castweakright.png",
-                    13, 1, 365, 339, 0.6f, 0.6f, 0, 0, false);
+            new GifAnimation("warlockModResources/images/char/defaultCharacter/castweakright2.png",
+                    10, 1, 365, 339, 0.6f, 0.6f, 0, 0, false);
     /*public static GifAnimation warlockdeathgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/death.png",
                     11, 4, 330, 300, 0.6f, 0.6f, 0, 0, false);*/
@@ -111,6 +111,9 @@ public class WarlockMod implements
 
     public static final String castingsound="WARLOCK_CASTING";
     public static final String castingsoundurl="warlockModResources/sounds/characters/warlock/casting.ogg";
+
+    public static final String soulshardsound="SOUL_SHARD";
+    public static final String soulshardsoundurl="warlockModResources/sounds/items/soulshard.ogg";
 
     public static final String shadowimpactsound="SHADOW_IMPACT";
     public static final String shadowimpactsoundurl="warlockModResources/sounds/cards/shadowimpact.ogg";
@@ -346,6 +349,7 @@ public class WarlockMod implements
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
         BaseMod.addAudio(castingsound, castingsoundurl);
+        BaseMod.addAudio(soulshardsound, soulshardsoundurl);
         BaseMod.addAudio(shadowimpactsound, shadowimpactsoundurl);
         BaseMod.publishAddAudio(CardCrawlGame.sound);
 
@@ -395,12 +399,12 @@ public class WarlockMod implements
         // in order to automatically differentiate which pool to add the relic too.
 
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
-        //BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheWarlock.Enums.COLOR_GRAY);
-        //BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheWarlock.Enums.COLOR_GRAY);
-        //BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheWarlock.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheWarlock.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheWarlock.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheWarlock.Enums.COLOR_GRAY);
         
         // This adds a relic to the Shared pool. Every character can find this relic.
-        //BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
+        BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
 
         BaseMod.addRelicToCustomPool(new OrbOfTheSoulEater(), TheWarlock.Enums.COLOR_GRAY);
         

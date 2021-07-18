@@ -35,7 +35,7 @@
     "NAME": "Orb of the Soul-Eater",
     "FLAVOR": "Even the shadows may bend to the Will of Justice.",
     "DESCRIPTIONS": [
-      "At the start of each combat, gain [#85cce9]1 [#EFC851]Soul [#EFC851]Shard. Gain [#85cce9]1 [#EFC851]Soul [#EFC851]Shard whenever an enemy dies."
+      "At the start of each combat, gain [#85cce9]1 [#EFC851]Soul [#EFC851]Shard. Gain [#85cce9]1 [#EFC851]Soul [#EFC851]Shard whenever a non-minion enemy dies."
     ]
   }
 }

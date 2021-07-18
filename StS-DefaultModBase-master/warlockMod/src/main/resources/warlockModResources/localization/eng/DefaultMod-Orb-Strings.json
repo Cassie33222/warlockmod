@@ -8,5 +8,11 @@
       " NL #yEvoke: Deal #b",
       " damage to all enemies."
     ]
+  },
+  "warlockMod:SoulShard": {
+    "NAME": "Soul Shard",
+    "DESCRIPTION": [
+      "Used to cast certain Warlock spells."
+    ]
   }
 }
