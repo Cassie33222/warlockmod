@@ -7,6 +7,10 @@
     "NAME": "Shadow Bolt",
     "DESCRIPTION": "Deal !M! damage. warlockmod:Destruction."
   },
+  "warlockMod:DrainLife": {
+    "NAME": "Drain Life",
+    "DESCRIPTION": "Deal !M! damage and self-healing. warlockmod:Affliction."
+  },
   "warlockMod:SpellpowerAdd": {
     "NAME": "SpellpowerAdd",
     "DESCRIPTION": "Gain 1 spellpower."

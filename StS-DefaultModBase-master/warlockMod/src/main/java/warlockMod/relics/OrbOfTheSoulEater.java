@@ -14,7 +14,7 @@ public class OrbOfTheSoulEater extends CustomRelic {
      * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
      *
      * Orb of the Soul-Eater
-     * "At the start of each combat, gain 1 warlockMod:soul_shard. Gain 1 warlockMod:soul_shard whenever a non-minion enemy dies."
+     * "At the start of each combat, gain 1 Soul Shard. Gain 1 Soul Shard whenever a non-minion enemy dies."
      *
      */
 

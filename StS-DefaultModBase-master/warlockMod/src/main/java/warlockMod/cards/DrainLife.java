@@ -1,11 +1,12 @@
 package warlockMod.cards;
 
-import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.colorless.BandageUp;
+import com.megacrit.cardcrawl.cards.red.Reaper;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -25,16 +26,16 @@ import warlockMod.powers.Spellpower;
 // Abstract Dynamic Card builds up on Abstract Default Card even more and makes it so that you don't need to add
 // the NAME and the DESCRIPTION into your card - it'll get it automatically. Of course, this functionality could have easily
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
-public class ShadowBolt extends CustomCard{
+public class DrainLife extends CustomCard{
 
     //Deal 6+3u+1sp damage. Destruction.
 
     // TEXT DECLARATION
 
-    public static final String ID = WarlockMod.makeID(ShadowBolt.class.getSimpleName());
+    public static final String ID = WarlockMod.makeID(DrainLife.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = WarlockMod.makeCardPath("shadowbolt.png");
+    public static final String IMG = WarlockMod.makeCardPath("drainlife.png");
     // Setting the image as as easy as can possibly be now. You just need to provide the image name
     // and make sure it's in the correct folder. That's all.
     // There's makeCardPath, makeRelicPath, power, orb, event, etc..
@@ -56,8 +57,8 @@ public class ShadowBolt extends CustomCard{
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
-    private static final int DAMAGE = 6;
-    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int DAMAGE = 3;
+    private static final int UPGRADE_PLUS_DMG = 2;
     private static final int SPELLPOWER_RATIO = 1;
 
     // Hey want a second damage/magic/block/unique number??? Great!
@@ -78,7 +79,7 @@ public class ShadowBolt extends CustomCard{
     // UnlockTracker.unlockCard(DefaultCommonAttack.ID);
     // in your main class, in the receiveEditCards() method
 
-    public ShadowBolt() {
+    public DrainLife() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         // Aside from baseDamage/MagicNumber/Block there's also a few more.
@@ -108,10 +109,10 @@ public class ShadowBolt extends CustomCard{
     public void use(AbstractPlayer p, AbstractMonster m) {
 
         //Create gif animation to replace STS animation
-        WarlockMod.shadowboltimpactgif.playOnceOverCreature(m);
+        WarlockMod.drainlifeimpactgif.playOnceOverCreature(m);
         TheWarlock.attack();
         TheWarlock.shadowcastsound();
-        CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
+        //CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
 
         addToBot( // The action managed queues all the actions a card should do.
                 // addToTop - first
@@ -122,7 +123,8 @@ public class ShadowBolt extends CustomCard{
 
                 new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)
                 )
-    );
+        );
+        addToBot(new HealAction(p, p, damage));
     }
 
     // Upgraded stats.

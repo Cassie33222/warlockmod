@@ -196,6 +196,12 @@ public class TheWarlock extends CustomPlayer {
         retVal.add(ShadowBolt.ID);
         retVal.add(ShadowBolt.ID);
 
+        retVal.add(DrainLife.ID);
+        retVal.add(DrainLife.ID);
+        retVal.add(DrainLife.ID);
+        retVal.add(DrainLife.ID);
+        retVal.add(DrainLife.ID);
+
         retVal.add(DefaultUncommonAttack.ID);
         retVal.add(DefaultRareAttack.ID);
 

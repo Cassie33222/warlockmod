@@ -123,7 +123,13 @@ public class WarlockMod implements
     public static GifAnimation shadowboltimpactgif=
             new GifAnimation("warlockModResources/images/cards/sbi.png",
                     //-480
-                    6, 6, 0, 0, 1f, 1f, 0, 120, true);
+                    6, 6, 0, 0, 1f, 1f, 0, 110, true);
+
+    //drain life
+    public static GifAnimation drainlifeimpactgif=
+            new GifAnimation("warlockModResources/images/cards/drainlifeimpact.png",
+                    //-480
+                    13, 1, 0, 0, 0.5f, 0.5f, 0, -15, true);
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
@@ -344,6 +350,9 @@ public class WarlockMod implements
 
         WarlockMod.shadowboltimpactgif.create();
         initializeGif(shadowboltimpactgif, 0.05f);
+
+        WarlockMod.drainlifeimpactgif.create();
+        initializeGif(drainlifeimpactgif, 0.05f);
 
 
         // =============== SOUND EFFECTS =================
