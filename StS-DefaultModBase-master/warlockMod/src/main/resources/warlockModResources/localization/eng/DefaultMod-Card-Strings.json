@@ -11,6 +11,10 @@
     "NAME": "Drain Life",
     "DESCRIPTION": "Deal !M! damage and self-healing. warlockmod:Affliction."
   },
+  "warlockMod:Corruption": {
+    "NAME": "Corruption",
+    "DESCRIPTION": "Deal !M! damage over 5 turns. warlockmod:Affliction. warlockmod:Curse."
+  },
   "warlockMod:SpellpowerAdd": {
     "NAME": "SpellpowerAdd",
     "DESCRIPTION": "Gain 1 spellpower."

@@ -1,11 +1,11 @@
 package warlockMod.cards;
 
-import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.green.Envenom;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -26,16 +26,16 @@ import warlockMod.powers.Spellpower;
 // Abstract Dynamic Card builds up on Abstract Default Card even more and makes it so that you don't need to add
 // the NAME and the DESCRIPTION into your card - it'll get it automatically. Of course, this functionality could have easily
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
-public class ShadowBolt extends CustomCard{
+public class Corruption extends CustomCard{
 
     //Deal 6+3u+1sp damage. Destruction.
 
     // TEXT DECLARATION
 
-    public static final String ID = WarlockMod.makeID(ShadowBolt.class.getSimpleName());
+    public static final String ID = WarlockMod.makeID(Corruption.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = WarlockMod.makeCardPath("shadowbolt.png");
+    public static final String IMG = WarlockMod.makeCardPath("corruption.png");
     // Setting the image as as easy as can possibly be now. You just need to provide the image name
     // and make sure it's in the correct folder. That's all.
     // There's makeCardPath, makeRelicPath, power, orb, event, etc..
@@ -51,15 +51,16 @@ public class ShadowBolt extends CustomCard{
 
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
-    private static final int COST = 1;
-    private static final int DAMAGE = 6;
-    private static final int UPGRADE_PLUS_DMG = 3;
-    private static final int SPELLPOWER_RATIO = 1;
+    private static final int COST = 2;
+    private static final int DAMAGE = 20;
+    private static final int UPGRADE_PLUS_DMG = 0;
+    private static final int UPGRADED_COST = 1;
+    private static final int SPELLPOWER_RATIO = 2;
 
     // Hey want a second damage/magic/block/unique number??? Great!
     // Go check out DefaultAttackWithVariable and theDefault.variable.DefaultCustomVariable
@@ -79,7 +80,7 @@ public class ShadowBolt extends CustomCard{
     // UnlockTracker.unlockCard(DefaultCommonAttack.ID);
     // in your main class, in the receiveEditCards() method
 
-    public ShadowBolt() {
+    public Corruption() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         // Aside from baseDamage/MagicNumber/Block there's also a few more.
@@ -113,16 +114,17 @@ public class ShadowBolt extends CustomCard{
         TheWarlock.attack();
         TheWarlock.shadowcastsound();
         CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
-        AbstractCreature.initialize();
-        addToBot( // The action managed queues all the actions a card should do.
-                // addToTop - first
-                // addToBottom - last
-                // 99.99% of the time you just want to addToBottom all of them.
-                // Please do that unless you need to add to top for some specific reason.
-                //new com.megacrit.cardcrawl.actions.common.LoseHPAction(m, p, getDamage(), AbstractGameAction.AttackEffect.POISON)
 
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)
-                )
+        //remove existing corruption stack
+        if(m.getPower(warlockMod.powers.Corruption.POWER_ID)!=null){
+            //m.getPower(warlockMod.powers.Corruption.POWER_ID).reducePower(0);
+            addToBot(new RemoveSpecificPowerAction(m, m, warlockMod.powers.Corruption.POWER_ID));
+        }
+
+        addToBot( // The action managed queues all the actions a card should do.
+                new ApplyPowerAction(m, p, new warlockMod.powers.Corruption(m, p, damage), 0)
+                //new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
+
     );
     }
 
@@ -131,8 +133,7 @@ public class ShadowBolt extends CustomCard{
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeMagicNumber(UPGRADE_PLUS_DMG);
+            upgradeBaseCost(UPGRADED_COST);
             initializeDescription();
         }
     }

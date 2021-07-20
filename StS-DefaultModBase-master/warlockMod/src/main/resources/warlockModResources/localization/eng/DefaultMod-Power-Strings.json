@@ -1,14 +1,22 @@
 {
-"warlockMod:CommonPower": {
-        "NAME": "Placeholder Power",
-        "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]
-},
-"warlockMod:RarePower": {
-        "NAME": "Placeholder Power",
-        "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
-},
+        "warlockMod:CommonPower": {
+                "NAME": "Placeholder Power",
+                "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]
+        },
+        "warlockMod:RarePower": {
+                "NAME": "Placeholder Power",
+                "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
+        },
         "warlockMod:Spellpower": {
                 "NAME": "Spellpower",
                 "DESCRIPTIONS": ["Spellpower increases your [#EFC851]Affliction[] and [#EFC851]Destruction[] damage, at varying amounts. Spellpower: [#87ceeb]%o.[]"]
+        },
+        "warlockMod:Corruption": {
+                "NAME": "Corruption",
+                "DESCRIPTIONS": ["Dealing [#87ceeb]%o[] [#EFC851]Affliction[] damage over 5 turns."]
+        },
+        "warlockMod:CorruptionCounter": {
+                "NAME": "CorruptionCounter",
+                "DESCRIPTIONS": ["[#87ceeb]%o[] turns remaining."]
         }
 }

@@ -27,7 +27,7 @@
     "NAMES": [
       "curse"
     ],
-    "DESCRIPTION": "Warlock curses debilitate the enemy. Curse durations do not stack."
+    "DESCRIPTION": "Warlock curses damage or cripple an enemy over time. Replaces existing copies on cast."
   },
   {
     "PROPER_NAME": "Soul Shard",
