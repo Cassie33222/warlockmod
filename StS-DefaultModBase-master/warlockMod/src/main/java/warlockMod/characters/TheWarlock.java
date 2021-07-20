@@ -194,9 +194,7 @@ public class TheWarlock extends CustomPlayer {
         retVal.add(ShadowBolt.ID);
         retVal.add(ShadowBolt.ID);
         retVal.add(ShadowBolt.ID);
-        retVal.add(ShadowBolt.ID);
 
-        retVal.add(DrainLife.ID);
         retVal.add(DrainLife.ID);
         retVal.add(DrainLife.ID);
         retVal.add(DrainLife.ID);
@@ -211,6 +209,7 @@ public class TheWarlock extends CustomPlayer {
         retVal.add(DefaultUncommonSkill.ID);
         retVal.add(DefaultRareSkill.ID);
 
+        //TODO: TEMP
         retVal.add(SpellpowerAdd.ID);
 
         retVal.add(DefaultUncommonPower.ID);

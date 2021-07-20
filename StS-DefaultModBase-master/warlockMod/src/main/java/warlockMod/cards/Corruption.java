@@ -110,24 +110,19 @@ public class Corruption extends CustomCard{
     public void use(AbstractPlayer p, AbstractMonster m) {
 
         //Create gif animation to replace STS animation
-        WarlockMod.shadowboltimpactgif.playOnceOverCreature(m);
+        WarlockMod.corruptionimpactgif.playOnceOverCreature(m);
         TheWarlock.attack();
         TheWarlock.shadowcastsound();
         CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
 
         //remove existing corruption stack
-        if(m.getPower(warlockMod.powers.Corruption.POWER_ID)!=null){
-            //m.getPower(warlockMod.powers.Corruption.POWER_ID).reducePower(0);
-            addToBot(new RemoveSpecificPowerAction(m, m, warlockMod.powers.Corruption.POWER_ID));
-        }
-
+        WarlockMod.cleansePower(m, warlockMod.powers.Corruption.POWER_ID);
         addToBot( // The action managed queues all the actions a card should do.
                 new ApplyPowerAction(m, p, new warlockMod.powers.Corruption(m, p, damage), 0)
                 //new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
 
     );
     }
-
     // Upgraded stats.
     @Override
     public void upgrade() {

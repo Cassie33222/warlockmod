@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import warlockMod.WarlockMod;
 
 import java.util.ArrayList;
 
@@ -18,11 +19,13 @@ public class RenderMonsterPatch {
     public static final Logger logger = LogManager.getLogger(GifTheSpireLib.class.getName());
     @SpirePrefixPatch
     public static void patch(AbstractMonster __instance, SpriteBatch sb) {
-        ArrayList<GifAnimation> Renderthis = GifTheSpireLib.getAnimations().get(__instance.id);
-        if (Renderthis != null) {
-            for (GifAnimation g : Renderthis) {
-                if (g.ishidden == false) {
+        synchronized(WarlockMod.giflock) {
+            ArrayList<GifAnimation> Renderthis = GifTheSpireLib.getAnimations().get(__instance.id);
+            if (Renderthis != null) {
+                for (GifAnimation g : Renderthis) {
+                    if (g.ishidden == false) {
                         g.renderOverCreature(sb, __instance);
+                    }
                 }
             }
         }

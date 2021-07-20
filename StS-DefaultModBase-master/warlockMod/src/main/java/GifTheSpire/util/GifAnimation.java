@@ -43,6 +43,45 @@ public class GifAnimation implements ApplicationListener {
     public static final Logger logger = LogManager.getLogger(GifTheSpireLib.class.getName());
     private int emptyFrames;
     public boolean isTemp=false, disableAnimating=false;
+
+    ArrayList<GifCopy> copies=new ArrayList<GifCopy>();
+
+    public boolean usescopies=false;
+    class GifCopy{
+        GifAnimation parent;
+        boolean ishidden;
+        float currentx, currenty;
+        boolean isTemp=true;
+        float stateTime=0;
+        public GifCopy(GifAnimation p){
+            parent=p;
+            ishidden=p.ishidden;
+            currentx=p.currentx;
+            currenty=p.currenty;
+        }
+        public void moveOverCreature(AbstractCreature m, float xadjust, float yadjust)
+        {
+            //get the frame so we can move it
+            TextureRegion currentFrame = GifAnimation.getKeyFrame(0, loop);
+            this.currentx=(float)(
+                    xadjust+flatadjustx
+                            +(m.drawX+m.animX)/Settings.scale
+                            -((float) (currentFrame.getTexture().getWidth()/clms)*widthmodfier*0.5F)
+            );
+            this.currenty=(float)(
+                    yadjust+flatadjusty
+                            +((m.hb_h*0.5f+m.drawY+m.animY))/Settings.scale
+                            -(float)(currentFrame.getTexture().getHeight()/rows)*heightmodifier*0.5f
+            );
+        }
+        public void playOnce()
+        {
+            this.stateTime = 0;
+            this.isTemp=true;
+            this.ishidden=false;
+        }
+    }
+
     public GifAnimation(String imgurl, int columns, int rows, float x, float y, float stretchx, float stretchy, float flatx, float flaty, boolean ishiddeninitially, int emptyFrames)
     {
         currentx = x;
@@ -66,7 +105,6 @@ public class GifAnimation implements ApplicationListener {
     {
         this(imgurl, columns, rows,  x,  y,  stretchx,  stretchy, flatx, flaty, ishiddeninitially, 0);
     }
-
     @Override
     public void create() {
         TextureReg = ImageMaster.loadImage(txt);
@@ -94,6 +132,17 @@ public class GifAnimation implements ApplicationListener {
     {
         stateTime += Gdx.graphics.getDeltaTime();
         completeTempAnimation();
+
+        //tick copies
+        if(!copies.isEmpty()){
+            for(int i=0; i<copies.size(); i++) {
+                if (i < 0 || copies.size() == 0) {
+                    break;
+                }
+                GifCopy copy = copies.get(i);
+                copy.stateTime += Gdx.graphics.getDeltaTime();
+            }
+        }
     }
 
     public void setAnimationspeed(float frameDuration)
@@ -102,9 +151,34 @@ public class GifAnimation implements ApplicationListener {
     }
 
     public void renderanimation(SpriteBatch sb) {
-        TextureRegion currentFrame = GifAnimation.getKeyFrame(disableAnimating?0:stateTime, loop);
-        sb.setColor(Color.WHITE);
-        sb.draw(currentFrame, currentx*Settings.scale, currenty*Settings.scale, (currentFrame.getTexture().getWidth()/clms)*widthmodfier*Settings.scale, (currentFrame.getTexture().getHeight()/rows)*heightmodifier*Settings.scale /*Settings.WIDTH, Settings.HEIGHT*/);
+        if(!ishidden) {
+            TextureRegion currentFrame = GifAnimation.getKeyFrame(disableAnimating ? 0 : stateTime, loop);
+            sb.setColor(Color.WHITE);
+            sb.draw(currentFrame, currentx * Settings.scale, currenty * Settings.scale, (currentFrame.getTexture().getWidth() / clms) * widthmodfier * Settings.scale, (currentFrame.getTexture().getHeight() / rows) * heightmodifier * Settings.scale /*Settings.WIDTH, Settings.HEIGHT*/);
+        }
+        renderanimationcopies(sb);
+    }
+    public void renderanimationcopies(SpriteBatch sb){
+        if(!usescopies||copies.isEmpty()){return;}
+
+            for(int i=0; i<copies.size(); i++) {
+                if(i<0||copies.size()==0){
+                    break;
+                }
+                GifCopy copy = copies.get(i);
+                if (copy.isTemp && animationFinished(copy.stateTime)) {
+                    copies.remove(copy);
+                    i--;
+                    //WarlockMod.logger.info("Removed a finished gif copy");
+                }else{
+                    TextureRegion currentFrame2 = GifAnimation.getKeyFrame(disableAnimating?0:copy.stateTime, loop);
+                    sb.setColor(Color.WHITE);
+                    sb.draw(currentFrame2, copy.currentx*Settings.scale, copy.currenty*Settings.scale, (currentFrame2.getTexture().getWidth()/clms)*widthmodfier*Settings.scale,
+                            (currentFrame2.getTexture().getHeight()/rows)*heightmodifier*Settings.scale);
+
+                    //WarlockMod.logger.info("Rendering gif copy");
+                }
+            }
     }
     public void renderAsBackground(SpriteBatch sb) {
         TextureRegion currentFrame = GifAnimation.getKeyFrame(stateTime, loop);
@@ -140,6 +214,17 @@ public class GifAnimation implements ApplicationListener {
         ishidden=false;
         playOnce();
     }
+    public void playCopyOnceOverCreature(AbstractCreature m){
+        playCopyOnceOverCreature(m, 0, 0);
+    }
+    public void playCopyOnceOverCreature(AbstractCreature m, float adjustx, float adjusty){
+        usescopies=true;
+        GifCopy copy=new GifCopy(this);
+        copy.moveOverCreature(m, adjustx, adjusty);
+        copy.ishidden=false;
+        copy.playOnce();
+        copies.add(copy);
+    }
     public void moveOverCreature(AbstractCreature m)
     {
         moveOverCreature(m, 0, 0);
@@ -147,7 +232,7 @@ public class GifAnimation implements ApplicationListener {
     public void moveOverCreature(AbstractCreature m, float xadjust, float yadjust)
     {
         //get the frame so we can move it
-        TextureRegion currentFrame = GifAnimation.getKeyFrame(stateTime, loop);
+        TextureRegion currentFrame = GifAnimation.getKeyFrame(0, loop);
         //this is the function previously used by the mod maker to draw over a creature, we reference it here for new features
        /*sb.draw(
                 currentFrame,
@@ -200,9 +285,12 @@ public class GifAnimation implements ApplicationListener {
         return this.isTemp;
     }
     private void completeTempAnimation(){
-        if(this.isTemp&&GifAnimation.isAnimationFinished(stateTime)){
+        if(this.isTemp&&animationFinished(stateTime)){
             this.ishidden=true;
         }
+    }
+    public boolean animationFinished(float state){
+        return GifAnimation.isAnimationFinished(state);
     }
     public boolean animationFinished(){
         return GifAnimation.isAnimationFinished(stateTime);

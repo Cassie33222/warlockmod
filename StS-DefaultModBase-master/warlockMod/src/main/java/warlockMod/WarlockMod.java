@@ -13,12 +13,16 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -62,7 +66,9 @@ public class WarlockMod implements
     private static final String DESCRIPTION = "Play as a raid Warlock from World of Warcraft.";
     
     // =============== INPUT TEXTURE LOCATION =================
-    
+
+    public static final Object giflock=new Object();
+
     // Colors (RGB)
     // Character Color
     public static final Color DEFAULT_GRAY = CardHelper.getColor(42.0f, 21.0f, 63.0f);
@@ -131,6 +137,18 @@ public class WarlockMod implements
             new GifAnimation("warlockModResources/images/cards/drainlifeimpact.png",
                     //-480
                     13, 1, 0, 0, 0.5f, 0.5f, 0, -15, true);
+
+    //drain life
+    public static GifAnimation corruptionimpactgif=
+            new GifAnimation("warlockModResources/images/cards/corruptionimpact.png",
+                    //-480
+                    13, 1, 0, 0, 1f, 1f, 0, 0, true);
+
+    //drain life
+    public static GifAnimation corruptiontickgif=
+            new GifAnimation("warlockModResources/images/powers/corruptiontick.png",
+                    //-480
+                    17, 2, 0, 0, 1.5f, 1.5f, 0, 50, true);
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
@@ -350,10 +368,13 @@ public class WarlockMod implements
         initializeGif(warlockcastingrightgif, 0.1f);
 
         WarlockMod.shadowboltimpactgif.create();
-        initializeGif(shadowboltimpactgif, 0.05f);
-
+        initializeGif(shadowboltimpactgif, 0.075f);
         WarlockMod.drainlifeimpactgif.create();
         initializeGif(drainlifeimpactgif, 0.05f);
+        WarlockMod.corruptionimpactgif.create();
+        initializeGif(corruptionimpactgif, 0.1f);
+        WarlockMod.corruptiontickgif.create();
+        initializeGif(corruptiontickgif, 0.075f);
 
 
         // =============== SOUND EFFECTS =================
@@ -362,21 +383,12 @@ public class WarlockMod implements
         BaseMod.addAudio(soulshardsound, soulshardsoundurl);
         BaseMod.addAudio(shadowimpactsound, shadowimpactsoundurl);
         BaseMod.publishAddAudio(CardCrawlGame.sound);
-
-
     }
     public void initializeGif(GifAnimation gif, float speed){
         gif.create();
         gif.setAnimationspeed(speed);
         gif.setLoop(false);
         gif.addAsForeGroundAnimation();
-        gif.ishidden=true;
-    }
-    public void initializeGifBG(GifAnimation gif, float speed){
-        gif.create();
-        gif.setAnimationspeed(speed);
-        gif.setLoop(false);
-        gif.addAsBackgroundAnimation();
         gif.ishidden=true;
     }
     // ================ ADD POTIONS ===================
@@ -536,5 +548,11 @@ public class WarlockMod implements
 
     public static void tick(){
         TheWarlock.tick();
+    }
+
+    public static void cleansePower(AbstractCreature m, String power){
+        if(m.getPower(power)!=null){
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(m, m, power));
+        }
     }
 }

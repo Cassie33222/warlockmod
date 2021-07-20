@@ -15,7 +15,7 @@ public class AbstractDungeonRenderInForegroundPatch {
         ArrayList<GifAnimation> Renderthis = GifTheSpireLib.getAnimations().get("Foreground");
         if (Renderthis != null) {
             for (GifAnimation g : Renderthis) {
-                if (g.ishidden == false) {
+                if (g.ishidden == false||g.usescopies) {
                     g.renderanimation(sb);
                 }
             }
