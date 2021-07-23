@@ -572,23 +572,34 @@ public class WarlockMod implements
     public static void playRandomSound(String[] sounds){
         CardCrawlGame.sound.play(sounds[rand.nextInt(sounds.length)]);
     }
-    public static void consumeSpecificOrb(AbstractPlayer p, String orbid){
-            if (!p.orbs.isEmpty() && !(p.orbs.get(0) instanceof EmptyOrbSlot)) {
-                AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb)p.orbs.get(0)).cX, ((AbstractOrb)p.orbs.get(0)).cY);
+    public static boolean consumeSpecificOrb(AbstractPlayer p, String orbid){
+        //TODO: make sure this is working
+            if (!p.orbs.isEmpty()) {
+                for(int ss=0; ss<p.orbs.size(); ss++) {
+                    if(p.orbs.get(ss).ID!=null&&!p.orbs.get(ss).ID.equalsIgnoreCase(orbid)){
+                        continue;
+                    }
+                    AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb) p.orbs.get(ss)).cX, ((AbstractOrb) p.orbs.get(ss)).cY);
 
-                int i;
-                for(i = 1; i < p.orbs.size(); ++i) {
-                    Collections.swap(p.orbs, i, i - 1);
-                }
+                    int i;
+                    for (i = ss+1; i < p.orbs.size(); ++i) {
+                        Collections.swap(p.orbs, i, i - 1);
+                    }
 
-                p.orbs.set(p.orbs.size() - 1, orbSlot);
+                    p.orbs.set(p.orbs.size() - 1, orbSlot);
 
-                for(i = 0; i < p.orbs.size(); ++i) {
-                    ((AbstractOrb)p.orbs.get(i)).setSlot(i, p.maxOrbs);
+                    for (i = ss; i < p.orbs.size(); ++i) {
+                        ((AbstractOrb) p.orbs.get(i)).setSlot(i, p.maxOrbs);
+                    }
+
+                    //consumed a soul shard
+                    return true;
                 }
             }
+
+            return false;
     }
-    public static void removeNextOrbExample(AbstractPlayer p, String orbid){
+    private static void removeNextOrbExample(AbstractPlayer p, String orbid){
         if (!p.orbs.isEmpty() && !(p.orbs.get(0) instanceof EmptyOrbSlot)) {
             AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb)p.orbs.get(0)).cX, ((AbstractOrb)p.orbs.get(0)).cY);
 

@@ -17,6 +17,6 @@
         },
         "warlockMod:Voidwalker": {
                 "NAME": "Voidwalker",
-                "DESCRIPTIONS": ["Granting [#87ceeb]%o[] block each turn."]
+                "DESCRIPTIONS": ["Granting [#87ceeb]%o[] block each turn. [#EFC851]Demon[]."]
         }
 }

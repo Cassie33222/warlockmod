@@ -1,5 +1,6 @@
 package warlockMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -7,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 
+@AutoAdd.Ignore
 public class DefaultCommonSkill extends AbstractDynamicCard {
 
     /*

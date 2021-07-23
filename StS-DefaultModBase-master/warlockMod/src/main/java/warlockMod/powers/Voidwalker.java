@@ -3,6 +3,7 @@ package warlockMod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -13,26 +14,20 @@ import warlockMod.util.TextureLoader;
 //Gain 1 dex for the turn for each card played.
 
 public class Voidwalker extends AbstractPower implements CloneablePowerInterface {
-    public AbstractCreature source;
-
-    public static final String POWER_ID = WarlockMod.makeID("Spellpower");
+    public static final String POWER_ID = WarlockMod.makeID("Voidwalker");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    // We create 2 new textures *Using This Specific Texture Loader* - an 84x84 image and a 32x32 one.
-    // There's a fallback "missing texture" image, so the game shouldn't crash if you accidentally put a non-existent file.
-    private static final Texture tex32 = TextureLoader.getTexture(WarlockMod.makePowerPath("spellpower32.png"));
-    private static final Texture tex84 = TextureLoader.getTexture(WarlockMod.makePowerPath("spellpower84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(WarlockMod.makePowerPath("voidwalker32.png"));
+    private static final Texture tex84 = TextureLoader.getTexture(WarlockMod.makePowerPath("empty84.png"));
 
-    public Voidwalker(final AbstractCreature owner, final AbstractCreature source, final int amount) {
+    public Voidwalker(final AbstractCreature owner, final int amount) {
         name = NAME;
         ID = POWER_ID;
 
         this.owner = owner;
         this.amount = amount;
-        this.source = source;
-
         type = PowerType.BUFF;
         isTurnBased = false;
 
@@ -43,9 +38,13 @@ public class Voidwalker extends AbstractPower implements CloneablePowerInterface
         //this.description = DESCRIPTIONS[0]+this.amount+".[]";
         this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        addToBot(new GainBlockAction(owner, amount));
+    }
 
     @Override
     public AbstractPower makeCopy() {
-        return new Voidwalker(owner, source, amount);
+        return new Voidwalker(owner, amount);
     }
 }

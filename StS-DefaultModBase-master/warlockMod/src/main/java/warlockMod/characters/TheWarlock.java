@@ -203,15 +203,16 @@ public class TheWarlock extends CustomPlayer {
         retVal.add(Corruption.ID);
         retVal.add(SummonVoidwalker.ID);
 
+        //TODO: TEMP
+        retVal.add(SpellpowerAdd.ID);
+
         retVal.add(DefaultUncommonAttack.ID);
         retVal.add(DefaultRareAttack.ID);
 
-        retVal.add(DefaultCommonSkill.ID);
+        //retVal.add(DefaultCommonSkill.ID);
         retVal.add(DefaultUncommonSkill.ID);
         retVal.add(DefaultRareSkill.ID);
 
-        //TODO: TEMP
-        retVal.add(SpellpowerAdd.ID);
 
         retVal.add(DefaultUncommonPower.ID);
         retVal.add(DefaultRarePower.ID);

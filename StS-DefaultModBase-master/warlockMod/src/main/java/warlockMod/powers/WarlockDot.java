@@ -29,8 +29,7 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
     }
 
     @Override
-    public void atStartOfTurn() { // At the start of the owner's turn (hopefully)
-
+    public void atStartOfTurn() {
         int damagethisturn=damageThisTurn();
 
         if(damagethisturn>0){
@@ -43,8 +42,8 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
     }
     public void animate(){
     }
-    public int damageThisTurn() { // At the end of your turn
-        //load turns from corruption timer
+    public int damageThisTurn() {
+        //load turns from timer
         int damagethisturn = 0;
         if (turnsremaining > 1) {
             //even distribution of damage

@@ -1,8 +1,4 @@
 {
-  "warlockMod:DefaultCommonAttack": {
-    "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"
-  },
   "warlockMod:ShadowBolt": {
     "NAME": "Shadow Bolt",
     "DESCRIPTION": "Deal !M! damage. warlockmod:Destruction."
@@ -17,11 +13,34 @@
   },
   "warlockMod:SummonVoidwalker": {
     "NAME": "Summon Voidwalker",
-    "DESCRIPTION": "Summon a Voidwalker warlockMod:Demon, which grants [#87ceeb]!M![] Block each turn. Costs one warlockMod:SoulShard. warlockmod:Demonology. warlockmod:Demon."
+    "DESCRIPTION": "Summon a Voidwalker warlockmod:Demon, which grants !M! Block each turn. Costs 1 [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Demonology."
   },
   "warlockMod:SpellpowerAdd": {
     "NAME": "SpellpowerAdd",
     "DESCRIPTION": "Gain 1 spellpower."
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "warlockMod:DefaultCommonAttack": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"
   },
   "warlockMod:DefaultCommonSkill": {
     "NAME": "Defend",
