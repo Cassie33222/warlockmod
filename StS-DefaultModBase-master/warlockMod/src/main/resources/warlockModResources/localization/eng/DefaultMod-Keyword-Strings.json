@@ -54,5 +54,11 @@
       "demonology"
     ],
     "DESCRIPTION": "Benefits from Demonology effects."
+  },
+  {
+    "NAMES": [
+      "demon"
+    ],
+    "DESCRIPTION": "Warlocks may only have one Demon active at a time. Summoning a new Demon will replace the old one."
   }
 ]

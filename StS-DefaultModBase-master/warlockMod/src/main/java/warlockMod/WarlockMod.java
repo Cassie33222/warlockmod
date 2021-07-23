@@ -14,6 +14,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -23,6 +24,8 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,6 +33,7 @@ import warlockMod.cards.AbstractDefaultCard;
 import warlockMod.characters.TheWarlock;
 import warlockMod.events.IdentityCrisisEvent;
 import warlockMod.potions.PlaceholderPotion;
+import warlockMod.powers.Voidwalker;
 import warlockMod.relics.*;
 import warlockMod.util.IDCheckDontTouchPls;
 import warlockMod.util.TextureLoader;
@@ -39,7 +43,9 @@ import warlockMod.variables.DefaultSecondMagicNumber;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.Properties;
+import java.util.Random;
 
 
 @SpireInitializer
@@ -55,6 +61,8 @@ public class WarlockMod implements
     public static final Logger logger = LogManager.getLogger(WarlockMod.class.getName());
     private static String modID;
 
+    public static Random rand=new Random(System.nanoTime());
+
     // Mod-settings settings. This is if you want an on/off savable button
     public static Properties theDefaultDefaultSettings = new Properties();
     public static final String ENABLE_PLACEHOLDER_SETTINGS = "enablePlaceholder";
@@ -62,8 +70,8 @@ public class WarlockMod implements
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "Warlock Mod";
-    private static final String AUTHOR = "Cassie"; // And pretty soon - You!
-    private static final String DESCRIPTION = "Play as a raid Warlock from World of Warcraft.";
+    private static final String AUTHOR = "Cassie322"; // And pretty soon - You!
+    private static final String DESCRIPTION = "Play as a Warlock from World of Warcraft.";
     
     // =============== INPUT TEXTURE LOCATION =================
 
@@ -99,7 +107,6 @@ public class WarlockMod implements
     public static final String THE_DEFAULT_SHOULDER_2 = "warlockModResources/images/char/defaultCharacter/shoulder3.png";
     public static final String THE_DEFAULT_CORPSE = "warlockModResources/images/char/defaultCharacter/corpsenew.png";
 
-    //TODO:
     public static GifAnimation warlockgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/character.png",
                     5, 4, 0, 0, 0.5f, 0.5f, false);
@@ -125,29 +132,27 @@ public class WarlockMod implements
     public static final String shadowimpactsound="SHADOW_IMPACT";
     public static final String shadowimpactsoundurl="warlockModResources/sounds/cards/shadowimpact.ogg";
 
-    // Spell assets
-    //shadow bolt
+    public static final String[] summonvoidwalkersounds={"SUMMONVOIDWALKER1", "SUMMONVOIDWALKER2", "SUMMONVOIDWALKER3", "SUMMONVOIDWALKER4"};
+    public static final String[] summonvoidwalkersoundurls={
+            "warlockModResources/sounds/cards/summonvoidwalker1.ogg",
+            "warlockModResources/sounds/cards/summonvoidwalker2.ogg",
+            "warlockModResources/sounds/cards/summonvoidwalker3.ogg",
+            "warlockModResources/sounds/cards/summonvoidwalker4.ogg"};
+
     public static GifAnimation shadowboltimpactgif=
             new GifAnimation("warlockModResources/images/cards/sbi.png",
-                    //-480
                     6, 6, 0, 0, 1f, 1f, 0, 110, true);
 
-    //drain life
     public static GifAnimation drainlifeimpactgif=
             new GifAnimation("warlockModResources/images/cards/drainlifeimpact.png",
-                    //-480
                     13, 1, 0, 0, 0.5f, 0.5f, 0, -15, true);
 
-    //drain life
     public static GifAnimation corruptionimpactgif=
             new GifAnimation("warlockModResources/images/cards/corruptionimpact.png",
-                    //-480
                     13, 1, 0, 0, 1f, 1f, 0, 0, true);
 
-    //drain life
     public static GifAnimation corruptiontickgif=
             new GifAnimation("warlockModResources/images/powers/corruptiontick.png",
-                    //-480
                     17, 2, 0, 0, 1.5f, 1.5f, 0, 50, true);
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
@@ -382,6 +387,9 @@ public class WarlockMod implements
         BaseMod.addAudio(castingsound, castingsoundurl);
         BaseMod.addAudio(soulshardsound, soulshardsoundurl);
         BaseMod.addAudio(shadowimpactsound, shadowimpactsoundurl);
+        for(int i=0; i<summonvoidwalkersounds.length; i++){
+            BaseMod.addAudio(summonvoidwalkersounds[i], summonvoidwalkersoundurls[i]);
+        }
         BaseMod.publishAddAudio(CardCrawlGame.sound);
     }
     public void initializeGif(GifAnimation gif, float speed){
@@ -553,6 +561,47 @@ public class WarlockMod implements
     public static void cleansePower(AbstractCreature m, String power){
         if(m.getPower(power)!=null){
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(m, m, power));
+        }
+    }
+    public static void cleanseDemons(AbstractCreature m){
+        String power= Voidwalker.POWER_ID;
+        if(m.getPower(power)!=null){
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(m, m, power));
+        }
+    }
+    public static void playRandomSound(String[] sounds){
+        CardCrawlGame.sound.play(sounds[rand.nextInt(sounds.length)]);
+    }
+    public static void consumeSpecificOrb(AbstractPlayer p, String orbid){
+            if (!p.orbs.isEmpty() && !(p.orbs.get(0) instanceof EmptyOrbSlot)) {
+                AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb)p.orbs.get(0)).cX, ((AbstractOrb)p.orbs.get(0)).cY);
+
+                int i;
+                for(i = 1; i < p.orbs.size(); ++i) {
+                    Collections.swap(p.orbs, i, i - 1);
+                }
+
+                p.orbs.set(p.orbs.size() - 1, orbSlot);
+
+                for(i = 0; i < p.orbs.size(); ++i) {
+                    ((AbstractOrb)p.orbs.get(i)).setSlot(i, p.maxOrbs);
+                }
+            }
+    }
+    public static void removeNextOrbExample(AbstractPlayer p, String orbid){
+        if (!p.orbs.isEmpty() && !(p.orbs.get(0) instanceof EmptyOrbSlot)) {
+            AbstractOrb orbSlot = new EmptyOrbSlot(((AbstractOrb)p.orbs.get(0)).cX, ((AbstractOrb)p.orbs.get(0)).cY);
+
+            int i;
+            for(i = 1; i < p.orbs.size(); ++i) {
+                Collections.swap(p.orbs, i, i - 1);
+            }
+
+            p.orbs.set(p.orbs.size() - 1, orbSlot);
+
+            for(i = 0; i < p.orbs.size(); ++i) {
+                ((AbstractOrb)p.orbs.get(i)).setSlot(i, p.maxOrbs);
+            }
         }
     }
 }

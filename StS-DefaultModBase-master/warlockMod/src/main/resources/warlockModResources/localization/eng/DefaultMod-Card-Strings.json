@@ -15,6 +15,10 @@
     "NAME": "Corruption",
     "DESCRIPTION": "Deal !M! damage over 5 turns. warlockmod:Affliction. warlockmod:Curse."
   },
+  "warlockMod:SummonVoidwalker": {
+    "NAME": "Summon Voidwalker",
+    "DESCRIPTION": "Summon a Voidwalker warlockMod:Demon, which grants [#87ceeb]!M![] Block each turn. Costs one warlockMod:SoulShard. warlockmod:Demonology. warlockmod:Demon."
+  },
   "warlockMod:SpellpowerAdd": {
     "NAME": "SpellpowerAdd",
     "DESCRIPTION": "Gain 1 spellpower."

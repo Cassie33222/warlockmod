@@ -15,8 +15,8 @@
                 "NAME": "Corruption",
                 "DESCRIPTIONS": ["Dealing [#87ceeb]%o[] [#EFC851]Affliction[] damage over 5 turns."]
         },
-        "warlockMod:CorruptionCounter": {
-                "NAME": "CorruptionCounter",
-                "DESCRIPTIONS": ["[#87ceeb]%o[] turns remaining."]
+        "warlockMod:Voidwalker": {
+                "NAME": "Voidwalker",
+                "DESCRIPTIONS": ["Granting [#87ceeb]%o[] block each turn."]
         }
 }
