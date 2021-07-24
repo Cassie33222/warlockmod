@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -23,6 +24,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import warlockMod.WarlockMod;
+import warlockMod.powers.Voidwalker;
 import warlockMod.relics.DefaultClickableRelic;
 import warlockMod.relics.OrbOfTheSoulEater;
 import warlockMod.relics.PlaceholderRelic;
@@ -39,6 +41,7 @@ import static warlockMod.characters.TheWarlock.Enums.COLOR_GRAY;
 
 public class TheWarlock extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(WarlockMod.class.getName());
+    static PlayerMinion voidwalker;
 
     // =============== CHARACTER ENUMERATORS =================
     // These are enums for your Characters color (both general color and for the card library) as well as
@@ -141,6 +144,7 @@ public class TheWarlock extends CustomPlayer {
 
         // ADD GIF ANIMATION
         WarlockMod.warlockgif.addAsCharacterAnimation(TheWarlock.class.getName());
+
         //WarlockMod.warlockcastingleftgif.addAsCharacterAnimation(TheWarlock.class.getName());
         //WarlockMod.warlockcastingrightgif.addAsCharacterAnimation(TheWarlock.class.getName());
         //WarlockMod.warlockdeathgif.addAsCharacterAnimation(TheWarlock.class.getName());
@@ -149,6 +153,7 @@ public class TheWarlock extends CustomPlayer {
                 , WarlockMod.warlockcastingrightgif
         );
 
+        voidwalker=new PlayerMinion(Voidwalker.POWER_ID, WarlockMod.voidwalkergif);
         // =============== /ANIMATIONS/ =================
 
 
@@ -166,7 +171,8 @@ public class TheWarlock extends CustomPlayer {
     }
 
     public static void tick(){
-        animations.restoreIdleAnimation();
+        animations.tick();
+        voidwalker.tick();
     }
 
     public static void shadowcastsound(){

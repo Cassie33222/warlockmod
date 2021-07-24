@@ -120,6 +120,10 @@ public class WarlockMod implements
             new GifAnimation("warlockModResources/images/char/defaultCharacter/death.png",
                     11, 4, 330, 300, 0.6f, 0.6f, 0, 0, false);*/
 
+    public static GifAnimation voidwalkergif=
+            new GifAnimation("warlockModResources/images/powers/voidwalkercharacter.png",
+                    53, 1, 550, 310, 0.75f, 0.75f, 0, 0,false);
+
     public static final String warlockselectsound="WARLOCK_SELECT";
     public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";
 
@@ -371,6 +375,10 @@ public class WarlockMod implements
 
         WarlockMod.warlockcastingrightgif.create();
         initializeGif(warlockcastingrightgif, 0.1f);
+
+        WarlockMod.voidwalkergif.create();
+        voidwalkergif.setAnimationspeed(0.05f);
+        voidwalkergif.addAsBackgroundAnimation();
 
         WarlockMod.shadowboltimpactgif.create();
         initializeGif(shadowboltimpactgif, 0.075f);

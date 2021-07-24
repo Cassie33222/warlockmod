@@ -1,7 +1,6 @@
 package GifTheSpire.util;
 
 import GifTheSpire.GifTheSpireLib;
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -13,13 +12,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import warlockMod.WarlockMod;
 
 import java.util.ArrayList;
 
@@ -43,7 +39,8 @@ public class GifAnimation implements ApplicationListener {
     public static final Logger logger = LogManager.getLogger(GifTheSpireLib.class.getName());
     private int emptyFrames;
     public boolean isTemp=false, disableAnimating=false;
-
+    public float alpha=1;
+    public boolean screenbackground =false;
     ArrayList<GifCopy> copies=new ArrayList<GifCopy>();
 
     public boolean usescopies=false;
@@ -149,11 +146,14 @@ public class GifAnimation implements ApplicationListener {
     {
         GifAnimation.setFrameDuration(frameDuration);
     }
-
+    public void setAlpha (float a){
+        alpha=a;
+    }
     public void renderanimation(SpriteBatch sb) {
         if(!ishidden) {
             TextureRegion currentFrame = GifAnimation.getKeyFrame(disableAnimating ? 0 : stateTime, loop);
-            sb.setColor(Color.WHITE);
+            //sb.setColor(Color.WHITE);
+            sb.setColor(1, 1, 1, alpha);
             sb.draw(currentFrame, currentx * Settings.scale, currenty * Settings.scale, (currentFrame.getTexture().getWidth() / clms) * widthmodfier * Settings.scale, (currentFrame.getTexture().getHeight() / rows) * heightmodifier * Settings.scale /*Settings.WIDTH, Settings.HEIGHT*/);
         }
         renderanimationcopies(sb);
@@ -181,6 +181,7 @@ public class GifAnimation implements ApplicationListener {
             }
     }
     public void renderAsBackground(SpriteBatch sb) {
+        if(!screenbackground){renderanimation(sb); return;}
         TextureRegion currentFrame = GifAnimation.getKeyFrame(stateTime, loop);
         sb.setColor(Color.WHITE);
         sb.draw(currentFrame, 0, 0, Settings.WIDTH, Settings.HEIGHT);

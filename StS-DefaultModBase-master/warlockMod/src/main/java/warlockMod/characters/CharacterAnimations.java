@@ -1,6 +1,7 @@
 package warlockMod.characters;
 
 import GifTheSpire.util.GifAnimation;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import warlockMod.WarlockMod;
 
@@ -10,6 +11,8 @@ public class CharacterAnimations{
     int attackcycle;
     int currentattack=-1;
     boolean died=false;
+    float alpha=1;
+    long lastupdate;
     public CharacterAnimations(GifAnimation i, GifAnimation d, GifAnimation... a){
         idle=i;
         dead=d;
@@ -40,5 +43,9 @@ public class CharacterAnimations{
         died=true;
         idle.ishidden=true;
         dead.playOnce(false);
+    }
+    public void tick(){
+        idle.setAlpha(alpha);
+        restoreIdleAnimation();
     }
 }
