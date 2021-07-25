@@ -15,9 +15,9 @@
     "NAME": "Summon Voidwalker",
     "DESCRIPTION": "Summon a Voidwalker warlockmod:Demon, which grants !M! Block each turn. Costs 1 [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Demonology."
   },
-  "warlockMod:SpellpowerAdd": {
-    "NAME": "SpellpowerAdd",
-    "DESCRIPTION": "Gain 1 spellpower."
+  "warlockMod:CurseOfWeakness": {
+    "NAME": "Curse of Weakness",
+    "DESCRIPTION": "Apply !M! Weakened, and reduce the target's Strength by up to [#87ceeb]6[], but not below [#87ceeb]0[]. warlockmod:Affliction."
   },
 
 
@@ -37,7 +37,10 @@
 
 
 
-
+  "warlockMod:SpellpowerAdd": {
+    "NAME": "SpellpowerAdd",
+    "DESCRIPTION": "Gain 1 spellpower."
+  },
   "warlockMod:DefaultCommonAttack": {
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"

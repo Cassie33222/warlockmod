@@ -45,7 +45,7 @@ public class PlayerMinion extends CharacterAnimations{
                 idle.ishidden=true;
             }
             */
-            if(alpha!=1)WarlockMod.logger.info("power is "+fade+", gif alpha "+alpha);
+            //if(alpha!=1)WarlockMod.logger.info("power is "+fade+", gif alpha "+alpha);
 
             idle.ishidden=false;
             //idle.setLoop(true);

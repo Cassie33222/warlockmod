@@ -143,6 +143,9 @@ public class WarlockMod implements
             "warlockModResources/sounds/cards/summonvoidwalker3.ogg",
             "warlockModResources/sounds/cards/summonvoidwalker4.ogg"};
 
+    public static final String cursesound="CURSE";
+    public static final String cursesoundurl="warlockModResources/sounds/cards/curse.ogg";
+
     public static GifAnimation shadowboltimpactgif=
             new GifAnimation("warlockModResources/images/cards/sbi.png",
                     6, 6, 0, 0, 1f, 1f, 0, 110, true);
@@ -158,6 +161,12 @@ public class WarlockMod implements
     public static GifAnimation corruptiontickgif=
             new GifAnimation("warlockModResources/images/powers/corruptiontick.png",
                     17, 2, 0, 0, 1.5f, 1.5f, 0, 50, true);
+    public static GifAnimation curseofagonygif=
+            new GifAnimation("warlockModResources/images/cards/curseofagonyimpact.png",
+                    44, 1, 0, 0, 0.75f, 0.75f, 0, 220, true);
+    public static GifAnimation curseofweaknessgif=
+            new GifAnimation("warlockModResources/images/cards/curseofweaknessimpact.png",
+                    44, 1, 0, 0, 0.75f, 0.75f, 0, 220, true);
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
@@ -388,6 +397,10 @@ public class WarlockMod implements
         initializeGif(corruptionimpactgif, 0.1f);
         WarlockMod.corruptiontickgif.create();
         initializeGif(corruptiontickgif, 0.075f);
+        WarlockMod.curseofagonygif.create();
+        initializeGif(curseofagonygif, 0.06f);
+        WarlockMod.curseofweaknessgif.create();
+        initializeGif(curseofweaknessgif, 0.06f);
 
 
         // =============== SOUND EFFECTS =================
@@ -395,6 +408,7 @@ public class WarlockMod implements
         BaseMod.addAudio(castingsound, castingsoundurl);
         BaseMod.addAudio(soulshardsound, soulshardsoundurl);
         BaseMod.addAudio(shadowimpactsound, shadowimpactsoundurl);
+        BaseMod.addAudio(cursesound, cursesoundurl);
         for(int i=0; i<summonvoidwalkersounds.length; i++){
             BaseMod.addAudio(summonvoidwalkersounds[i], summonvoidwalkersoundurls[i]);
         }

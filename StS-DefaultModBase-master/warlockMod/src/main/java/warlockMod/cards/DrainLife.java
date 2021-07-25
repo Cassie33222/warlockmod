@@ -28,7 +28,7 @@ import warlockMod.powers.Spellpower;
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
 public class DrainLife extends CustomCard{
 
-    //Deal 6+3u+1sp damage. Destruction.
+    //Deal "Deal 3+1sp damage and self-healing. Affliction."
 
     // TEXT DECLARATION
 
