@@ -26,7 +26,7 @@ import warlockMod.powers.Spellpower;
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
 public class CurseOfWeakness extends CustomCard{
 
-    //Apply 3 Weak, and reduce the target's Strength by 6, but not below 0. Affliction.
+    //Apply 2 Weak, and reduce the target's Strength by 6, but not below 0. Affliction.
 
     // TEXT DECLARATION
 
@@ -46,7 +46,7 @@ public class CurseOfWeakness extends CustomCard{
 
     private static final int COST = 1;
     private static final int STRENGTHLOSS=6;
-    private static final int WEAKNESS=3;
+    private static final int WEAKNESS=2;
     private static final int UPGRADED_COST = 0;
 
     public CurseOfWeakness() {
