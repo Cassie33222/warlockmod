@@ -45,37 +45,44 @@ public class CurseOfWeakness extends CustomCard{
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
-    private static final int STRENGTHLOSS=6;
+    private static final int STRENGTHLOSS=3;
+    private static final int STRENGTHFLOOR = 0;
     private static final int WEAKNESS=2;
+
     private static final int UPGRADED_COST = 0;
+    private static final int UPGRADED_MAGIC_NUMBER = -1;
 
     public CurseOfWeakness() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        baseMagicNumber=magicNumber=WEAKNESS;
+        baseMagicNumber=magicNumber=STRENGTHFLOOR;
     }
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
         //Create gif animation to replace STS animation
-        //TODO: animate properly
         WarlockMod.curseofweaknessgif.playOnceOverCreature(m);
         TheWarlock.attack();
         TheWarlock.shadowcastsound();
         CardCrawlGame.sound.play(WarlockMod.cursesound);
 
-        //TODO: if their strength is 0 or less, don't do this
-        int strengthdown=STRENGTHLOSS;
-        if(strengthdown>0) {
-            addToBot( // The action managed queues all the actions a card should do.
-                    new ReducePowerAction(m, p, "Strength", strengthdown)
-                    //new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
-            );
+        int currentstrength=0;
+        AbstractPower str=m.getPower("Strength");
+        if(str!=null){
+            currentstrength=str.amount;
+        }
+        //if strength lower than debuff effect, only go to strengthfloor
+        int newstrength=Math.max(magicNumber, currentstrength-STRENGTHLOSS);
+        int strengthchange=newstrength-currentstrength;
+
+        if(strengthchange<0) {
+                addToBot(
+                        new ApplyPowerAction(m, p, new StrengthPower(m, strengthchange), strengthchange)
+                );
         }
 
         addToBot( // The action managed queues all the actions a card should do.
                 new ApplyPowerAction(m, p, new WeakPower(m, WEAKNESS, false), WEAKNESS)
-                //new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
         );
     }
     // Upgraded stats.
@@ -84,6 +91,8 @@ public class CurseOfWeakness extends CustomCard{
         if (!upgraded) {
             upgradeName();
             upgradeBaseCost(UPGRADED_COST);
+            upgradeMagicNumber(UPGRADED_MAGIC_NUMBER);
+            rawDescription="Apply [#87ceeb]2[] Weak. Reduce the target's Strength by up to [#87ceeb]3[], but not below [#87ceeb]"+magicNumber+"[]. warlockmod:Affliction.";
             initializeDescription();
         }
     }
