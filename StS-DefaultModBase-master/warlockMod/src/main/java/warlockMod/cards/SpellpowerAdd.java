@@ -1,5 +1,6 @@
 package warlockMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,6 +12,7 @@ import warlockMod.characters.TheWarlock;
 import warlockMod.powers.CommonPower;
 import warlockMod.powers.Spellpower;
 
+@AutoAdd.Ignore
 public class SpellpowerAdd extends AbstractDynamicCard {
 
     /*

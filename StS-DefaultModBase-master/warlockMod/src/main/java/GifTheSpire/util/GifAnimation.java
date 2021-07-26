@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
@@ -38,12 +39,12 @@ public class GifAnimation implements ApplicationListener {
     public static SpriteBatch getSpritebatch = null;
     public static final Logger logger = LogManager.getLogger(GifTheSpireLib.class.getName());
     private int emptyFrames;
-    public boolean isTemp=false, disableAnimating=false;
-    public float alpha=1;
+
+    public float alpha=1f;
     public boolean screenbackground =false;
     ArrayList<GifCopy> copies=new ArrayList<GifCopy>();
-
-    public boolean usescopies=false;
+    public boolean isTemp=false, disableAnimating=false;
+    public boolean usescopies=false, relativetoplayer=false;
     class GifCopy{
         GifAnimation parent;
         boolean ishidden;
@@ -154,7 +155,13 @@ public class GifAnimation implements ApplicationListener {
             TextureRegion currentFrame = GifAnimation.getKeyFrame(disableAnimating ? 0 : stateTime, loop);
             //sb.setColor(Color.WHITE);
             sb.setColor(1, 1, 1, alpha);
-            sb.draw(currentFrame, currentx * Settings.scale, currenty * Settings.scale, (currentFrame.getTexture().getWidth() / clms) * widthmodfier * Settings.scale, (currentFrame.getTexture().getHeight() / rows) * heightmodifier * Settings.scale /*Settings.WIDTH, Settings.HEIGHT*/);
+            float xm=0;
+            float ym=0;
+            if(relativetoplayer){
+                xm= AbstractDungeon.player.drawX;
+                ym=AbstractDungeon.player.drawY;
+            }
+            sb.draw(currentFrame, xm+currentx * Settings.scale, ym+currenty * Settings.scale, (currentFrame.getTexture().getWidth() / clms) * widthmodfier * Settings.scale, (currentFrame.getTexture().getHeight() / rows) * heightmodifier * Settings.scale /*Settings.WIDTH, Settings.HEIGHT*/);
         }
         renderanimationcopies(sb);
     }

@@ -3,6 +3,7 @@ package warlockMod.cards;
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 import warlockMod.powers.Spellpower;
@@ -82,11 +84,9 @@ public class ShadowBolt extends CustomCard{
     public ShadowBolt() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
-        // Aside from baseDamage/MagicNumber/Block there's also a few more.
-        // Just type this.base and let intelliJ auto complete for you, or, go read up AbstractCard
         baseDamage = DAMAGE;
         baseMagicNumber=magicNumber=DAMAGE;
-
+        damageTypeForTurn= DamageInfo.DamageType.NORMAL;
     }
     @Override
     public void applyPowers() {
@@ -96,7 +96,13 @@ public class ShadowBolt extends CustomCard{
         AbstractPower yourModifierPower = AbstractDungeon.player.getPower(Spellpower.POWER_ID); //usually defined as a constant in power classes
         if (yourModifierPower != null) {
             this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
-            this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
+            this.isMagicNumberModified = true;
+        }
+
+        AbstractPower weak = AbstractDungeon.player.getPower(WeakPower.POWER_ID); //usually defined as a constant in power classes
+        if (weak != null) {
+            this.magicNumber = Math.max(0, MathUtils.floor(AbstractDungeon.player.hasRelic("Paper Crane") ? this.magicNumber * 0.6F : this.magicNumber * 0.75F));
+            this.isMagicNumberModified = true;
         }
     }
     @Override
@@ -113,14 +119,8 @@ public class ShadowBolt extends CustomCard{
         TheWarlock.attack();
         TheWarlock.shadowcastsound();
         CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
-        AbstractCreature.initialize();
-        addToBot( // The action managed queues all the actions a card should do.
-                // addToTop - first
-                // addToBottom - last
-                // 99.99% of the time you just want to addToBottom all of them.
-                // Please do that unless you need to add to top for some specific reason.
-                //new com.megacrit.cardcrawl.actions.common.LoseHPAction(m, p, getDamage(), AbstractGameAction.AttackEffect.POISON)
 
+        addToBot(
                 new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)
                 )
     );

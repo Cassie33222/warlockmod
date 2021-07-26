@@ -110,19 +110,25 @@ public class WarlockMod implements
     public static GifAnimation warlockgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/character.png",
                     5, 4, 0, 0, 0.5f, 0.5f, false);
-    public static GifAnimation warlockcastingleftgif=
+    /*public static GifAnimation warlockcastingleftgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/caststrongleft.png",
                     13, 1, 386, 346, 0.6f, 0.6f, 0, 0, false);
     public static GifAnimation warlockcastingrightgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/castweakright2.png",
-                    10, 1, 365, 339, 0.6f, 0.6f, 0, 0, false);
+                    10, 1, 365, 339, 0.6f, 0.6f, 0, 0, false);*/
+    public static GifAnimation warlockcastingleftgif=
+            new GifAnimation("warlockModResources/images/char/defaultCharacter/caststrongleft.png",
+                    13, 1, -85, 5, 0.6f, 0.6f, 0, 0, false);
+    public static GifAnimation warlockcastingrightgif=
+            new GifAnimation("warlockModResources/images/char/defaultCharacter/castweakright2.png",
+                    10, 1, -85-29, 5-7, 0.6f, 0.6f, 0, 0, false);
     /*public static GifAnimation warlockdeathgif=
             new GifAnimation("warlockModResources/images/char/defaultCharacter/death.png",
                     11, 4, 330, 300, 0.6f, 0.6f, 0, 0, false);*/
 
     public static GifAnimation voidwalkergif=
             new GifAnimation("warlockModResources/images/powers/voidwalkercharacter.png",
-                    53, 1, 550, 310, 0.75f, 0.75f, 0, 0,false);
+                    53, 1, 60, -30, 0.75f, 0.75f, 0, 0,false);
 
     public static final String warlockselectsound="WARLOCK_SELECT";
     public static final String warlockselectsoundurl="warlockModResources/sounds/characters/warlock/warlockselect.ogg";
@@ -163,10 +169,10 @@ public class WarlockMod implements
                     17, 2, 0, 0, 1.5f, 1.5f, 0, 50, true);
     public static GifAnimation curseofagonygif=
             new GifAnimation("warlockModResources/images/cards/curseofagonyimpact.png",
-                    44, 1, 0, 0, 0.75f, 0.75f, 0, 220, true);
+                    44, 1, 0, 0, 0.75f, 0.75f, -7, 230, true);
     public static GifAnimation curseofweaknessgif=
             new GifAnimation("warlockModResources/images/cards/curseofweaknessimpact.png",
-                    44, 1, 0, 0, 0.75f, 0.75f, 0, 220, true);
+                    44, 1, 0, 0, 0.75f, 0.75f, -7, 230, true);
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
@@ -381,13 +387,16 @@ public class WarlockMod implements
 
         WarlockMod.warlockcastingleftgif.create();
         initializeGif(warlockcastingleftgif, 0.1f);
+        warlockcastingleftgif.relativetoplayer=true;
 
         WarlockMod.warlockcastingrightgif.create();
         initializeGif(warlockcastingrightgif, 0.1f);
+        warlockcastingrightgif.relativetoplayer=true;
 
         WarlockMod.voidwalkergif.create();
         voidwalkergif.setAnimationspeed(0.05f);
         voidwalkergif.addAsBackgroundAnimation();
+        voidwalkergif.relativetoplayer=true;
 
         WarlockMod.shadowboltimpactgif.create();
         initializeGif(shadowboltimpactgif, 0.075f);

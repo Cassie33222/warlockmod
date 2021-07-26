@@ -150,7 +150,7 @@ public class TheWarlock extends CustomPlayer {
         //WarlockMod.warlockdeathgif.addAsCharacterAnimation(TheWarlock.class.getName());
         animations=new CharacterAnimations(WarlockMod.warlockgif,  WarlockMod.warlockcastingleftgif
                 , WarlockMod.warlockcastingleftgif
-                , WarlockMod.warlockcastingrightgif
+                //, WarlockMod.warlockcastingrightgif
         );
 
         voidwalker=new PlayerMinion(Voidwalker.POWER_ID, WarlockMod.voidwalkergif);
@@ -206,16 +206,15 @@ public class TheWarlock extends CustomPlayer {
         retVal.add(DrainLife.ID);
         retVal.add(DrainLife.ID);
 
+        retVal.add(CurseOfWeakness.ID);
         retVal.add(Corruption.ID);
         retVal.add(SummonVoidwalker.ID);
 
-        //TODO: TEMP
-        retVal.add(SpellpowerAdd.ID);
-
-        retVal.add(DefaultUncommonAttack.ID);
+        //default cards, don't need em any more
+        /*retVal.add(DefaultUncommonAttack.ID);
         retVal.add(DefaultRareAttack.ID);
 
-        //retVal.add(DefaultCommonSkill.ID);
+        retVal.add(DefaultCommonSkill.ID);
         retVal.add(DefaultUncommonSkill.ID);
         retVal.add(DefaultRareSkill.ID);
 
@@ -225,7 +224,7 @@ public class TheWarlock extends CustomPlayer {
 
         retVal.add(DefaultAttackWithVariable.ID);
         retVal.add(DefaultSecondMagicNumberSkill.ID);
-        retVal.add(OrbSkill.ID);
+        retVal.add(OrbSkill.ID);*/
         return retVal;
     }
 
@@ -299,7 +298,7 @@ public class TheWarlock extends CustomPlayer {
     //Which card should be obtainable from the Match and Keep event?
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new DefaultCommonAttack();
+        return new ShadowBolt();
     }
 
     // The class name as it appears next to your player name in-game
@@ -333,9 +332,9 @@ public class TheWarlock extends CustomPlayer {
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
         return new AbstractGameAction.AttackEffect[]{
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY,
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY,
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY};
+                AbstractGameAction.AttackEffect.POISON,
+                AbstractGameAction.AttackEffect.POISON,
+                AbstractGameAction.AttackEffect.POISON};
     }
 
     // Should return a string containing what text is shown when your character is

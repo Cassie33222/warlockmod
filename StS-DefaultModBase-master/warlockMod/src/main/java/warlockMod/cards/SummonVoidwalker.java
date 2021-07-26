@@ -4,6 +4,7 @@ import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.Fission;
+import com.megacrit.cardcrawl.cards.red.Bash;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -46,6 +47,7 @@ public class SummonVoidwalker extends CustomCard {
     public SummonVoidwalker() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         baseMagicNumber=magicNumber=MAGIC;
+        ignoreEnergyOnUse=false;
     }
 
     @Override
@@ -76,8 +78,6 @@ public class SummonVoidwalker extends CustomCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-
         ArrayList<AbstractOrb> orbs=p.orbs;
         boolean foundshard=false;
         if(orbs==null){return;}
@@ -105,20 +105,19 @@ public class SummonVoidwalker extends CustomCard {
         addToBot(new ApplyPowerAction(p, p,
                 new Voidwalker(p, magicNumber), magicNumber));
     }
-
     @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        ArrayList<AbstractOrb> orbs=p.orbs;
+    public boolean hasEnoughEnergy(){
+        ArrayList<AbstractOrb> orbs=AbstractDungeon.player.orbs;
         if(orbs==null){return false;}
         for(int i=0; i<orbs.size(); i++){
             AbstractOrb orb=orbs.get(i);
             if(orb!=null){
                 if(orb.ID!=null&&orb.ID.equalsIgnoreCase(SoulShard.ORB_ID)){
-                    return true;
+                    return super.hasEnoughEnergy();
                 }
             }
         }
-        this.cantUseMessage = "Not enough Soul Shards.";
+        this.cantUseMessage = "Not enough [#ff334c]Soul[] [#ff334c]Shards[].";
         return false;
     }
 }

@@ -26,30 +26,40 @@ public class PlayerMinion extends CharacterAnimations{
     public void tick(){
         //fade into and out of existence depending on if the player has a power
         //also hide if out of combat
-        //if(AbstractDungeon.getCurrRoom().isBattleOver){alpha=0;}
+
+        //fade out usually
+        boolean fadeout=true;
         AbstractPlayer p=AbstractDungeon.player;
+        //if player has power, don't fade out
         if(p!=null) {
-            //idle.playOnceOverCreature(AbstractDungeon.player); need?
-            boolean fade = p.hasPower(attachedpower);
-            if (lastupdate == 0) {
-                lastupdate = System.nanoTime();
-            }
-            double diff=(((System.nanoTime() - lastupdate) / 1000000L) / 1000d);
-            alpha += diff * (fade ? 1 : -1);
-            alpha = Math.min(1, Math.max(0, alpha));
-            lastupdate=System.nanoTime();
-           /*if(alpha>0.0001){
+            fadeout = !p.hasPower(attachedpower);
+        }
+        //if player has power, check if battle is active, fade out if not
+        if(!fadeout){
+            if(
+                    AbstractDungeon.currMapNode==null
+                            ||
+                            AbstractDungeon.getCurrRoom()==null
+                            ||
+                            AbstractDungeon.getCurrRoom().isBattleEnding()
+            ){fadeout=true;}
+        }
+        if (lastupdate == 0) {
+            lastupdate = System.nanoTime();
+        }
+        double diff=(((System.nanoTime() - lastupdate) / 1000000L) / 1000d);
+        alpha += diff * (fadeout ? -1 : 1);
+        alpha = Math.min(1, Math.max(0, alpha));
+        lastupdate=System.nanoTime();
+        if(alpha>0.0001){
                 idle.ishidden=false;
             }
             else{
                 idle.ishidden=true;
             }
-            */
-            //if(alpha!=1)WarlockMod.logger.info("power is "+fade+", gif alpha "+alpha);
+        //idle.ishidden=false;
+        //idle.setLoop(true);
 
-            idle.ishidden=false;
-            //idle.setLoop(true);
-        }
         idle.setAlpha(alpha);
         if(attacks!=null&&hasattacks){restoreIdleAnimation();}
     }
