@@ -40,8 +40,6 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
         updateDescription();
         removeIfComplete();
     }
-    public void animate(){
-    }
     public int damageThisTurn() {
         //load turns from timer
         int damagethisturn = 0;
@@ -67,6 +65,14 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
         if(turnsremaining==0){
             WarlockMod.cleansePower(this.owner, warlockMod.powers.Corruption.POWER_ID);
         }
+    }
+    public void animate(){
+        WarlockMod.corruptiontickgif.playCopyOnceOverCreature(owner);
+        //WarlockMod.corruptiontickgif.playOnceOverCreature(owner);
+    }
+    @Override
+    public void updateDescription() {
+        this.description = ("Dealing [#87ceeb]"+this.amount+"[] [#EFC851]Affliction[] damage over [#87ceeb]"+turnsremaining+"[] remaining turns.");
     }
     @Override
     public int getHealthBarAmount() {

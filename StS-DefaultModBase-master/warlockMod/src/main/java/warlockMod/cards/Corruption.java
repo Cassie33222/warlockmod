@@ -23,7 +23,7 @@ import warlockMod.powers.Spellpower;
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
 public class Corruption extends CustomCard{
 
-    //Deal 20+2sp damage over 5 turns. Affliction. Curse.
+    //Deal 18+2sp damage over 6 turns. Affliction. Curse.
 
     // TEXT DECLARATION
 

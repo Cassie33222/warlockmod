@@ -11,6 +11,10 @@
     "NAME": "Corruption",
     "DESCRIPTION": "Deal !M! damage over 6 turns. warlockmod:Affliction. warlockmod:Curse."
   },
+  "warlockMod:CurseOfAgony": {
+    "NAME": "Curse of Agony",
+    "DESCRIPTION": "Deal !M! damage over 8 turns. warlockmod:Affliction. warlockmod:Curse."
+  },
   "warlockMod:SummonVoidwalker": {
     "NAME": "Summon Voidwalker",
     "DESCRIPTION": "Summon a Voidwalker warlockmod:Demon, which grants !M! Block each turn. Costs 1 [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Demonology."
