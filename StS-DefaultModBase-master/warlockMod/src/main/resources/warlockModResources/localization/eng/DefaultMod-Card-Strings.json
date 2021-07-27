@@ -9,7 +9,7 @@
   },
   "warlockMod:Corruption": {
     "NAME": "Corruption",
-    "DESCRIPTION": "Deal !M! damage over 5 turns. warlockmod:Affliction. warlockmod:Curse."
+    "DESCRIPTION": "Deal !M! damage over 6 turns. warlockmod:Affliction. warlockmod:Curse."
   },
   "warlockMod:SummonVoidwalker": {
     "NAME": "Summon Voidwalker",

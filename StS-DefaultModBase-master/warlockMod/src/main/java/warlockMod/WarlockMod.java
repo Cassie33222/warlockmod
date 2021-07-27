@@ -172,7 +172,7 @@ public class WarlockMod implements
                     44, 1, 0, 0, 0.75f, 0.75f, -7, 230, true);
     public static GifAnimation curseofweaknessgif=
             new GifAnimation("warlockModResources/images/cards/curseofweaknessimpact.png",
-                    44, 1, 0, 0, 0.75f, 0.75f, -7, 230, true);
+                    61, 1, 0, 0, 0.75f, 0.75f, -7, 245, true);
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
