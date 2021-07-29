@@ -206,7 +206,6 @@ public class TheWarlock extends CustomPlayer {
         retVal.add(DrainLife.ID);
         retVal.add(DrainLife.ID);
 
-        retVal.add(CurseOfWeakness.ID);
         retVal.add(Corruption.ID);
         retVal.add(SummonVoidwalker.ID);
 

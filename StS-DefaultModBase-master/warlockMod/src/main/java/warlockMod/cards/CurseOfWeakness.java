@@ -45,7 +45,7 @@ public class CurseOfWeakness extends CustomCard{
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
-    private static final int STRENGTHLOSS=3;
+    private static final int STRENGTHLOSS=2;
     private static final int STRENGTHFLOOR = 0;
     private static final int WEAKNESS=2;
 

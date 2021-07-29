@@ -21,7 +21,7 @@
   },
   "warlockMod:CurseOfWeakness": {
     "NAME": "Curse of Weakness",
-    "DESCRIPTION": "Apply [#87ceeb]2[] Weak. Reduce the target's Strength by up to [#87ceeb]3[], but not below !M!. warlockmod:Affliction."
+    "DESCRIPTION": "Apply [#87ceeb]2[] Weak. Reduce the target's Strength by up to [#87ceeb]2[], but not below !M!. warlockmod:Affliction."
   },
 
 
