@@ -15,6 +15,10 @@
                 "NAME": "Corruption",
                 "DESCRIPTIONS": ["Dealing [#87ceeb]%o[] [#EFC851]Affliction[] damage over 6 turns."]
         },
+        "warlockMod:Immolate": {
+                "NAME": "Immolate",
+                "DESCRIPTIONS": ["Dealing [#87ceeb]%o[] [#EFC851]Destruction[] damage over 5 turns."]
+        },
         "warlockMod:CurseOfAgony": {
                 "NAME": "Curse of Agony",
                 "DESCRIPTIONS": ["Dealing [#87ceeb]%o[] [#EFC851]Affliction[] damage over 8 turns."]

@@ -2,6 +2,8 @@ package warlockMod.cards;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,16 +14,16 @@ import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 import warlockMod.powers.Spellpower;
 
-public class Corruption extends CustomCard{
+public class Immolate extends CustomCard{
 
-    //Deal 18+2sp damage over 6 turns. Affliction. Curse.
+    //Deal 5+1sp damage immediately, and 10+1sp more over 5 turns. Destruction. Curse. Costs 1 mana. Attack. Common. Upgrade: +3 base damage.
 
     // TEXT DECLARATION
 
-    public static final String ID = WarlockMod.makeID(Corruption.class.getSimpleName());
+    public static final String ID = WarlockMod.makeID(Immolate.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = WarlockMod.makeCardPath("corruption.png");
+    public static final String IMG = WarlockMod.makeCardPath("immolate.png");
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
@@ -29,16 +31,15 @@ public class Corruption extends CustomCard{
 
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
-    private static final int DAMAGE = 18;
-    private static final int UPGRADE_PLUS_DMG = 0;
-    private static final int UPGRADED_COST = 0;
-    private static final int SPELLPOWER_RATIO = 2;
+    private static final int DAMAGE = 5;
+    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int SPELLPOWER_RATIO = 1;
 
-    public Corruption() {
+    public Immolate() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         baseDamage = DAMAGE;
@@ -66,25 +67,28 @@ public class Corruption extends CustomCard{
     public void use(AbstractPlayer p, AbstractMonster m) {
 
         //Create gif animation to replace STS animation
-        WarlockMod.corruptionimpactgif.playOnceOverCreature(m);
+        WarlockMod.immolateimpactgif.playOnceOverCreature(m);
         TheWarlock.attack();
-        TheWarlock.shadowcastsound();
-        CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
+        TheWarlock.firecastsound();
+        CardCrawlGame.sound.play(WarlockMod.immolatesound);
 
         //remove existing corruption stack
-        WarlockMod.cleansePower(m, warlockMod.powers.Corruption.POWER_ID);
+        WarlockMod.cleansePower(m, warlockMod.powers.Immolate.POWER_ID);
+        addToBot(
+                new DamageAction(m, new DamageInfo(p, magicNumber, damageTypeForTurn))
+        );
         addToBot( // The action managed queues all the actions a card should do.
-                new ApplyPowerAction(m, p, new warlockMod.powers.Corruption(m, p, damage), 0)
+                new ApplyPowerAction(m, p, new warlockMod.powers.Immolate(m, p, magicNumber+5), 0)
                 //new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
-
-    );
+        );
     }
     // Upgraded stats.
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADED_COST);
+            upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeMagicNumber(UPGRADE_PLUS_DMG);
             initializeDescription();
         }
     }

@@ -68,7 +68,7 @@ public class TheWarlock extends CustomPlayer {
     public static final int STARTING_HP = 80;
     public static final int MAX_HP = 80;
     public static final int STARTING_GOLD = 99;
-    public static final int CARD_DRAW = 9;
+    public static final int CARD_DRAW = 5;
     public static final int ORB_SLOTS = 3;
 
     // =============== /BASE STATS/ =================
@@ -177,6 +177,9 @@ public class TheWarlock extends CustomPlayer {
 
     public static void shadowcastsound(){
         CardCrawlGame.sound.play(WarlockMod.castingsound);
+    }
+    public static void firecastsound(){
+        CardCrawlGame.sound.play(WarlockMod.castingfiresound);
     }
 
     // =============== /CHARACTER CLASS END/ =================

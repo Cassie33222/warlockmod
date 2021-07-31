@@ -81,6 +81,7 @@ public class WarlockMod implements
     // Character Color
     public static final Color DEFAULT_GRAY = CardHelper.getColor(42.0f, 21.0f, 63.0f);
     public static final Color DOT_PURPLE = CardHelper.getColor(129, 0, 152);
+    public static final Color DOT_ORANGE = CardHelper.getColor(255, 156, 76);
     
     // Potion Colors in RGB
     public static final Color PLACEHOLDER_POTION_LIQUID = CardHelper.getColor(209.0f, 53.0f, 18.0f); // Orange-ish Red
@@ -135,12 +136,17 @@ public class WarlockMod implements
 
     public static final String castingsound="WARLOCK_CASTING";
     public static final String castingsoundurl="warlockModResources/sounds/characters/warlock/casting.ogg";
+    public static final String castingfiresound="WARLOCK_CASTING_FIRE";
+    public static final String castingfiresoundurl="warlockModResources/sounds/characters/warlock/castingfire.ogg";
 
     public static final String soulshardsound="SOUL_SHARD";
     public static final String soulshardsoundurl="warlockModResources/sounds/items/soulshard.ogg";
 
     public static final String shadowimpactsound="SHADOW_IMPACT";
     public static final String shadowimpactsoundurl="warlockModResources/sounds/cards/shadowimpact.ogg";
+
+    public static final String immolatesound="IMMOLATE_IMPACT";
+    public static final String immolatesoundurl="warlockModResources/sounds/cards/immolate.ogg";
 
     public static final String[] summonvoidwalkersounds={"SUMMONVOIDWALKER1", "SUMMONVOIDWALKER2", "SUMMONVOIDWALKER3", "SUMMONVOIDWALKER4"};
     public static final String[] summonvoidwalkersoundurls={
@@ -173,6 +179,13 @@ public class WarlockMod implements
     public static GifAnimation curseofweaknessgif=
             new GifAnimation("warlockModResources/images/cards/curseofweaknessimpact.png",
                     61, 1, 0, 0, 0.75f, 0.75f, -7, 245, true);
+    public static GifAnimation immolateimpactgif=
+            new GifAnimation("warlockModResources/images/cards/immolateimpact.png",
+                    18, 1, 0, 0, 0.75f, 0.75f, 0, 0, true);
+
+    public static GifAnimation immolatetickgif=
+            new GifAnimation("warlockModResources/images/powers/immolatetick.png",
+                    13, 1, 0, 0, 0.75f, 0.75f, 0, 0, true);
 
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
@@ -411,10 +424,17 @@ public class WarlockMod implements
         WarlockMod.curseofweaknessgif.create();
         initializeGif(curseofweaknessgif, 0.06f);
 
+        WarlockMod.immolateimpactgif.create();
+        initializeGif(immolateimpactgif, 0.1f);
+        WarlockMod.immolatetickgif.create();
+        initializeGif(immolatetickgif, 0.1f);
+
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
         BaseMod.addAudio(castingsound, castingsoundurl);
+        BaseMod.addAudio(castingfiresound, castingfiresoundurl);
+        BaseMod.addAudio(immolatesound, immolatesoundurl);
         BaseMod.addAudio(soulshardsound, soulshardsoundurl);
         BaseMod.addAudio(shadowimpactsound, shadowimpactsoundurl);
         BaseMod.addAudio(cursesound, cursesoundurl);

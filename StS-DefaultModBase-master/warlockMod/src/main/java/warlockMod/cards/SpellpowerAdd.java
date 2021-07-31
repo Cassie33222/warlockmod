@@ -12,15 +12,8 @@ import warlockMod.characters.TheWarlock;
 import warlockMod.powers.CommonPower;
 import warlockMod.powers.Spellpower;
 
-@AutoAdd.Ignore
+//@AutoAdd.Ignore
 public class SpellpowerAdd extends AbstractDynamicCard {
-
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * Hold Place Gain 1(2) Keywords(s).
-     */
-
 
     // TEXT DECLARATION
 

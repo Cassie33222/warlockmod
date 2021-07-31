@@ -39,9 +39,9 @@ public class SummonVoidwalker extends CustomCard {
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
-    private static final int MAGIC = 4;
+    private static final int MAGIC = 5;
     private static final int UPGRADE_MAGIC = 1;
-    private static final int DAMAGE = 4;
+    private static final int DAMAGE = 5;
     private static final int UPGRADE_DAMAGE = 1;
 
     public SummonVoidwalker() {
