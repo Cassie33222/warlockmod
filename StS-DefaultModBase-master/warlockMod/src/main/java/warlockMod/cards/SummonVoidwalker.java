@@ -22,8 +22,7 @@ import java.util.ArrayList;
 
 public class SummonVoidwalker extends CustomCard {
 
-    //"Summon a Voidwalker Demon, which grants 4 Block each turn. Costs 1 Soul Shard. Demonology."
-
+    //"Summon a Voidwalker Demon, which grants 5 Block each turn. Costs 1 Soul Shard. Demonology."
 
     public static final String ID = WarlockMod.makeID(SummonVoidwalker.class.getSimpleName());
     public static final String IMG = WarlockMod.makeCardPath("summonvoidwalker.png");

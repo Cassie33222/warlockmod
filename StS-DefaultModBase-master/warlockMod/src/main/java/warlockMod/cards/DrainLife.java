@@ -1,6 +1,7 @@
 package warlockMod.cards;
 
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -8,11 +9,13 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.BandageUp;
 import com.megacrit.cardcrawl.cards.red.Reaper;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 import warlockMod.powers.Spellpower;
@@ -36,12 +39,6 @@ public class DrainLife extends CustomCard{
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     public static final String IMG = WarlockMod.makeCardPath("drainlife.png");
-    // Setting the image as as easy as can possibly be now. You just need to provide the image name
-    // and make sure it's in the correct folder. That's all.
-    // There's makeCardPath, makeRelicPath, power, orb, event, etc..
-    // The list of all of them can be found in the main DefaultMod.java file in the
-    // ==INPUT TEXTURE LOCATION== section under ==MAKE IMAGE PATHS==
-
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
@@ -99,6 +96,23 @@ public class DrainLife extends CustomCard{
             this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
         }
     }
+    public int getHealCalc(AbstractCreature p, int d){
+        float calc=d;
+
+        int felarmorcount=0;
+        //fel armor id
+        String power=warlockMod.powers.FelArmor.POWER_ID;
+
+        //if already has fel armor, add the amount to the count
+        if(p.getPower(power)!=null) {
+            felarmorcount += p.getPower(power).amount;
+        }
+
+        //apply fel armor percent to total
+        calc*=(1+(felarmorcount/100f));
+
+        return MathUtils.floor(calc);
+    }
     @Override
     public void calculateCardDamage(AbstractMonster mo){
         int value=magicNumber;
@@ -112,19 +126,15 @@ public class DrainLife extends CustomCard{
         WarlockMod.drainlifeimpactgif.playOnceOverCreature(m);
         TheWarlock.attack();
         TheWarlock.shadowcastsound();
+        int damagevalue=damage;
+        int healvalue=getHealCalc(p, damage);
         //CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
 
-        addToBot( // The action managed queues all the actions a card should do.
-                // addToTop - first
-                // addToBottom - last
-                // 99.99% of the time you just want to addToBottom all of them.
-                // Please do that unless you need to add to top for some specific reason.
-                //new com.megacrit.cardcrawl.actions.common.LoseHPAction(m, p, getDamage(), AbstractGameAction.AttackEffect.POISON)
-
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)
+        addToBot(
+                new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn)
                 )
         );
-        addToBot(new HealAction(p, p, damage));
+        addToBot(new HealAction(p, p, healvalue));
     }
 
     // Upgraded stats.

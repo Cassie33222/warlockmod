@@ -26,5 +26,9 @@
         "warlockMod:Voidwalker": {
                 "NAME": "Voidwalker",
                 "DESCRIPTIONS": ["Granting [#87ceeb]%o[] block each turn. [#EFC851]Demon[]."]
+        },
+        "warlockMod:FelArmor": {
+                "NAME": "Fel Armor",
+                "DESCRIPTIONS": ["Granting [#87ceeb]%o[] percent increased selfheal from Warlock cards. [#EFC851]Demonology[]."]
         }
 }
