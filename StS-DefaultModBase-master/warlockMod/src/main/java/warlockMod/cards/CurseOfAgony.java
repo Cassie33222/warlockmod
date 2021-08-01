@@ -32,10 +32,9 @@ public class CurseOfAgony extends CustomCard{
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int DAMAGE = 24;
-    private static final int UPGRADE_PLUS_DMG = 0;
-    private static final int UPGRADED_COST = 1;
+    private static final int UPGRADE_PLUS_DMG = 6;
     private static final int SPELLPOWER_RATIO = 3;
 
     public CurseOfAgony() {
@@ -84,7 +83,9 @@ public class CurseOfAgony extends CustomCard{
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADED_COST);
+            //(UPGRADED_COST);
+            upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeMagicNumber(UPGRADE_PLUS_DMG);
             initializeDescription();
         }
     }

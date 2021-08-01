@@ -21,7 +21,7 @@ public class SpellpowerAdd extends AbstractDynamicCard {
     public static final String IMG = WarlockMod.makeCardPath("Spellpower.png");
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    //public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -75,7 +75,7 @@ public class SpellpowerAdd extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_MAGIC);
-            rawDescription = UPGRADE_DESCRIPTION;
+           //rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }
     }

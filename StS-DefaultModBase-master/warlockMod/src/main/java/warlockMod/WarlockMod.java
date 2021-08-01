@@ -194,7 +194,7 @@ public class WarlockMod implements
 
     public static GifAnimation demonarmorgif=
             new GifAnimation("warlockModResources/images/cards/demonarmorapply.png",
-                    47, 1, 0, 0, 0.75f, 0.75f, 0, 300, true);
+                    46, 1, 0, 0, 0.75f, 0.75f, 0, 300, true);
     public static GifAnimation felarmorgif=
             new GifAnimation("warlockModResources/images/cards/felarmorapply.png",
                     47, 1, 0, 0, 0.75f, 0.75f, 0, 300, true);

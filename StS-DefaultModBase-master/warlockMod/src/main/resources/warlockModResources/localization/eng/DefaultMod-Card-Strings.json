@@ -31,6 +31,10 @@
     "NAME": "Fel Armor",
     "DESCRIPTION": "Increase your self-healing from Warlock cards by 40%. warlockmod:Demonology."
   },
+  "warlockMod:DemonArmor": {
+    "NAME": "Demon Armor",
+    "DESCRIPTION": "Gain 1 Artifact. At the end of each turn, gain !M! Block. warlockmod:Demonology."
+  },
 
 
 

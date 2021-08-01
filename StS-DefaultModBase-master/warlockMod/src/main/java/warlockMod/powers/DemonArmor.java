@@ -11,16 +11,16 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import warlockMod.WarlockMod;
 import warlockMod.util.TextureLoader;
 
-public class FelArmor extends AbstractPower implements CloneablePowerInterface {
-    public static final String POWER_ID = WarlockMod.makeID("FelArmor");
+public class DemonArmor extends AbstractPower implements CloneablePowerInterface {
+    public static final String POWER_ID = WarlockMod.makeID("DemonArmor");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex32 = TextureLoader.getTexture(WarlockMod.makePowerPath("felarmor32.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(WarlockMod.makePowerPath("demonarmor32.png"));
     private static final Texture tex84 = TextureLoader.getTexture(WarlockMod.makePowerPath("empty84.png"));
 
-    public FelArmor(final AbstractCreature owner, final int amount) {
+    public DemonArmor(final AbstractCreature owner, final int amount) {
         name = NAME;
         ID = POWER_ID;
 
@@ -32,17 +32,17 @@ public class FelArmor extends AbstractPower implements CloneablePowerInterface {
         // We load those txtures here.
         this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
-        //this.description = String.format(DESCRIPTIONS[0], this.amount);
-
-        this.updateDescription();
+        //description = DESCRIPTIONS[0];
+        //this.description = DESCRIPTIONS[0]+this.amount+".[]";
+        this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
-
     @Override
-    public void updateDescription(){
-        description="Granting [#87ceeb]"+this.amount+"%[] increased self-healing. [#EFC851]Demonology[].";
+    public void atEndOfTurn(boolean isPlayer) {
+        addToBot(new GainBlockAction(owner, amount));
     }
+
     @Override
     public AbstractPower makeCopy() {
-        return new FelArmor(owner, amount);
+        return new DemonArmor(owner, amount);
     }
 }
