@@ -61,27 +61,6 @@
     "NAME": "SpellpowerAdd",
     "DESCRIPTION": "Gain 1 spellpower."
   },
-  "warlockMod:DefaultCommonAttack": {
-    "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"
-  },
-  "warlockMod:DefaultCommonSkill": {
-    "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block. NL warlockmod:Multiword_Keyword."
-  },
-  "warlockMod:DefaultCommonPower": {
-    "NAME": "Hold Place",
-    "DESCRIPTION": "Gain !M! warlockmod:Keyword.",
-    "UPGRADE_DESCRIPTION": "Gain !M! warlockmod:Keywords."
-  },
-  "warlockMod:DefaultUncommonAttack": {
-    "NAME": "Big slap",
-    "DESCRIPTION": "Deal !D! damage."
-  },
-  "warlockMod:DefaultUncommonSkill": {
-    "NAME": "A Better Defend",
-    "DESCRIPTION": "Gain !B! Plated Armor. Affected by Dexterity."
-  },
   "warlockMod:DefaultUncommonPower": {
     "NAME": "Weirdness",
     "DESCRIPTION": "Gain X warlockmod:Keywords.",

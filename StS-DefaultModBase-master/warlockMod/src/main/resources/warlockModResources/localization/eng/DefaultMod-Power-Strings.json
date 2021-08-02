@@ -7,6 +7,7 @@
                 "NAME": "Placeholder Power",
                 "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
         },
+
         "warlockMod:Spellpower": {
                 "NAME": "Spellpower",
                 "DESCRIPTIONS": ["Spellpower increases your [#EFC851]Affliction[] and [#EFC851]Destruction[] damage, at varying amounts. Spellpower: [#87ceeb]%o.[]"]
