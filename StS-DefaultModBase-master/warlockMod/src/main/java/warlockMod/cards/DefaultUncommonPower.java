@@ -1,5 +1,6 @@
 package warlockMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,6 +11,7 @@ import warlockMod.WarlockMod;
 import warlockMod.actions.UncommonPowerAction;
 import warlockMod.characters.TheWarlock;
 
+@AutoAdd.Ignore
 public class DefaultUncommonPower extends AbstractDynamicCard {
 
     /*

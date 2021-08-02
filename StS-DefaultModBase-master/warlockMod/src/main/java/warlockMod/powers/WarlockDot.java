@@ -16,7 +16,7 @@ import warlockMod.util.TextureLoader;
 public class WarlockDot extends AbstractPower implements CloneablePowerInterface, HealthBarRenderPower{
     public AbstractCreature source;
     int turnsremaining=5;
-
+    public static String POWER_ID;
     private static final Texture tex32 = TextureLoader.getTexture(WarlockMod.makePowerPath("corruption32.png"));
     private static final Texture tex84 = TextureLoader.getTexture(WarlockMod.makePowerPath("empty84.png"));
     public WarlockDot(AbstractCreature owner, AbstractCreature source, int amount) {
@@ -63,7 +63,7 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
     public void removeIfComplete(){
         //remove if duration complete
         if(turnsremaining==0){
-            WarlockMod.cleansePower(this.owner, warlockMod.powers.Corruption.POWER_ID);
+            WarlockMod.cleansePower(this.owner, POWER_ID);
         }
     }
     public void animate(){

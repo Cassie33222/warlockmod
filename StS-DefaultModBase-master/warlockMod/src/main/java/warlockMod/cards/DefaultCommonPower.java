@@ -11,6 +11,7 @@ import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 import warlockMod.powers.CommonPower;
 
+@AutoAdd.Ignore
 public class DefaultCommonPower extends AbstractDynamicCard {
 
     /*

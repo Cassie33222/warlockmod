@@ -36,6 +36,13 @@ public class Immolate extends WarlockDot{
         WarlockMod.immolatetickgif.playCopyOnceOverCreature(owner);
     }
     @Override
+    public void removeIfComplete(){
+        //remove if duration complete
+        if(turnsremaining==0){
+            WarlockMod.cleansePower(this.owner, POWER_ID);
+        }
+    }
+    @Override
     public void updateDescription() {
         this.description = ("Dealing [#87ceeb]"+this.amount+"[] [#EFC851]Destruction[] damage over [#87ceeb]"+turnsremaining+"[] remaining turns.");
     }

@@ -43,6 +43,13 @@ public class Corruption extends WarlockDot{
         updateDescription();
     }
     @Override
+    public void removeIfComplete(){
+        //remove if duration complete
+        if(turnsremaining==0){
+            WarlockMod.cleansePower(this.owner, POWER_ID);
+        }
+    }
+    @Override
     public AbstractPower makeCopy() {
         return new Corruption(owner, source, amount);
     }

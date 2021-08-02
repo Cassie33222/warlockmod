@@ -1,5 +1,6 @@
 package warlockMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -9,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 
+@AutoAdd.Ignore
 public class DefaultUncommonAttack extends AbstractDynamicCard {
 
     /*

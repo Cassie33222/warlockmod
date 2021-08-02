@@ -163,6 +163,9 @@ public class WarlockMod implements
     public static final String demonarmorsound="DEMON_ARMOR";
     public static final String demonarmorsoundurl="warlockModResources/sounds/cards/demonarmor.ogg";
 
+    public static final String incineratesound="INCINERATE";
+    public static final String incineratesoundurl="warlockModResources/sounds/cards/incinerate.ogg";
+
     public static GifAnimation shadowboltimpactgif=
             new GifAnimation("warlockModResources/images/cards/sbi.png",
                     6, 6, 0, 0, 1f, 1f, 0, 110, true);
@@ -186,6 +189,9 @@ public class WarlockMod implements
                     61, 1, 0, 0, 0.75f, 0.75f, -7, 245, true);
     public static GifAnimation immolateimpactgif=
             new GifAnimation("warlockModResources/images/cards/immolateimpact.png",
+                    18, 1, 0, 0, 0.75f, 0.75f, 0, 0, true);
+    public static GifAnimation incinerategif=
+            new GifAnimation("warlockModResources/images/cards/incinerateimpact.png",
                     18, 1, 0, 0, 0.75f, 0.75f, 0, 0, true);
 
     public static GifAnimation immolatetickgif=
@@ -440,6 +446,8 @@ public class WarlockMod implements
         initializeGif(immolateimpactgif, 0.1f);
         WarlockMod.immolatetickgif.create();
         initializeGif(immolatetickgif, 0.1f);
+        WarlockMod.incinerategif.create();
+        initializeGif(incinerategif, 0.1f);
 
         WarlockMod.felarmorgif.create();
         initializeGif(felarmorgif, 0.12f);
@@ -451,6 +459,7 @@ public class WarlockMod implements
         BaseMod.addAudio(castingsound, castingsoundurl);
         BaseMod.addAudio(castingfiresound, castingfiresoundurl);
         BaseMod.addAudio(immolatesound, immolatesoundurl);
+        BaseMod.addAudio(incineratesound, incineratesoundurl);
         BaseMod.addAudio(soulshardsound, soulshardsoundurl);
         BaseMod.addAudio(shadowimpactsound, shadowimpactsoundurl);
         BaseMod.addAudio(cursesound, cursesoundurl);

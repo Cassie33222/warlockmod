@@ -1,14 +1,11 @@
 package warlockMod.cards;
 
-import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -17,6 +14,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
+import warlockMod.powers.Immolate;
 import warlockMod.powers.Spellpower;
 // "How come this card extends CustomCard and not DynamicCard like all the rest?"
 // Skip this question until you start figuring out the AbstractDefaultCard/AbstractDynamicCard and just extend DynamicCard
@@ -28,27 +26,29 @@ import warlockMod.powers.Spellpower;
 // Abstract Dynamic Card builds up on Abstract Default Card even more and makes it so that you don't need to add
 // the NAME and the DESCRIPTION into your card - it'll get it automatically. Of course, this functionality could have easily
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
-public class ShadowBolt extends CustomCard{
+public class Incinerate extends CustomCard{
 
-    //Deal 6+1sp damage. Destruction.
+    //Incinerate
+    //Deal 9+1sp damage. If the target is affected by Immolate, gain 1 Energy. Destruction. Attack. Costs 1 mana. Uncommon. Upgrade: +3 base damage.
 
-    public static final String ID = WarlockMod.makeID(ShadowBolt.class.getSimpleName());
+    public static final String ID = WarlockMod.makeID(Incinerate.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = WarlockMod.makeCardPath("shadowbolt.png");
+    public static final String IMG = WarlockMod.makeCardPath("incinerate.png");
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
-    private static final int DAMAGE = 6;
+    private static final int DAMAGE = 9;
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int SPELLPOWER_RATIO = 1;
+    private int energygain=1;
 
     // Hey want a second damage/magic/block/unique number??? Great!
     // Go check out DefaultAttackWithVariable and theDefault.variable.DefaultCustomVariable
@@ -68,7 +68,7 @@ public class ShadowBolt extends CustomCard{
     // UnlockTracker.unlockCard(DefaultCommonAttack.ID);
     // in your main class, in the receiveEditCards() method
 
-    public ShadowBolt() {
+    public Incinerate() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         baseDamage = DAMAGE;
@@ -103,15 +103,25 @@ public class ShadowBolt extends CustomCard{
     public void use(AbstractPlayer p, AbstractMonster m) {
 
         //Create gif animation to replace STS animation
-        WarlockMod.shadowboltimpactgif.playOnceOverCreature(m);
+        WarlockMod.incinerategif.playOnceOverCreature(m);
         TheWarlock.attack();
-        TheWarlock.shadowcastsound();
-        CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
+        TheWarlock.firecastsound();
+        CardCrawlGame.sound.play(WarlockMod.incineratesound);
 
+        //deal 9 damage or more
         addToBot(
                 new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)
                 )
-    );
+        );
+
+        //gain 1 energy if target is affected by immolate
+        AbstractPower power=m.getPower(Immolate.POWER_ID);
+        if(power!=null&&power.amount>0){
+            //p.gainEnergy(1);
+            addToBot(
+                    new GainEnergyAction(energygain)
+            );
+        }
     }
 
     // Upgraded stats.

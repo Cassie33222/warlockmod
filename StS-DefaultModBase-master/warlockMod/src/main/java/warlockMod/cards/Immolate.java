@@ -1,6 +1,7 @@
 package warlockMod.cards;
 
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 import warlockMod.powers.Spellpower;
@@ -56,6 +58,13 @@ public class Immolate extends CustomCard{
             this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
             this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
         }
+
+        AbstractPower weak = AbstractDungeon.player.getPower(WeakPower.POWER_ID); //usually defined as a constant in power classes
+        if (weak != null) {
+            this.magicNumber = Math.max(0, MathUtils.floor(AbstractDungeon.player.hasRelic("Paper Crane") ? this.magicNumber * 0.6F : this.magicNumber * 0.75F));
+            this.isMagicNumberModified = true;
+        }
+        damage=magicNumber;
     }
     @Override
     public void calculateCardDamage(AbstractMonster mo){
@@ -75,10 +84,10 @@ public class Immolate extends CustomCard{
         //remove existing corruption stack
         WarlockMod.cleansePower(m, warlockMod.powers.Immolate.POWER_ID);
         addToBot(
-                new DamageAction(m, new DamageInfo(p, magicNumber, damageTypeForTurn))
+                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
         );
         addToBot( // The action managed queues all the actions a card should do.
-                new ApplyPowerAction(m, p, new warlockMod.powers.Immolate(m, p, magicNumber+5), 0)
+                new ApplyPowerAction(m, p, new warlockMod.powers.Immolate(m, p, damage+5), 0)
                 //new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
         );
     }

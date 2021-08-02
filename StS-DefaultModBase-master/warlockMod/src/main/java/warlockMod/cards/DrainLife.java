@@ -95,6 +95,7 @@ public class DrainLife extends CustomCard{
             this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
             this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
         }
+        damage=magicNumber;
     }
     public int getHealCalc(AbstractCreature p, int d){
         float calc=d;

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 
+
 public class DefaultRareAttack extends AbstractDynamicCard {
 
     /*

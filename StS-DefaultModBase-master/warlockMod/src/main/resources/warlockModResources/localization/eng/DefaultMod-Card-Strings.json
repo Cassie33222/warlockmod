@@ -15,6 +15,10 @@
     "NAME": "Immolate",
     "DESCRIPTION": "Deal !M! damage immediately, and !M! + 5 more over 5 turns. warlockmod:Destruction. warlockmod:Curse."
   },
+  "warlockMod:Incinerate": {
+    "NAME": "Incinerate",
+    "DESCRIPTION": "Deal !M! damage. If the target is affected by Immolate, gain 1 Energy. warlockmod:Destruction."
+  },
   "warlockMod:CurseOfAgony": {
     "NAME": "Curse of Agony",
     "DESCRIPTION": "Deal !M! damage over 8 turns. warlockmod:Affliction. warlockmod:Curse."
