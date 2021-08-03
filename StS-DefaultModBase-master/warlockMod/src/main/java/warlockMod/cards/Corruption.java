@@ -73,11 +73,7 @@ public class Corruption extends CustomCard{
 
         //remove existing corruption stack
         WarlockMod.cleansePower(m, warlockMod.powers.Corruption.POWER_ID);
-        addToBot( // The action managed queues all the actions a card should do.
-                new ApplyPowerAction(m, p, new warlockMod.powers.Corruption(m, p, damage), 0)
-                //new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
-
-    );
+        addToBot(new ApplyPowerAction(m, p, new warlockMod.powers.Corruption(m, p, damage), 0));
     }
     // Upgraded stats.
     @Override

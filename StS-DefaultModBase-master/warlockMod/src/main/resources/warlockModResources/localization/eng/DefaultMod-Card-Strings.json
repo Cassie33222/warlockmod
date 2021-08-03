@@ -39,6 +39,10 @@
     "NAME": "Demon Armor",
     "DESCRIPTION": "Gain 1 Artifact. At the end of each turn, gain !M! Block. warlockmod:Demonology."
   },
+  "warlockMod:Conflagrate": {
+    "NAME": "Conflagrate",
+    "DESCRIPTION": "Deal !M! damage. If the target is affected by Immolate, draw a card. Your next 2 Incinerates or Chaos Bolts deal 30% increased damage. warlockmod:Destruction."
+  },
 
 
 

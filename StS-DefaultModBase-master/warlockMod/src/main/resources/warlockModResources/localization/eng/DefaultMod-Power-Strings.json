@@ -35,5 +35,9 @@
         "warlockMod:DemonArmor": {
                 "NAME": "Demon Armor",
                 "DESCRIPTIONS": ["Granting [#87ceeb]%o[] [#EFC851]Block[] each turn. [#EFC851]Demonology[]."]
+        },
+        "warlockMod:Conflagrate": {
+                "NAME": "Conflagrate",
+                "DESCRIPTIONS": ["Your next [#87ceeb]X[] Incinerates or Chaos Bolts deal 35% increased damage."]
         }
 }
