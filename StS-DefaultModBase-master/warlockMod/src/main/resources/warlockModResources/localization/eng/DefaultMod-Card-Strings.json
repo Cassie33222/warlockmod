@@ -43,6 +43,10 @@
     "NAME": "Conflagrate",
     "DESCRIPTION": "Deal !M! damage. If the target is affected by Immolate, draw a card. Your next 2 Incinerates or Chaos Bolts deal 30% increased damage. warlockmod:Destruction."
   },
+  "warlockMod:SearingPain": {
+    "NAME": "Searing Pain",
+    "DESCRIPTION": "Deal !M! damage. If the target is affected by Immolate, add 5 damage and extend it by one turn. warlockmod:Destruction."
+  },
 
 
 

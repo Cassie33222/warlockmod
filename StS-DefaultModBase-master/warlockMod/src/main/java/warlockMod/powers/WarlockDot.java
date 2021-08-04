@@ -15,7 +15,7 @@ import warlockMod.util.TextureLoader;
 
 public class WarlockDot extends AbstractPower implements CloneablePowerInterface, HealthBarRenderPower{
     public AbstractCreature source;
-    int turnsremaining=5;
+    public int turnsremaining=5;
     public static String POWER_ID;
     private static final Texture tex32 = TextureLoader.getTexture(WarlockMod.makePowerPath("corruption32.png"));
     private static final Texture tex84 = TextureLoader.getTexture(WarlockMod.makePowerPath("empty84.png"));
@@ -42,7 +42,7 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
     }
     public int damageThisTurn() {
         //load turns from timer
-        int damagethisturn = 0;
+        int damagethisturn;
         if (turnsremaining > 1) {
             //even distribution of damage
             damagethisturn = this.amount / turnsremaining;
