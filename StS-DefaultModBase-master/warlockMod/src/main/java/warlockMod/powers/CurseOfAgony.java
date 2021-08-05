@@ -39,6 +39,10 @@ public class CurseOfAgony extends WarlockDot{
         }
     }
     @Override
+    public void animate(){
+        //no animation for curse of agony dot
+    }
+    @Override
     public AbstractPower makeCopy() {
         return new CurseOfAgony(owner, source, amount);
     }

@@ -47,6 +47,10 @@
     "NAME": "Searing Pain",
     "DESCRIPTION": "Deal !M! damage. If the target is affected by Immolate, add 5 damage and extend it by one turn. warlockmod:Destruction."
   },
+  "warlockMod:SoulFire": {
+    "NAME": "Soul Fire",
+    "DESCRIPTION": "Deal !M! damage. Costs 1 [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Destruction."
+  },
 
 
 

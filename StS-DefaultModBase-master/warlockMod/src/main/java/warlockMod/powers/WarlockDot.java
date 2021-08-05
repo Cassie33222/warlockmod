@@ -68,7 +68,6 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
     }
     public void animate(){
         WarlockMod.corruptiontickgif.playCopyOnceOverCreature(owner);
-        //WarlockMod.corruptiontickgif.playOnceOverCreature(owner);
     }
     @Override
     public void updateDescription() {

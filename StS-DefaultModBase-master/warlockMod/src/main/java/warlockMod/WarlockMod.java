@@ -166,6 +166,12 @@ public class WarlockMod implements
     public static final String incineratesound="INCINERATE";
     public static final String incineratesoundurl="warlockModResources/sounds/cards/incinerate.ogg";
 
+    public static final String fireblast1sound="FIRE_BLAST_1";
+    public static final String fireblast1soundurl="warlockModResources/sounds/cards/fireblast1.ogg";
+
+    public static final String fireblast2sound="FIRE_BLAST_2";
+    public static final String fireblast2soundurl="warlockModResources/sounds/cards/fireblast2.ogg";
+
     public static GifAnimation shadowboltimpactgif=
             new GifAnimation("warlockModResources/images/cards/sbi.png",
                     6, 6, 0, 0, 1f, 1f, 0, 110, true);
@@ -193,6 +199,9 @@ public class WarlockMod implements
     public static GifAnimation incinerategif=
             new GifAnimation("warlockModResources/images/cards/incinerateimpact.png",
                     18, 1, 0, 0, 0.75f, 0.75f, 0, 0, true);
+    public static GifAnimation soulfireimpact=
+            new GifAnimation("warlockModResources/images/cards/soulfireimpact.png",
+                    13, 1, 0, 0, 0.5f, 0.5f, 0, 0, true);
 
     public static GifAnimation immolatetickgif=
             new GifAnimation("warlockModResources/images/powers/immolatetick.png",
@@ -432,7 +441,7 @@ public class WarlockMod implements
         WarlockMod.shadowboltimpactgif.create();
         initializeGif(shadowboltimpactgif, 0.075f);
         WarlockMod.drainlifeimpactgif.create();
-        initializeGif(drainlifeimpactgif, 0.05f);
+        initializeGif(drainlifeimpactgif, 0.075f);
         WarlockMod.corruptionimpactgif.create();
         initializeGif(corruptionimpactgif, 0.1f);
         WarlockMod.corruptiontickgif.create();
@@ -454,6 +463,9 @@ public class WarlockMod implements
         WarlockMod.demonarmorgif.create();
         initializeGif(demonarmorgif, 0.12f);
 
+        WarlockMod.soulfireimpact.create();
+        initializeGif(soulfireimpact, 0.075f);
+
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
         BaseMod.addAudio(castingsound, castingsoundurl);
@@ -465,6 +477,8 @@ public class WarlockMod implements
         BaseMod.addAudio(cursesound, cursesoundurl);
         BaseMod.addAudio(felarmorsound, felarmorsoundurl);
         BaseMod.addAudio(demonarmorsound, demonarmorsoundurl);
+        BaseMod.addAudio(fireblast1sound, fireblast1soundurl);
+        BaseMod.addAudio(fireblast2sound, fireblast2soundurl);
         for(int i=0; i<summonvoidwalkersounds.length; i++){
             BaseMod.addAudio(summonvoidwalkersounds[i], summonvoidwalkersoundurls[i]);
         }

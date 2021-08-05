@@ -20,7 +20,7 @@ import warlockMod.powers.Voidwalker;
 
 import java.util.ArrayList;
 
-public class SummonVoidwalker extends CustomCard {
+public class SummonVoidwalker extends SoulCard {
 
     //"Summon a Voidwalker Demon, which grants 5 Block each turn. Costs 1 Soul Shard. Demonology."
 
@@ -54,11 +54,6 @@ public class SummonVoidwalker extends CustomCard {
         //Assuming you're using magic number to store your damage
         this.magicNumber = this.baseMagicNumber;
         this.isMagicNumberModified = false;
-        /*AbstractPower yourModifierPower = AbstractDungeon.player.getPower(Spellpower.POWER_ID); //usually defined as a constant in power classes
-        if (yourModifierPower != null) {
-            this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
-            this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
-        }*/
     }
     @Override
     public void calculateCardDamage(AbstractMonster mo){
@@ -77,22 +72,11 @@ public class SummonVoidwalker extends CustomCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        ArrayList<AbstractOrb> orbs=p.orbs;
-        boolean foundshard=false;
-        if(orbs==null){return;}
-        for(int i=0; i<orbs.size(); i++){
-            AbstractOrb orb=orbs.get(i);
-            if(orb!=null){
-                if(orb.ID!=null&&orb.ID.equalsIgnoreCase(SoulShard.ORB_ID)){
-                    WarlockMod.consumeSpecificOrb(p, SoulShard.ORB_ID);
-                    foundshard=true;
-                    break;
-                }
-            }
-        }
-        if(!foundshard){
-            //WarlockMod.logger.info("Warning! Summon voidwalker was playable despite having no soul shard!");
+        //eat souls or cancel
+        if(!hasSoulShards(p, this.SOULS)){
             return;
+        }else{
+            eatSouls(p, this.SOULS);
         }
 
         TheWarlock.attack();
@@ -103,20 +87,5 @@ public class SummonVoidwalker extends CustomCard {
         WarlockMod.cleanseDemons(p);
         addToBot(new ApplyPowerAction(p, p,
                 new Voidwalker(p, magicNumber), magicNumber));
-    }
-    @Override
-    public boolean hasEnoughEnergy(){
-        ArrayList<AbstractOrb> orbs=AbstractDungeon.player.orbs;
-        if(orbs==null){return false;}
-        for(int i=0; i<orbs.size(); i++){
-            AbstractOrb orb=orbs.get(i);
-            if(orb!=null){
-                if(orb.ID!=null&&orb.ID.equalsIgnoreCase(SoulShard.ORB_ID)){
-                    return super.hasEnoughEnergy();
-                }
-            }
-        }
-        this.cantUseMessage = "Not enough [#ff334c]Soul[] [#ff334c]Shards[].";
-        return false;
     }
 }
