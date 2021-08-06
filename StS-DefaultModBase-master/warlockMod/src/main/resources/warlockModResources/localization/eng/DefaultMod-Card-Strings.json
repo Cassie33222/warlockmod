@@ -73,6 +73,10 @@
     "NAME": "SpellpowerAdd",
     "DESCRIPTION": "Gain 1 spellpower."
   },
+  "warlockMod:SoulstoneAdd": {
+    "NAME": "SoulstoneAdd",
+    "DESCRIPTION": "Gain 1 Soul Stone."
+  },
   "warlockMod:DefaultUncommonPower": {
     "NAME": "Weirdness",
     "DESCRIPTION": "Gain X warlockmod:Keywords.",
