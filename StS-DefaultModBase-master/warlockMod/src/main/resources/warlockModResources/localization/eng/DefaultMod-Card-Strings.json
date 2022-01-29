@@ -71,7 +71,10 @@
     "NAME": "Unstable Affliction",
     "DESCRIPTION": "Remove all Artifact from the target. Deal !M! damage over 6 turns. Costs 1 [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Affliction. warlockmod:Curse."
   },
-
+  "warlockMod:DeathCoil": {
+    "NAME": "Death Coil",
+    "DESCRIPTION": "Deal !M! damage and self-healing. Apply [#87ceeb]2[] Weak. Draw a card. Exhaust. warlockmod:Affliction."
+  },
 
 
 
