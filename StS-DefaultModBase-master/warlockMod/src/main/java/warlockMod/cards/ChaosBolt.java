@@ -1,11 +1,7 @@
 package warlockMod.cards;
 
-import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,39 +12,39 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
-import warlockMod.powers.Immolate;
 import warlockMod.powers.Spellpower;
 
-public class Conflagrate extends CustomCard{
+public class ChaosBolt extends SoulCard{
 
-    //Conflagrate
-    //Deal 3+1sp damage. If the target is affected by Immolate, draw a card.
-    //Your next two Incinerates or Chaos Bolts deal 35% increased damage. Destruction. Attack. Costs 1 mana. Uncommon. Upgrade: Costs 0 mana.
+    //Deal 60+10sp damage. If you have Conflagrate, gain 3 energy. Costs 3 Soul Shards. Destruction. Attack. Costs 3 mana. Rare. Upgrade: Costs 2 mana.
 
-    public static final String ID = WarlockMod.makeID(Conflagrate.class.getSimpleName());
+    public static final String ID = WarlockMod.makeID(ChaosBolt.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = WarlockMod.makeCardPath("conflagrate.png");
+    public static final String IMG = WarlockMod.makeCardPath("chaosbolt.png");
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
-    private static final int COST = 1;
-    private static final int UPGRADED_COST = 0;
-    private static final int DAMAGE = 3;
-    private static final int SPELLPOWER_RATIO = 1;
+    private static final int COST = 3;
+    private static final int UPGRADED_COST = 2;
+    private static final int DAMAGE = 60;
+    private static final int SPELLPOWER_RATIO = 10;
+    private static final int SOUL_COST = 3;
 
-    public Conflagrate() {
+    public ChaosBolt() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         baseDamage = DAMAGE;
         baseMagicNumber=magicNumber=DAMAGE;
-        damageTypeForTurn= DamageInfo.DamageType.NORMAL;
+
+        this.SOULS=SOUL_COST;
     }
     @Override
     public void applyPowers() {
@@ -58,6 +54,13 @@ public class Conflagrate extends CustomCard{
         AbstractPower yourModifierPower = AbstractDungeon.player.getPower(Spellpower.POWER_ID); //usually defined as a constant in power classes
         if (yourModifierPower != null) {
             this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
+            this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
+        }
+        //buff damage by 35%, if you have conflagrate
+        AbstractPlayer p=AbstractDungeon.player;
+        AbstractPower conf=p.getPower(warlockMod.powers.Conflagrate.POWER_ID);
+        if(conf!=null&&conf.amount>0){
+            this.magicNumber=Math.max(0, MathUtils.floor(1.35f*this.magicNumber));
             this.isMagicNumberModified = true;
         }
 
@@ -76,32 +79,23 @@ public class Conflagrate extends CustomCard{
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-        //Create gif animation to replace STS animation
-        WarlockMod.immolateimpactgif.playOnceOverCreature(m);
-        TheWarlock.attack();
-        TheWarlock.firecastsound();
-        CardCrawlGame.sound.play(WarlockMod.immolatesound);
-
-        //deal 9 damage or more
-        addToBot(
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)
-                )
-        );
-
-        //draw 1 card if target is affected by immolate
-        AbstractPower power=m.getPower(Immolate.POWER_ID);
-        if(power!=null&&power.amount>0){
-            addToBot(
-                    new DrawCardAction(1)
-            );
+        //eat souls or cancel
+        if(!hasSoulShards(p, this.SOULS)){
+            return;
+        }else{
+            eatSouls(p, this.SOULS);
         }
 
-        //next two incinerates or chaos bolts deal 30% increased damage, removing old stacks
-        WarlockMod.cleansePower(p, warlockMod.powers.Conflagrate.POWER_ID);
-        addToBot(new ApplyPowerAction(p, p, new warlockMod.powers.Conflagrate(m, p, 2), 2));
-    }
+        //Create gif animation to replace STS animation
+        WarlockMod.chaosboltimpact.playOnceOverCreature(m);
+        TheWarlock.attack();
+        TheWarlock.firecastsound();
+        CardCrawlGame.sound.play(WarlockMod.fireblast1sound);
 
+        addToBot(
+                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
+        );
+    }
     // Upgraded stats.
     @Override
     public void upgrade() {

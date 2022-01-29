@@ -30,7 +30,7 @@
         },
         "warlockMod:FelArmor": {
                 "NAME": "Fel Armor",
-                "DESCRIPTIONS": ["Granting [#87ceeb]%o[] percent increased selfheal from Warlock cards. [#EFC851]Demonology[]."]
+                "DESCRIPTIONS": ["Granting [#87ceeb]%o[] percent increased self-healing from Warlock spells and Healthstones. [#EFC851]Demonology[]."]
         },
         "warlockMod:DemonArmor": {
                 "NAME": "Demon Armor",
@@ -39,5 +39,13 @@
         "warlockMod:Conflagrate": {
                 "NAME": "Conflagrate",
                 "DESCRIPTIONS": ["Your next [#87ceeb]X[] Incinerates or Chaos Bolts deal 35% increased damage."]
+        },
+        "warlockMod:Shadowburn": {
+                "NAME": "Shadowburn",
+                "DESCRIPTIONS": ["Grants a Soul Shard if it dies this turn."]
+        },
+        "warlockMod:UnstableAffliction": {
+                "NAME": "Unstable Affliction",
+                "DESCRIPTIONS": ["Dealing [#87ceeb]%o[] [#EFC851]Affliction[] damage over 6 turns."]
         }
 }

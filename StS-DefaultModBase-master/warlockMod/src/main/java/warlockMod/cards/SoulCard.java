@@ -34,6 +34,9 @@ public abstract class SoulCard extends AbstractDefaultCard {
             WarlockMod.consumeSpecificOrb(p, SoulShard.ORB_ID);
         }
     }
+    public void createSoulShard(){
+        AbstractDungeon.player.channelOrb(new SoulShard());
+    }
     public boolean hasSoulShards(AbstractPlayer p, int souls){
         ArrayList<AbstractOrb> orbs=p.orbs;
         int foundshard=0;
@@ -43,7 +46,7 @@ public abstract class SoulCard extends AbstractDefaultCard {
             if(orb!=null){
                 if(orb.ID!=null&&orb.ID.equalsIgnoreCase(SoulShard.ORB_ID)){
                     foundshard++;
-                    break;
+                    if(foundshard>=souls){break;}
                 }
             }
         }

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class FelArmor extends CustomCard {
 
     //Fel Armor
-    //Increase your self-healing by 40%. Demonology. Costs 1 mana. Power. Uncommon. Upgrade: Costs 0 mana.
+    //Increase your self-healing from Warlock spells and Healthstones by 40%. Demonology. Costs 1 mana. Power. Uncommon. Upgrade: Costs 0 mana.
 
     public static final String ID = WarlockMod.makeID(FelArmor.class.getSimpleName());
     public static final String IMG = WarlockMod.makeCardPath("felarmor.png");

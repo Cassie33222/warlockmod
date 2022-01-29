@@ -33,7 +33,7 @@
   },
   "warlockMod:FelArmor": {
     "NAME": "Fel Armor",
-    "DESCRIPTION": "Increase your self-healing from Warlock cards by 40%. warlockmod:Demonology."
+    "DESCRIPTION": "Increase your self-healing from from Warlock spells and Healthstones by 40%. warlockmod:Demonology."
   },
   "warlockMod:DemonArmor": {
     "NAME": "Demon Armor",
@@ -41,7 +41,7 @@
   },
   "warlockMod:Conflagrate": {
     "NAME": "Conflagrate",
-    "DESCRIPTION": "Deal !M! damage. If the target is affected by Immolate, draw a card. Your next 2 Incinerates or Chaos Bolts deal 30% increased damage. warlockmod:Destruction."
+    "DESCRIPTION": "Deal !M! damage. If the target is affected by Immolate, draw a card. Your next 2 Incinerates or Chaos Bolts deal 35% increased damage. warlockmod:Destruction."
   },
   "warlockMod:SearingPain": {
     "NAME": "Searing Pain",
@@ -51,8 +51,26 @@
     "NAME": "Soul Fire",
     "DESCRIPTION": "Deal !M! damage. Costs 1 [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Destruction."
   },
-
-
+  "warlockMod:DrainSoul": {
+      "NAME": "Drain Soul",
+    "DESCRIPTION": "Deal !M! damage and gain a [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Affliction."
+  },
+  "warlockMod:Shadowburn": {
+    "NAME": "Shadowburn",
+    "DESCRIPTION": "Deal !M! damage. Costs 1 [#EFC851]Soul[] [#EFC851]Shard[]. If the target dies this turn, gain 1 [#EFC851]Soul[] [#EFC851]Shard[]. Does not stack. warlockmod:Destruction."
+  },
+  "warlockMod:ChaosBolt": {
+    "NAME": "Chaos Bolt",
+    "DESCRIPTION": "Deal !M! damage. If you have Conflagrate, gain 3 Energy. Costs 3 [#EFC851]Soul[] [#EFC851]Shards[]. warlockmod:Destruction."
+  },
+  "warlockMod:CreateHealthstone": {
+    "NAME": "Create Healthstone",
+    "DESCRIPTION": "Create a Healthstone potion, which restores 10% health on use. Costs 1 [#EFC851]Soul[] [#EFC851]Shard[]. Exhaust. warlockmod:Demonology."
+  },
+  "warlockMod:UnstableAffliction": {
+    "NAME": "Unstable Affliction",
+    "DESCRIPTION": "Remove all Artifact from the target. Deal !M! damage over 6 turns. Costs 1 [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Affliction. warlockmod:Curse."
+  },
 
 
 

@@ -1,9 +1,7 @@
 package warlockMod.powers;
 
-import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -11,38 +9,37 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import warlockMod.WarlockMod;
 import warlockMod.util.TextureLoader;
 
-public class FelArmor extends AbstractPower implements CloneablePowerInterface {
-    public static final String POWER_ID = WarlockMod.makeID("FelArmor");
+public class UnstableAffliction extends WarlockDot{
+    public static final String POWER_ID = WarlockMod.makeID("UnstableAffliction");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex32 = TextureLoader.getTexture(WarlockMod.makePowerPath("felarmor32.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(WarlockMod.makePowerPath("unstableaffliction32.png"));
     private static final Texture tex84 = TextureLoader.getTexture(WarlockMod.makePowerPath("empty84.png"));
 
-    public FelArmor(final AbstractCreature owner, final int amount) {
+
+    public UnstableAffliction(AbstractCreature owner, AbstractCreature source, int amount) {
+        super(owner, source, amount);
         name = NAME;
         ID = POWER_ID;
-
-        this.owner = owner;
-        this.amount = amount;
-        type = PowerType.BUFF;
-        isTurnBased = false;
-
-        // We load those txtures here.
+        // We load those textures here.
         this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
-        //this.description = String.format(DESCRIPTIONS[0], this.amount);
 
-        this.updateDescription();
+        turnsremaining=6;
+        //this.description = ("Dealing [#87ceeb]"+this.amount+"[] [#EFC851]Affliction[] damage over [#87ceeb]"+turnsremaining+"[] remaining turns.");
+        updateDescription();
     }
-
     @Override
-    public void updateDescription(){
-        description="Granting [#87ceeb]"+this.amount+"%[] increased self-healing from Warlock spells and Healthstones. [#EFC851]Demonology[].";
+    public void removeIfComplete(){
+        //remove if duration complete
+        if(turnsremaining==0){
+            WarlockMod.cleansePower(this.owner, POWER_ID);
+        }
     }
     @Override
     public AbstractPower makeCopy() {
-        return new FelArmor(owner, amount);
+        return new UnstableAffliction(owner, source, amount);
     }
 }

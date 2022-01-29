@@ -1,6 +1,10 @@
 {
-"warlockMod:PlaceholderPotion": {
+        "warlockMod:PlaceholderPotion": {
         "NAME": "Placeholder Potion",
         "DESCRIPTIONS": ["Gain ", " At the end of your turn, lose ", " Strength."]
-}
+        },
+        "warlockMod:Healthstone": {
+                "NAME": "Healthstone",
+                "DESCRIPTIONS": ["Restore 10% of your max health."]
+        }
 }

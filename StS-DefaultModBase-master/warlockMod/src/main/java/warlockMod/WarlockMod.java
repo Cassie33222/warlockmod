@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -202,6 +203,9 @@ public class WarlockMod implements
     public static GifAnimation soulfireimpact=
             new GifAnimation("warlockModResources/images/cards/soulfireimpact.png",
                     13, 1, 0, 0, 0.5f, 0.5f, 0, 0, true);
+    public static GifAnimation chaosboltimpact=
+            new GifAnimation("warlockModResources/images/cards/chaosboltimpact.png",
+                    13, 1, 0, 0, 0.5f, 0.5f, 0, 0, true);
 
     public static GifAnimation immolatetickgif=
             new GifAnimation("warlockModResources/images/powers/immolatetick.png",
@@ -214,6 +218,7 @@ public class WarlockMod implements
             new GifAnimation("warlockModResources/images/cards/felarmorapply.png",
                     47, 1, 0, 0, 0.75f, 0.75f, 0, 300, true);
 
+    public static Texture healthstonepotiontexture;
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "warlockModResources/images/Badge.png";
     
@@ -465,6 +470,11 @@ public class WarlockMod implements
 
         WarlockMod.soulfireimpact.create();
         initializeGif(soulfireimpact, 0.075f);
+        WarlockMod.chaosboltimpact.create();
+        initializeGif(chaosboltimpact, 0.075f);
+
+        //load potion textures
+        healthstonepotiontexture=ImageMaster.loadImage("warlockModResources/images/potions/healthstone.png");
 
         // =============== SOUND EFFECTS =================
         BaseMod.addAudio(warlockselectsound, warlockselectsoundurl);
