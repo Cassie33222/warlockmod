@@ -1,6 +1,7 @@
 package warlockMod.cards;
 
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 import warlockMod.orbs.SoulShard;
@@ -69,6 +71,11 @@ public class Shadowburn extends SoulCard{
         if (yourModifierPower != null) {
             this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
             this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
+        }
+        AbstractPower weak = AbstractDungeon.player.getPower(WeakPower.POWER_ID); //usually defined as a constant in power classes
+        if (weak != null) {
+            this.magicNumber = Math.max(0, MathUtils.floor(this.magicNumber * 0.75F));
+            this.isMagicNumberModified = true;
         }
         damage=magicNumber;
     }

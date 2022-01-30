@@ -75,7 +75,7 @@ public class Incinerate extends CustomCard{
 
         AbstractPower weak = AbstractDungeon.player.getPower(WeakPower.POWER_ID); //usually defined as a constant in power classes
         if (weak != null) {
-            this.magicNumber = Math.max(0, MathUtils.floor(AbstractDungeon.player.hasRelic("Paper Crane") ? this.magicNumber * 0.6F : this.magicNumber * 0.75F));
+            this.magicNumber = Math.max(0, MathUtils.floor(this.magicNumber * 0.75F));
             this.isMagicNumberModified = true;
         }
         damage=magicNumber;

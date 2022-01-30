@@ -59,5 +59,9 @@
         "warlockMod:CurseOfTheElements": {
                 "NAME": "Curse of the Elements",
                 "DESCRIPTIONS": ["Taking 20% increased damage from Destruction effects."]
+        },
+        "warlockMod:SiphonLife": {
+                "NAME": "Siphon Life",
+                "DESCRIPTIONS": ["Dealing [#87ceeb]%o[] [#EFC851]Affliction[] damage over 10 turns, and healing you for that amount."]
         }
 }

@@ -91,8 +91,14 @@
     "NAME": "Curse of the Elements",
     "DESCRIPTION": "Target enemy takes 20% increased Destruction damage for 6 turns. warlockmod:Destruction. warlockmod:Curse."
   },
-
-
+  "warlockMod:SiphonLife": {
+    "NAME": "Siphon Life",
+    "DESCRIPTION": "Deal !M! damage over 10 turns, healing you for that amount. warlockmod:Affliction. warlockmod:Curse."
+  },
+  "warlockMod:Shadowfury": {
+    "NAME": "Shadowfury",
+    "DESCRIPTION": "Deal !M! damage and apply 1 Weak to all enemies. Exhaust warlockmod:Destruction."
+  },
 
 
 

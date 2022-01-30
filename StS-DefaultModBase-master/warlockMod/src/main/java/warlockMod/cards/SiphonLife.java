@@ -1,47 +1,42 @@
 package warlockMod.cards;
 
 import basemod.abstracts.CustomCard;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 import warlockMod.powers.Spellpower;
 
-public class Immolate extends CustomCard{
+public class SiphonLife extends CustomCard{
 
-    //Deal 5+1sp damage immediately, and 10+1sp more over 5 turns. Destruction. Curse. Costs 1 mana. Attack. Common. Upgrade: +3 base damage.
+    //Deal 20+1sp damage over 10 turns, healing you for that amount. Affliction. Curse. Costs 2 mana. Skill. Uncommon. Upgrade: 30 damage.
 
-    // TEXT DECLARATION
 
-    public static final String ID = WarlockMod.makeID(Immolate.class.getSimpleName());
+    public static final String ID = WarlockMod.makeID(SiphonLife.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = WarlockMod.makeCardPath("immolate.png");
+    public static final String IMG = WarlockMod.makeCardPath("siphonlife.png");
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
-    private static final int COST = 1;
-    private static final int DAMAGE = 5;
-    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int COST = 2;
+    private static final int DAMAGE = 20;
+    private static final int UPGRADE_PLUS_DMG = 10;
     private static final int SPELLPOWER_RATIO = 1;
 
-    public Immolate() {
+    public SiphonLife() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         baseDamage = DAMAGE;
@@ -58,13 +53,6 @@ public class Immolate extends CustomCard{
             this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
             this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
         }
-
-        AbstractPower weak = AbstractDungeon.player.getPower(WeakPower.POWER_ID); //usually defined as a constant in power classes
-        if (weak != null) {
-            this.magicNumber = Math.max(0, MathUtils.floor(this.magicNumber * 0.75F));
-            this.isMagicNumberModified = true;
-        }
-        damage=magicNumber;
     }
     @Override
     public void calculateCardDamage(AbstractMonster mo){
@@ -76,20 +64,14 @@ public class Immolate extends CustomCard{
     public void use(AbstractPlayer p, AbstractMonster m) {
 
         //Create gif animation to replace STS animation
-        WarlockMod.immolateimpactgif.playOnceOverCreature(m);
+        WarlockMod.corruptionimpactgif.playOnceOverCreature(m);
         TheWarlock.attack();
-        TheWarlock.firecastsound();
-        CardCrawlGame.sound.play(WarlockMod.immolatesound);
-        int damagevalue=(int)Math.round(damage*DestructionCard.getDestructionRatio(p, m));
+        TheWarlock.shadowcastsound();
+        CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
+
         //remove existing corruption stack
-        WarlockMod.cleansePower(m, warlockMod.powers.Immolate.POWER_ID);
-        addToBot(
-                new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn))
-        );
-        addToBot( // The action managed queues all the actions a card should do.
-                new ApplyPowerAction(m, p, new warlockMod.powers.Immolate(m, p, damage+5), 0)
-                //new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
-        );
+        WarlockMod.cleansePower(m, warlockMod.powers.SiphonLife.POWER_ID);
+        addToBot(new ApplyPowerAction(m, p, new warlockMod.powers.SiphonLife(m, p, damage), 0));
     }
     // Upgraded stats.
     @Override
