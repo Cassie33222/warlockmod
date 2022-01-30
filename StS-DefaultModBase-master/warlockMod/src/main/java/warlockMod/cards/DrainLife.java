@@ -127,8 +127,8 @@ public class DrainLife extends CustomCard{
         WarlockMod.drainlifeimpactgif.playOnceOverCreature(m);
         TheWarlock.attack();
         TheWarlock.shadowcastsound();
-        int damagevalue=damage;
-        int healvalue=getHealCalc(p, damage);
+        int damagevalue=(int)Math.round(damage*AfflictionCard.getAfflictionRatio(p, m));
+        int healvalue=getHealCalc(p, damagevalue);
         //CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
 
         addToBot(

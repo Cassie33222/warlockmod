@@ -159,7 +159,7 @@ public class WarlockMod implements
     public static final String cursesound="CURSE";
     public static final String cursesoundurl="warlockModResources/sounds/cards/curse.ogg";
 
-    public static final String fearsound="CURSE";
+    public static final String fearsound="FEAR";
     public static final String fearsoundurl="warlockModResources/sounds/cards/fear.ogg";
 
     public static final String felarmorsound="FEL_ARMOR";

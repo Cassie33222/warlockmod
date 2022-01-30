@@ -130,8 +130,8 @@ public class DeathCoil extends CustomCard{
         TheWarlock.shadowcastsound();
         CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
 
-        int damagevalue=damage;
-        int healvalue=getHealCalc(p, damage);
+        int damagevalue=(int)Math.round(damage*AfflictionCard.getAfflictionRatio(p, m));
+        int healvalue=getHealCalc(p, damagevalue);
         //CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
 
         addToBot(

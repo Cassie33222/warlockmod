@@ -41,7 +41,7 @@
     "NAMES": [
       "destruction"
     ],
-    "DESCRIPTION": "Benefits from Destruction effects. Does not benefit from Vulnerable."
+    "DESCRIPTION": "Benefits from Destruction effects. Does not benefit from Vulnerable or Strength."
   },
   {
     "NAMES": [

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import warlockMod.WarlockMod;
+import warlockMod.cards.AfflictionCard;
 import warlockMod.util.TextureLoader;
 
 public class WarlockDot extends AbstractPower implements CloneablePowerInterface, HealthBarRenderPower{
@@ -19,6 +20,8 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
     public static String POWER_ID;
     private static final Texture tex32 = TextureLoader.getTexture(WarlockMod.makePowerPath("corruption32.png"));
     private static final Texture tex84 = TextureLoader.getTexture(WarlockMod.makePowerPath("empty84.png"));
+
+    boolean affliction=false, destruction=false, demonology=false;
     public WarlockDot(AbstractCreature owner, AbstractCreature source, int amount) {
         this.owner = owner;
         this.amount = amount;
@@ -51,9 +54,21 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
         }
         return damagethisturn;
     }
+    @Override
+    public int getHealthBarAmount() {
+        int damagevalue=damageThisTurn();
+        if(affliction){
+            damagevalue=(int)Math.round(damagevalue* AfflictionCard.getAfflictionRatio(this.source, this.owner));
+        }
+        return damagevalue;
+    }
     public void damage(int damagethisturn){
+        int damagevalue=damagethisturn;
+        if(affliction){
+            damagevalue=(int)Math.round(damagevalue* AfflictionCard.getAfflictionRatio(this.source, this.owner));
+        }
         addToBot(new DamageAction(this.owner,
-                new DamageInfo(AbstractDungeon.player, damagethisturn, DamageInfo.DamageType.HP_LOSS)
+                new DamageInfo(AbstractDungeon.player, damagevalue, DamageInfo.DamageType.HP_LOSS)
         ));
     }
     public void countDown(int damagethisturn){
@@ -72,10 +87,6 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
     @Override
     public void updateDescription() {
         this.description = ("Dealing [#87ceeb]"+this.amount+"[] [#EFC851]Affliction[] damage over [#87ceeb]"+turnsremaining+"[] remaining turns.");
-    }
-    @Override
-    public int getHealthBarAmount() {
-        return damageThisTurn();
     }
     @Override
     public Color getColor() {

@@ -114,8 +114,7 @@ public class DrainSoul extends CustomCard{
         WarlockMod.drainlifeimpactgif.playOnceOverCreature(m);
         TheWarlock.attack();
         TheWarlock.shadowcastsound();
-        int damagevalue=damage;
-        //CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
+        int damagevalue=(int)Math.round(damage*AfflictionCard.getAfflictionRatio(p, m));
 
         createSoulShard();
         addToBot(

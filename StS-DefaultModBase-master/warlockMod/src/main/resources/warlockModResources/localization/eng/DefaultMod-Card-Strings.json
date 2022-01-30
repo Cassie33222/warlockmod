@@ -79,6 +79,10 @@
     "NAME": "Fear",
     "DESCRIPTION": "Kill target Minion, or apply [#87ceeb]2[] Weak to a non-Minion. warlockmod:Affliction."
   },
+  "warlockMod:Haunt": {
+    "NAME": "Haunt",
+    "DESCRIPTION": "Deal !M! damage and self-healing. The target takes 35% increased damage from Affliction effects for 3 turns. warlockmod:Affliction."
+  },
 
 
 

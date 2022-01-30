@@ -47,5 +47,9 @@
         "warlockMod:UnstableAffliction": {
                 "NAME": "Unstable Affliction",
                 "DESCRIPTIONS": ["Dealing [#87ceeb]%o[] [#EFC851]Affliction[] damage over 6 turns."]
+        },
+        "warlockMod:Haunt": {
+                "NAME": "Haunt",
+                "DESCRIPTIONS": ["Taking 35% increased damage from Affliction effects."]
         }
 }

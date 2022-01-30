@@ -28,6 +28,7 @@ public class UnstableAffliction extends WarlockDot{
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
 
         turnsremaining=6;
+        affliction=true;
         //this.description = ("Dealing [#87ceeb]"+this.amount+"[] [#EFC851]Affliction[] damage over [#87ceeb]"+turnsremaining+"[] remaining turns.");
         updateDescription();
     }
