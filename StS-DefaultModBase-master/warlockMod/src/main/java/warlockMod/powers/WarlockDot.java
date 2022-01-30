@@ -8,10 +8,12 @@ import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPowe
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import warlockMod.WarlockMod;
 import warlockMod.cards.AfflictionCard;
+import warlockMod.cards.DestructionCard;
 import warlockMod.util.TextureLoader;
 
 public class WarlockDot extends AbstractPower implements CloneablePowerInterface, HealthBarRenderPower{
@@ -22,9 +24,12 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
     private static final Texture tex84 = TextureLoader.getTexture(WarlockMod.makePowerPath("empty84.png"));
 
     boolean affliction=false, destruction=false, demonology=false;
+    int originalamount;
+
     public WarlockDot(AbstractCreature owner, AbstractCreature source, int amount) {
         this.owner = owner;
         this.amount = amount;
+        originalamount=amount;
         this.source = source;
 
         type = PowerType.DEBUFF;
@@ -54,19 +59,30 @@ public class WarlockDot extends AbstractPower implements CloneablePowerInterface
         }
         return damagethisturn;
     }
+    public double getSpecializationRatio(){
+        double ratio=1;
+        if(affliction){
+            ratio*=AfflictionCard.getAfflictionRatio(this.source, this.owner);
+        }
+        if(destruction){
+            ratio*= DestructionCard.getDestructionRatio(this.source, this.owner);
+        }
+        return ratio;
+    }
     @Override
     public int getHealthBarAmount() {
         int damagevalue=damageThisTurn();
         if(affliction){
-            damagevalue=(int)Math.round(damagevalue* AfflictionCard.getAfflictionRatio(this.source, this.owner));
+            damagevalue=(int)Math.round(damagevalue*getSpecializationRatio());
         }
         return damagevalue;
     }
     public void damage(int damagethisturn){
         int damagevalue=damagethisturn;
         if(affliction){
-            damagevalue=(int)Math.round(damagevalue* AfflictionCard.getAfflictionRatio(this.source, this.owner));
+            damagevalue=(int)Math.round(damagevalue*getSpecializationRatio());
         }
+
         addToBot(new DamageAction(this.owner,
                 new DamageInfo(AbstractDungeon.player, damagevalue, DamageInfo.DamageType.HP_LOSS)
         ));

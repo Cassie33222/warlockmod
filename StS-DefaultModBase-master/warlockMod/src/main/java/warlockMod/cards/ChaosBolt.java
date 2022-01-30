@@ -85,6 +85,7 @@ public class ChaosBolt extends SoulCard{
         }else{
             eatSouls(p, this.SOULS);
         }
+        int damagevalue=(int)Math.round(damage*DestructionCard.getDestructionRatio(p, m));
 
         //Create gif animation to replace STS animation
         WarlockMod.chaosboltimpact.playOnceOverCreature(m);
@@ -93,7 +94,7 @@ public class ChaosBolt extends SoulCard{
         CardCrawlGame.sound.play(WarlockMod.fireblast1sound);
 
         addToBot(
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
+                new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn))
         );
     }
     // Upgraded stats.

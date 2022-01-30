@@ -80,11 +80,11 @@ public class Immolate extends CustomCard{
         TheWarlock.attack();
         TheWarlock.firecastsound();
         CardCrawlGame.sound.play(WarlockMod.immolatesound);
-
+        int damagevalue=(int)Math.round(damage*DestructionCard.getDestructionRatio(p, m));
         //remove existing corruption stack
         WarlockMod.cleansePower(m, warlockMod.powers.Immolate.POWER_ID);
         addToBot(
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn))
+                new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn))
         );
         addToBot( // The action managed queues all the actions a card should do.
                 new ApplyPowerAction(m, p, new warlockMod.powers.Immolate(m, p, damage+5), 0)

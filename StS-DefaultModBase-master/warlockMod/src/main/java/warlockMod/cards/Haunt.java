@@ -110,6 +110,7 @@ public class Haunt extends CustomCard{
         );
         addToBot(new HealAction(p, p, healvalue));
 
+        WarlockMod.cleansePower(m, warlockMod.powers.Haunt.POWER_ID);
         addToBot(new ApplyPowerAction(m, p, new warlockMod.powers.Haunt(m, 0), 0));
 
     }

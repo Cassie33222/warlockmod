@@ -105,9 +105,9 @@ public class Incinerate extends CustomCard{
                 addToBot(new ReducePowerAction(p, p, conf, 1));
             }
         }
-
+        int damagevalue=(int)Math.round(damage*DestructionCard.getDestructionRatio(p, m));
         //deal 9 damage or more
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)));
+        addToBot(new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn)));
 
         //gain 1 energy if target is affected by immolate
         AbstractPower power=m.getPower(Immolate.POWER_ID);

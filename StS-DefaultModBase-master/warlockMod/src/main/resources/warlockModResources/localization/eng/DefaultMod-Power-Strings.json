@@ -51,5 +51,13 @@
         "warlockMod:Haunt": {
                 "NAME": "Haunt",
                 "DESCRIPTIONS": ["Taking 35% increased damage from Affliction effects."]
+        },
+        "warlockMod:SeedOfCorruption": {
+                "NAME": "Seed of Corruption",
+                "DESCRIPTIONS": ["Dealing [#87ceeb]%o[] [#EFC851]Affliction[] damage over 6 turns. Deals [#87ceeb]%o[] [#EFC851]Affliction[] damage to enemies on expiration or death."]
+        },
+        "warlockMod:CurseOfTheElements": {
+                "NAME": "Curse of the Elements",
+                "DESCRIPTIONS": ["Taking 20% increased damage from Destruction effects."]
         }
 }

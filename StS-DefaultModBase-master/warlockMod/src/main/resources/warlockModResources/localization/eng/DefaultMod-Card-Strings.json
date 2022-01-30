@@ -83,8 +83,14 @@
     "NAME": "Haunt",
     "DESCRIPTION": "Deal !M! damage and self-healing. The target takes 35% increased damage from Affliction effects for 3 turns. warlockmod:Affliction."
   },
-
-
+  "warlockMod:SeedOfCorruption": {
+    "NAME": "Seed of Corruption",
+    "DESCRIPTION": "Deal !M! damage over 6 turns. When the effect ends or the target dies, deal !M! damage to all enemies. warlockmod:Affliction. warlockmod:Curse."
+  },
+  "warlockMod:CurseOfTheElements": {
+    "NAME": "Curse of the Elements",
+    "DESCRIPTION": "Target enemy takes 20% increased Destruction damage for 6 turns. warlockmod:Destruction. warlockmod:Curse."
+  },
 
 
 

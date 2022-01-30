@@ -82,10 +82,10 @@ public class Conflagrate extends CustomCard{
         TheWarlock.attack();
         TheWarlock.firecastsound();
         CardCrawlGame.sound.play(WarlockMod.immolatesound);
-
+        int damagevalue=(int)Math.round(damage*DestructionCard.getDestructionRatio(p, m));
         //deal 9 damage or more
         addToBot(
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)
+                new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn)
                 )
         );
 

@@ -96,7 +96,7 @@ public class Shadowburn extends SoulCard{
         TheWarlock.firecastsound();
         CardCrawlGame.sound.play(WarlockMod.incineratesound);
 
-        int damagevalue=damage;
+        int damagevalue=(int)Math.round(damage*DestructionCard.getDestructionRatio(p, m));
         //CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
 
         WarlockMod.cleansePower(m, warlockMod.powers.Shadowburn.POWER_ID);

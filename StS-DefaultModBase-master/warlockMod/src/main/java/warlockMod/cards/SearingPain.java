@@ -110,7 +110,8 @@ public class SearingPain extends AbstractDynamicCard{
         }
 
         //deal 2 damage or more
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)));
+        int damagevalue=(int)Math.round(damage*DestructionCard.getDestructionRatio(p, m));
+        addToBot(new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn)));
 
         AbstractPower power=m.getPower(Immolate.POWER_ID);
         if(power!=null&&power.amount>0){

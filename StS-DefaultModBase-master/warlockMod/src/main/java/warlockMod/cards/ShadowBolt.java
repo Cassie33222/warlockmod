@@ -108,8 +108,10 @@ public class ShadowBolt extends CustomCard{
         TheWarlock.shadowcastsound();
         CardCrawlGame.sound.play(WarlockMod.shadowimpactsound);
 
+        int damagevalue=(int)Math.round(damage*DestructionCard.getDestructionRatio(p, m));
+
         addToBot(
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn)
+                new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn)
                 )
     );
     }

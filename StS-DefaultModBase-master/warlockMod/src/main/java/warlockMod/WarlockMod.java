@@ -176,6 +176,13 @@ public class WarlockMod implements
     public static final String fireblast2sound="FIRE_BLAST_2";
     public static final String fireblast2soundurl="warlockModResources/sounds/cards/fireblast2.ogg";
 
+    public static final String seedofcorruptionsound="SEED_OF_CORRUPTION";
+    public static final String seedofcorruptionurl="warlockModResources/sounds/cards/seedofcorruption.ogg";
+
+    public static final String shadowfurysound="SHADOWFURY";
+    public static final String shadowfuryurl="warlockModResources/sounds/cards/shadowfury.ogg";
+
+
     public static GifAnimation shadowboltimpactgif=
             new GifAnimation("warlockModResources/images/cards/sbi.png",
                     6, 6, 0, 0, 1f, 1f, 0, 110, true);
@@ -493,6 +500,8 @@ public class WarlockMod implements
         BaseMod.addAudio(demonarmorsound, demonarmorsoundurl);
         BaseMod.addAudio(fireblast1sound, fireblast1soundurl);
         BaseMod.addAudio(fireblast2sound, fireblast2soundurl);
+        BaseMod.addAudio(seedofcorruptionsound, seedofcorruptionurl);
+        BaseMod.addAudio(shadowfurysound, shadowfuryurl);
         for(int i=0; i<summonvoidwalkersounds.length; i++){
             BaseMod.addAudio(summonvoidwalkersounds[i], summonvoidwalkersoundurls[i]);
         }

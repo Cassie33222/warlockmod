@@ -1,51 +1,46 @@
 package warlockMod.cards;
 
+import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 import warlockMod.powers.Spellpower;
 
-public class SoulFire extends SoulCard{
+public class CurseOfTheElements extends CustomCard{
 
-    //Soul Fire
-    //Deal 30+3sp damage. Costs 1 Soul Shard. Destruction. Attack. Costs 3 mana. Common. Upgrade: Costs 2 mana.
+    //Target enemy takes 20% increased Destruction damage for 6 turns. Destruction. Curse. Costs 1 mana. Skill. Common. Upgrade: Costs 0 mana.
 
-    public static final String ID = WarlockMod.makeID(SoulFire.class.getSimpleName());
+
+    public static final String ID = WarlockMod.makeID(CurseOfTheElements.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = WarlockMod.makeCardPath("soulfire.png");
+    public static final String IMG = WarlockMod.makeCardPath("curseoftheelements.png");
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 
-
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
-    private static final int COST = 3;
-    private static final int UPGRADED_COST = 2;
-    private static final int DAMAGE = 30;
-    private static final int SPELLPOWER_RATIO = 3;
-    private static final int SOUL_COST = 1;
+    private static final int COST = 1;
+    private static final int UPGRADED_COST = 0;
 
-    public SoulFire() {
+    public CurseOfTheElements() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
-        baseDamage = DAMAGE;
-        baseMagicNumber=magicNumber=DAMAGE;
-
-        this.SOULS=SOUL_COST;
     }
     @Override
     public void applyPowers() {
@@ -54,14 +49,8 @@ public class SoulFire extends SoulCard{
         this.isMagicNumberModified = false;
         AbstractPower yourModifierPower = AbstractDungeon.player.getPower(Spellpower.POWER_ID); //usually defined as a constant in power classes
         if (yourModifierPower != null) {
-            this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
+            //this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
             this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
-        }
-
-        AbstractPower weak = AbstractDungeon.player.getPower(WeakPower.POWER_ID); //usually defined as a constant in power classes
-        if (weak != null) {
-            this.magicNumber = Math.max(0, MathUtils.floor(AbstractDungeon.player.hasRelic("Paper Crane") ? this.magicNumber * 0.6F : this.magicNumber * 0.75F));
-            this.isMagicNumberModified = true;
         }
         damage=magicNumber;
     }
@@ -73,23 +62,17 @@ public class SoulFire extends SoulCard{
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //eat souls or cancel
-        if(!hasSoulShards(p, this.SOULS)){
-            return;
-        }else{
-            eatSouls(p, this.SOULS);
-        }
 
         //Create gif animation to replace STS animation
-        WarlockMod.soulfireimpact.playOnceOverCreature(m);
+        WarlockMod.curseofagonygif.playOnceOverCreature(m);
         TheWarlock.attack();
-        TheWarlock.firecastsound();
-        CardCrawlGame.sound.play(WarlockMod.fireblast1sound);
-        int damagevalue=(int)Math.round(damage*DestructionCard.getDestructionRatio(p, m));
-        addToBot(
-                new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn))
-        );
+        TheWarlock.shadowcastsound();
+
+        WarlockMod.cleansePower(m, warlockMod.powers.CurseOfTheElements.POWER_ID);
+        addToBot(new ApplyPowerAction(m, p, new warlockMod.powers.CurseOfTheElements(m, 0), 0));
+
     }
+
     // Upgraded stats.
     @Override
     public void upgrade() {
