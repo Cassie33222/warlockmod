@@ -1,5 +1,6 @@
 package warlockMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -11,7 +12,7 @@ import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 
-
+@AutoAdd.Ignore
 public class DefaultRareAttack extends AbstractDynamicCard {
 
     /*

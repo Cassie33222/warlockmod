@@ -3,6 +3,7 @@ package warlockMod.powers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,10 +11,14 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.cards.AfflictionCard;
 import warlockMod.util.TextureLoader;
+
+import java.util.Iterator;
 
 public class SeedOfCorruption extends WarlockDot{
     public static final String POWER_ID = WarlockMod.makeID("SeedOfCorruption");
@@ -48,9 +53,10 @@ public class SeedOfCorruption extends WarlockDot{
         }
     }
     public void onDeath(){
-        if(owner==null||owner.currentHealth>0||owner.halfDead){
+        /*if(owner==null||owner.currentHealth>0||owner.halfDead){
             return;
-        }
+        }*/
+        explode();
     }
     public void explode(){
         if(exploded) {
@@ -62,8 +68,14 @@ public class SeedOfCorruption extends WarlockDot{
         WarlockMod.shadowboltimpactgif.playOnceOverCreature(this.owner);
         CardCrawlGame.sound.play(WarlockMod.shadowfurysound);
         CardCrawlGame.sound.play(WarlockMod.seedofcorruptionsound);
-
-        addToBot(new DamageAllEnemiesAction(AbstractDungeon.player, damagevalue, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE));
+        AbstractCreature p=AbstractDungeon.player;
+        //addToBot(new DamageAllEnemiesAction(AbstractDungeon.player, damagevalue, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE));
+        Iterator var3 = AbstractDungeon.getCurrRoom().monsters.monsters.iterator();
+        while(var3.hasNext()) {
+            AbstractMonster mo = (AbstractMonster)var3.next();
+            WarlockMod.soulfireimpact.playOnceOverCreature(mo);
+            addToBot(new DamageAction(mo, new DamageInfo(p, damagevalue, DamageInfo.DamageType.HP_LOSS)));
+        }
     }
     @Override
     public void updateDescription() {

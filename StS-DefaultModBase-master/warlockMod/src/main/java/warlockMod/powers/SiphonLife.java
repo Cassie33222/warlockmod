@@ -15,7 +15,7 @@ import warlockMod.WarlockMod;
 import warlockMod.util.TextureLoader;
 
 public class SiphonLife extends WarlockDot{
-    public static final String POWER_ID = WarlockMod.makeID("Siphon Life");
+    public static final String POWER_ID = WarlockMod.makeID("SiphonLife");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;

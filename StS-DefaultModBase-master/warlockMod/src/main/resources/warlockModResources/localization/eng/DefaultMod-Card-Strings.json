@@ -53,7 +53,7 @@
   },
   "warlockMod:DrainSoul": {
       "NAME": "Drain Soul",
-    "DESCRIPTION": "Deal !M! damage and gain a [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Affliction."
+    "DESCRIPTION": "Deal !M! damage and gain a [#EFC851]Soul[] [#EFC851]Shard[]. If the target dies from this, gain another [#EFC851]Soul[] [#EFC851]Shard[]. warlockmod:Affliction."
   },
   "warlockMod:Shadowburn": {
     "NAME": "Shadowburn",
@@ -97,7 +97,7 @@
   },
   "warlockMod:Shadowfury": {
     "NAME": "Shadowfury",
-    "DESCRIPTION": "Deal !M! damage and apply 1 Weak to all enemies. Exhaust warlockmod:Destruction."
+    "DESCRIPTION": "Deal !M! damage and apply 1 Weak to all enemies. Exhaust. warlockmod:Destruction."
   },
 
 

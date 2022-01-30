@@ -1,5 +1,6 @@
 package warlockMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
 
+@AutoAdd.Ignore
 public class DefaultRareSkill extends AbstractDynamicCard {
 
     /*

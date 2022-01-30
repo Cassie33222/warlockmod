@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.watcher.LessonLearnedAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.BandageUp;
+import com.megacrit.cardcrawl.cards.red.Feed;
 import com.megacrit.cardcrawl.cards.red.Reaper;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -33,7 +34,7 @@ import warlockMod.powers.Spellpower;
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
 public class DrainSoul extends CustomCard{
 
-    //Deal 6+1sp damage and gain a Soul Shard. Affliction. Skill. Costs 2 mana. Uncommon. Upgrade: Costs 1 mana.
+    //Deal 6+1sp damage and gain a Soul Shard. If the target dies from this, gain another Soul Shard. Affliction. Skill. Costs 2 mana. Uncommon. Upgrade: Costs 1 mana.
 
     // TEXT DECLARATION
 
@@ -59,24 +60,6 @@ public class DrainSoul extends CustomCard{
     private static final int UPGRADE_COST = 1;
     private static final int DAMAGE = 6;
     private static final int SPELLPOWER_RATIO = 1;
-
-    // Hey want a second damage/magic/block/unique number??? Great!
-    // Go check out DefaultAttackWithVariable and theDefault.variable.DefaultCustomVariable
-    // that's how you get your own custom variable that you can use for anything you like.
-    // Feel free to explore other mods to see what variables they personally have and create your own ones.
-
-    // /STAT DECLARATION/
-
-    // IMPORTANT NOTE: If you add parameters to your constructor, you'll crash the auto-add cards with a
-    // `NoSuchMethodException` because it except a constructor with no params.
-    // (If you don't know what a constructor or params are or what not pls google, java questions = java study)
-    // You have two option:
-    // 1. Create a new constructor with empty parameters call your custom one with default params in it
-    // 2. Mark the card with @AutoAdd.NotSeen (https://github.com/daviscook477/BaseMod/wiki/AutoAdd) to prevent it from
-    // being auto-add it, and then load it manually with
-    // BaseMod.addCard(new DefaultCommonAttack());
-    // UnlockTracker.unlockCard(DefaultCommonAttack.ID);
-    // in your main class, in the receiveEditCards() method
 
     public DrainSoul() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -121,6 +104,9 @@ public class DrainSoul extends CustomCard{
                 new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn)
                 )
         );
+        if(m.currentBlock+m.currentHealth<damagevalue){
+            createSoulShard();
+        }
     }
 
     // Upgraded stats.
