@@ -75,7 +75,10 @@
     "NAME": "Death Coil",
     "DESCRIPTION": "Deal !M! damage and self-healing. Apply [#87ceeb]2[] Weak. Draw a card. Exhaust. warlockmod:Affliction."
   },
-
+  "warlockMod:Fear": {
+    "NAME": "Fear",
+    "DESCRIPTION": "Kill target Minion, or apply [#87ceeb]2[] Weak to a non-Minion. warlockmod:Affliction."
+  },
 
 
 

@@ -159,6 +159,9 @@ public class WarlockMod implements
     public static final String cursesound="CURSE";
     public static final String cursesoundurl="warlockModResources/sounds/cards/curse.ogg";
 
+    public static final String fearsound="CURSE";
+    public static final String fearsoundurl="warlockModResources/sounds/cards/fear.ogg";
+
     public static final String felarmorsound="FEL_ARMOR";
     public static final String felarmorsoundurl="warlockModResources/sounds/cards/felarmor.ogg";
     public static final String demonarmorsound="DEMON_ARMOR";
@@ -485,6 +488,7 @@ public class WarlockMod implements
         BaseMod.addAudio(soulshardsound, soulshardsoundurl);
         BaseMod.addAudio(shadowimpactsound, shadowimpactsoundurl);
         BaseMod.addAudio(cursesound, cursesoundurl);
+        BaseMod.addAudio(fearsound, fearsoundurl);
         BaseMod.addAudio(felarmorsound, felarmorsoundurl);
         BaseMod.addAudio(demonarmorsound, demonarmorsoundurl);
         BaseMod.addAudio(fireblast1sound, fireblast1soundurl);
