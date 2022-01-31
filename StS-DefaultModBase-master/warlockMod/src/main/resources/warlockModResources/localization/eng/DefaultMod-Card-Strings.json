@@ -99,7 +99,10 @@
     "NAME": "Shadowfury",
     "DESCRIPTION": "Deal !M! damage and apply 1 Weak to all enemies. Exhaust. warlockmod:Destruction."
   },
-
+  "warlockMod:HowlOfTerror": {
+    "NAME": "Howl of Terror",
+    "DESCRIPTION": "All enemies lose 3 Strength this turn, and gain 1 Weak. warlockmod:Affliction."
+  },
 
 
 
