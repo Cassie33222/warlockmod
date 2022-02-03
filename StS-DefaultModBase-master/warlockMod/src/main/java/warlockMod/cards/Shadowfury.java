@@ -55,6 +55,7 @@ public class Shadowfury extends CustomCard{
     private static final int DAMAGE = 10;
     private static final int UPGRADE_PLUS_DMG = 5;
     private static final int SPELLPOWER_RATIO = 1;
+    private static final boolean affliction=false, destruction=true;
 
     public Shadowfury() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -73,6 +74,8 @@ public class Shadowfury extends CustomCard{
         AbstractPower yourModifierPower = AbstractDungeon.player.getPower(Spellpower.POWER_ID); //usually defined as a constant in power classes
         if (yourModifierPower != null) {
             this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
+            if(affliction)this.magicNumber=(int)Math.round(this.magicNumber*AfflictionCard.getAfflictionBaseRatio());
+            if(destruction)this.magicNumber=(int)Math.round(this.magicNumber*DestructionCard.getDestructionBaseRatio());
             this.isMagicNumberModified = true;
         }
 

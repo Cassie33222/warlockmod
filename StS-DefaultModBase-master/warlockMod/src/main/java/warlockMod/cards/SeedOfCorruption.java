@@ -36,6 +36,7 @@ public class SeedOfCorruption extends CustomCard{
     private static final int DAMAGE = 12;
     private static final int UPGRADED_COST = 1;
     private static final int SPELLPOWER_RATIO = 1;
+    private static final boolean affliction=true, destruction=false;
 
     public SeedOfCorruption() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -52,6 +53,8 @@ public class SeedOfCorruption extends CustomCard{
         AbstractPower yourModifierPower = AbstractDungeon.player.getPower(Spellpower.POWER_ID); //usually defined as a constant in power classes
         if (yourModifierPower != null) {
             this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
+            if(affliction)this.magicNumber=(int)Math.round(this.magicNumber*AfflictionCard.getAfflictionBaseRatio());
+            if(destruction)this.magicNumber=(int)Math.round(this.magicNumber*DestructionCard.getDestructionBaseRatio());
             this.isMagicNumberModified = true; //Causes magicNumber to be displayed for the variable rather than baseMagicNumber
         }
     }

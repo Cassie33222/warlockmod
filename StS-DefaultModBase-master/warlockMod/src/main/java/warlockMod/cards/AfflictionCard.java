@@ -1,8 +1,9 @@
 package warlockMod.cards;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import warlockMod.WarlockMod;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import warlockMod.powers.Haunt;
+import warlockMod.relics.ShadowMastery;
 
 public abstract class AfflictionCard{
     public static String[] TaggedCards=new String[]{
@@ -10,14 +11,21 @@ public abstract class AfflictionCard{
     };
     public static double getAfflictionRatio(AbstractCreature player, AbstractCreature target){
         double ratio=1;
-        //WarlockMod.logger.info("Trying to apply haunt");
         if(target!=null){
-            //WarlockMod.logger.info("Target available");
             if(target.hasPower(Haunt.POWER_ID)){
                 ratio*=1.35;
-                //WarlockMod.logger.info("Applied Haunt");
+            }
+            if(AbstractDungeon.player.hasRelic(ShadowMastery.ID)){
+                ratio*=1.4;
             }
         }
+        return ratio;
+    }
+    public static double getAfflictionBaseRatio(){
+        double ratio=1;
+            if(AbstractDungeon.player.hasRelic(ShadowMastery.ID)){
+                ratio*=1.4;
+            }
         return ratio;
     }
 }

@@ -37,5 +37,33 @@
     "DESCRIPTIONS": [
       "At the start of each combat, gain [#85cce9]1 [#EFC851]Soul [#EFC851]Shard. Gain [#85cce9]1 [#EFC851]Soul [#EFC851]Shard whenever a non-minion enemy dies."
     ]
+  },
+  "warlockMod:Suppression": {
+    "NAME": "Suppression",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "At the start of combat, gain 1 #ySpellpower."
+    ]
+  },
+  "warlockMod:DemonicKnowledge": {
+    "NAME": "Demonic Knowledge",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "Whenever you play a power, gain 1 #ySpellpower."
+    ]
+  },
+  "warlockMod:ShadowMastery": {
+    "NAME": "Shadow Mastery",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "Your #yAffliction spells deal 40% more damage."
+    ]
+  },
+  "warlockMod:ShadowAndFlame": {
+    "NAME": "Shadow and Flame",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "Your #yDestruction spells deal 40% more damage."
+    ]
   }
 }

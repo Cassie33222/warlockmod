@@ -544,15 +544,20 @@ public class WarlockMod implements
         // in order to automatically differentiate which pool to add the relic too.
 
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
-        BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheWarlock.Enums.COLOR_GRAY);
-        BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheWarlock.Enums.COLOR_GRAY);
-        BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheWarlock.Enums.COLOR_GRAY);
-        
-        // This adds a relic to the Shared pool. Every character can find this relic.
-        BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
+        //BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheWarlock.Enums.COLOR_GRAY);
+        //BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheWarlock.Enums.COLOR_GRAY);
+        //BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheWarlock.Enums.COLOR_GRAY);
 
+        // This adds a relic to the Shared pool. Every character can find this relic.
+        //BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
+
+        //MY RELICS
         BaseMod.addRelicToCustomPool(new OrbOfTheSoulEater(), TheWarlock.Enums.COLOR_GRAY);
-        
+        BaseMod.addRelicToCustomPool(new Suppression(), TheWarlock.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new DemonicKnowledge(), TheWarlock.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new ShadowMastery(), TheWarlock.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new ShadowAndFlame(), TheWarlock.Enums.COLOR_GRAY);
+
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
         // (the others are all starters so they're marked as seen in the character file)

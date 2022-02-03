@@ -42,6 +42,7 @@ public class SearingPain extends AbstractDynamicCard{
     private static final int MAGIC2=5;
     private static final int UPGRADE_MAGIC2=5;
     private static final int SPELLPOWER_RATIO = 1;
+    private static final boolean affliction=false, destruction=true;
 
     // Hey want a second damage/magic/block/unique number??? Great!
     // Go check out DefaultAttackWithVariable and theDefault.variable.DefaultCustomVariable
@@ -72,6 +73,8 @@ public class SearingPain extends AbstractDynamicCard{
         AbstractPower yourModifierPower = AbstractDungeon.player.getPower(Spellpower.POWER_ID); //usually defined as a constant in power classes
         if (yourModifierPower != null) {
             this.magicNumber += yourModifierPower.amount*SPELLPOWER_RATIO;
+            if(affliction)this.magicNumber=(int)Math.round(this.magicNumber*AfflictionCard.getAfflictionBaseRatio());
+            if(destruction)this.magicNumber=(int)Math.round(this.magicNumber*DestructionCard.getDestructionBaseRatio());
             this.isMagicNumberModified = true;
         }
 
