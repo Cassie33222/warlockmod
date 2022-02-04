@@ -14,7 +14,7 @@ import warlockMod.powers.Spellpower;
 
 public class SiphonLife extends CustomCard{
 
-    //Deal 20+1sp damage over 10 turns, healing you for that amount. Affliction. Curse. Costs 2 mana. Skill. Uncommon. Upgrade: 30 damage.
+    //Deal 12+1sp damage over 6 turns, healing you for that amount. Affliction. Curse. Costs 2 mana. Skill. Uncommon. Upgrade: 18 damage.
 
 
     public static final String ID = WarlockMod.makeID(SiphonLife.class.getSimpleName());
@@ -32,8 +32,8 @@ public class SiphonLife extends CustomCard{
     public static final CardColor COLOR = TheWarlock.Enums.COLOR_GRAY;
 
     private static final int COST = 2;
-    private static final int DAMAGE = 20;
-    private static final int UPGRADE_PLUS_DMG = 10;
+    private static final int DAMAGE = 12;
+    private static final int UPGRADE_PLUS_DMG = 6;
     private static final int SPELLPOWER_RATIO = 1;
     private static final boolean affliction=true, destruction=false;
 

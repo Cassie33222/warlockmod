@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PenNibPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.Ginger;
 import warlockMod.WarlockMod;
@@ -78,7 +79,12 @@ public class Shadowfury extends CustomCard{
             if(destruction)this.magicNumber=(int)Math.round(this.magicNumber*DestructionCard.getDestructionBaseRatio());
             this.isMagicNumberModified = true;
         }
-
+        AbstractPlayer p=AbstractDungeon.player;
+        AbstractPower nib=p.getPower(warlockMod.powers.Conflagrate.POWER_ID);
+        if(p.hasPower(PenNibPower.POWER_ID)){
+            this.magicNumber=Math.max(0, MathUtils.round(2f*this.magicNumber));
+            this.isMagicNumberModified = true;
+        }
         //strange interaction with 'damage to all'
         AbstractPower weak = AbstractDungeon.player.getPower(WeakPower.POWER_ID); //usually defined as a constant in power classes
         if (weak != null) {

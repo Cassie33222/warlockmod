@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PenNibPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
@@ -21,7 +22,7 @@ import warlockMod.powers.Spellpower;
 public class SearingPain extends AbstractDynamicCard{
 
     //Searing Pain
-    //Deal 2+1sp damage. If the target is affected by Immolate, add 5 damage and extend it by one turn.
+    //Deal 2+1sp damage. Draw a card. If the target is affected by Immolate, add 5 damage and extend it by one turn.
     //Destruction. Attack. Costs 0 mana. Common. Upgrade: Add 5 more.
 
     public static final String ID = WarlockMod.makeID(SearingPain.class.getSimpleName());
@@ -77,7 +78,12 @@ public class SearingPain extends AbstractDynamicCard{
             if(destruction)this.magicNumber=(int)Math.round(this.magicNumber*DestructionCard.getDestructionBaseRatio());
             this.isMagicNumberModified = true;
         }
-
+        AbstractPlayer p=AbstractDungeon.player;
+        AbstractPower nib=p.getPower(warlockMod.powers.Conflagrate.POWER_ID);
+        if(p.hasPower(PenNibPower.POWER_ID)){
+            this.magicNumber=Math.max(0, MathUtils.round(2f*this.magicNumber));
+            this.isMagicNumberModified = true;
+        }
         AbstractPower weak = AbstractDungeon.player.getPower(WeakPower.POWER_ID); //usually defined as a constant in power classes
         if (weak != null) {
             this.magicNumber = Math.max(0, MathUtils.floor(this.magicNumber * 0.75F));
@@ -101,6 +107,7 @@ public class SearingPain extends AbstractDynamicCard{
         TheWarlock.firecastsound();
         CardCrawlGame.sound.play(WarlockMod.immolatesound);
 
+        p.draw();
         //lose a stack of conflagrate, if you have it
         AbstractPower conf=p.getPower(warlockMod.powers.Conflagrate.POWER_ID);
         if(conf!=null&&conf.amount>0){

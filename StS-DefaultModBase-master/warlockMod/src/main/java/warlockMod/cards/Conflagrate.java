@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PenNibPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
@@ -63,7 +64,12 @@ public class Conflagrate extends CustomCard{
             if(destruction)this.magicNumber=(int)Math.round(this.magicNumber*DestructionCard.getDestructionBaseRatio());
             this.isMagicNumberModified = true;
         }
-
+        AbstractPlayer p=AbstractDungeon.player;
+        AbstractPower nib=p.getPower(warlockMod.powers.Conflagrate.POWER_ID);
+        if(p.hasPower(PenNibPower.POWER_ID)){
+            this.magicNumber=Math.max(0, MathUtils.round(2f*this.magicNumber));
+            this.isMagicNumberModified = true;
+        }
         AbstractPower weak = AbstractDungeon.player.getPower(WeakPower.POWER_ID); //usually defined as a constant in power classes
         if (weak != null) {
             this.magicNumber = Math.max(0, MathUtils.floor(this.magicNumber * 0.75F));

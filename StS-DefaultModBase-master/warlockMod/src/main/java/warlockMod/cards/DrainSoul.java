@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import warlockMod.WarlockMod;
 import warlockMod.characters.TheWarlock;
@@ -34,7 +35,7 @@ import warlockMod.powers.Spellpower;
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately to showcase custom cards/inheritance a bit more.
 public class DrainSoul extends CustomCard{
 
-    //Deal 6+1sp damage and gain a Soul Shard. If the target dies from this, gain another Soul Shard. Affliction. Skill. Costs 2 mana. Uncommon. Upgrade: Costs 1 mana.
+    //Deal 6+1sp damage and gain a Soul Shard. If the non-minion target dies from this, gain another Soul Shard. Affliction. Skill. Costs 2 mana. Uncommon. Upgrade: Costs 1 mana.
 
     // TEXT DECLARATION
 
@@ -107,7 +108,7 @@ public class DrainSoul extends CustomCard{
                 new DamageAction(m, new DamageInfo(p, damagevalue, damageTypeForTurn)
                 )
         );
-        if(m.currentBlock+m.currentHealth<damagevalue){
+        if(!m.hasPower(MinionPower.POWER_ID)&&m.currentBlock+m.currentHealth<damagevalue){
             createSoulShard();
         }
     }
